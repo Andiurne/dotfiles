@@ -2,15 +2,12 @@
 # This is where home-managed programs.* and services.* go as options
 {pkgs, inputs, ...}: {
 imports = [
-  ./homePrograms
+  ../programs_HM/devinr_imports.nix
   #./homeServices
 
   # Desktop
   ../desktop/devinr-HM_hyprConf.nix
   ../desktop/devinr-HM_noctalia_conf.nix
-
-  # Gaming
-  ../gaming/devinr-HM_gamingConf.nix
 ];
 
 # HM Manages Itself
@@ -23,7 +20,6 @@ home = {
 
   # Home-manager Pkgs without config
   packages = with pkgs; [
-	#inputs.nvix.packages.${pkgs.system}.default
 ];
 
 # DO NOT TOUCH
