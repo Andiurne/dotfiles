@@ -1,4 +1,4 @@
-{
+{inputs,...}: {
 	home-manager.useGlobalPkgs = true;
 	home-manager.backupFileExtension = "backup";
 	home-manager.useUserPackages = true;
