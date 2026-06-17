@@ -1,6 +1,5 @@
 {config, pkgs, ...}:{
   imports = [
-    ../gaming/devinr_gamingConf.nix
     ../desktop/noctaliaReqs.nix
   ];
 
