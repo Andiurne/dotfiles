@@ -3,11 +3,12 @@
 # NOTE: Must be run from dotfiles
 for dir in ./*/
 	set -l bn (basename $dir)
-	set -l confPath $XDG_CONFIG_HOME/$bn
+	set -l confPath ~/.config/$bn
+
 	# Check for clobbering
 	# If confPath is already a symlink
 	if test -L $confPath
-		echo "$bn is already symlinked, skipping..."
+		echo "$confPath is already a symlink, skipping..."
 		continue
 	else if test -d $confPath
 		echo "Clobbering $bn, moving to $bn.bkp..."
