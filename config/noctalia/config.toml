@@ -1,20 +1,30 @@
 [bar]
-order = [ "top", "soundlight" ]
+order = [ "top", "bottom", "soundlight" ]
+
+    [bar.bottom]
+    auto_hide = true
+    center = [ "media" ]
+    enabled = true
+    end = [ "tray", "session" ]
+    position = "bottom"
+    reserve_space = false
+    start = [ "cpu" ]
 
     [bar.soundlight]
     auto_hide = true
-    background_opacity = 0.0
+    background_opacity = 0.74999998323619366
     capsule = true
     center = [ "output_volume", "audio_visualizer", "brightness" ]
     enabled = true
     end = []
+    margin_ends = 400
     position = "left"
     reserve_space = false
     start = []
 
     [bar.top]
     background_opacity = 0.82999998144805431
-    end = [ "tray", "launcher", "battery", "control-center", "notifications", "session" ]
+    end = [ "launcher", "battery", "control-center", "notifications" ]
     radius = 80
     start = [ "workspaces" ]
 
@@ -35,6 +45,17 @@ type = "mic_mute"
 
 [[control_center.shortcuts]]
 type = "weather"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
 
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
@@ -61,14 +82,31 @@ auto_locate = true
 fingerprint = false
 
 [lockscreen_widgets]
-enabled = true
+enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000002", "lockscreen-widget-0000000000000003" ]
+widget_order = [ "lockscreen-login-box@Unknown-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@Unknown-1"]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 960.0
+    cy = 957.0
+    output = "Unknown-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@Unknown-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 0.0
@@ -126,7 +164,9 @@ screen_time_enabled = true
 
     [shell.panel]
     launcher_compact = true
+    launcher_placement = "attached"
     launcher_session_search = true
+    session_placement = "centered"
     transparency_mode = "glass"
 
     [shell.screen_corners]
@@ -136,21 +176,30 @@ screen_time_enabled = true
     directory = "~/Pictures/Screenshots"
 
 [theme]
+builtin = "Noctalia"
+community_palette = "Oxocarbon"
+mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "btop", "cava", "foot", "gtk3", "gtk4", "hyprland", "kitty" ]
-    community_ids = [ "zen-browser", "neovim", "discord", "yazi", "snappy-switcher", "hyprtoolkit" ]
+    builtin_ids = [ "foot", "gtk3", "gtk4", "hyprland" ]
+    community_ids = [ "zen-browser", "neovim", "yazi", "snappy-switcher", "hyprtoolkit" ]
 
-[wallpaper.default]
-path = "/home/devinr/Pictures/Wallpapers/originals/swirlDownLogo1600.png"
+[wallpaper]
+directory = "~/Wallpapers"
 
-[wallpaper.last]
-path = "/home/devinr/Pictures/Wallpapers/originals/swirlDownLogo1600.png"
+    [wallpaper.default]
+    path = "/home/devinr/Wallpapers/originals/smallLogo.png"
 
-[wallpaper.monitors.eDP-1]
-path = "/home/devinr/Pictures/Wallpapers/originals/swirlDownLogo1600.png"
+    [wallpaper.last]
+    path = "/home/devinr/Wallpapers/originals/smallLogo.png"
+
+    [wallpaper.monitors.Unknown-1]
+    path = "/home/devinr/Wallpapers/originals/smallLogo.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/devinr/Pictures/Wallpapers/originals/swirlDownLogo1600.png"
 
 [weather]
 unit = "imperial"
