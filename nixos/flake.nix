@@ -37,7 +37,7 @@
 
       };
     outputs = { self, nixpkgs,
-    hyprland,
+    home-manager,
     ... } @ inputs:
 	let
 		hm_module = home-manager.nixosModules.home-manager;
@@ -51,7 +51,7 @@
 			./mainConfig.nix
 
 			hm_module
-			./devinr_HM/module.nix
+			./andiurne_HM/module.nix
 		];
 	};
 
