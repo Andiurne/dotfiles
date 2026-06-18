@@ -14,10 +14,6 @@
 
       # System Stuff
       ./system
-
-      # Users to include
-      ./users/devinr.nix
-
   ];
 
   # Nix Settings

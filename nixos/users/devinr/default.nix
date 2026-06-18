@@ -1,11 +1,11 @@
 {pkgs, ...}:{
   imports = [
-    ../gaming/gamingConf.nix
+    ./module.nix
   ];
 
-users.users.andiurne = {
+users.users.devinr = {
   isNormalUser = true;
-  description = "Andiurne";
+  description = "Devin Riehle";
   extraGroups = [ "networkmanager" "wheel" ];
 
   # Local pkgs that AREN'T HM-compatible

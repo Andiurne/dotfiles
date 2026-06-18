@@ -2,14 +2,14 @@
 # This is where home-managed programs.* and services.* go as options
 {pkgs, inputs, ...}: {
 imports = [
-  ../programs_HM/devinr_imports.nix
+  ../../programs_HM/devinr_imports.nix
 
   # Desktop
-  ../desktop/HM_hyprConf.nix
-  ../desktop/HM_noctalia_conf.nix
+  ../../desktop/HM_hyprConf.nix
+  ../../desktop/HM_noctalia_conf.nix
 
   # Gaming
-  ../gaming/HM_gamingConf.nix
+  ../../gaming/HM_gamingConf.nix
 ];
 
 # HM Manages Itself

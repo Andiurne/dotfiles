@@ -8,7 +8,8 @@ for dir in ./*/
 	# Check for clobbering
 	# If confPath is already a symlink
 	if test -L $confPath
-		echo "$confPath is already a symlink, skipping..."
+		echo "$confPath is already a symlink, updating..."
+		rm $confPath
 		continue
 	else if test -d $confPath
 		echo "Clobbering $bn, moving to $bn.bkp..."
