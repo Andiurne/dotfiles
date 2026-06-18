@@ -15,8 +15,6 @@ imports = [
 # HM Manages Itself
 programs.home-manager.enable = true;
 
-gtk.enable = true;
-
 # Basic HM config
 home = {
   username = "devinr";

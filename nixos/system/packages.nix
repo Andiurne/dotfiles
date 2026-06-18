@@ -17,8 +17,11 @@ environment.systemPackages = with pkgs; [
 
     # Screen Capture
     gpu-screen-recorder
-    hyprpicker
-    swappy
-    hyprshot
+    hyprpicker # provides freeze and color picking
+    swappy # screenshot editing
+    adw-gtk3 # theming for swappy
+    # hyprshot # useful for window snipping
+    slurp # region selector
+    grim # turns region into image
 ];
 }
