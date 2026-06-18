@@ -20,6 +20,7 @@ users.users.devinr = {
     # Screenshot Utils
     slurp
     grim
+    adw-gtk3 # for noctalia GTK theming on swappy
   ];
 
   };
