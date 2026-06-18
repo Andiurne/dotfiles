@@ -1,3 +1,0 @@
-{
-    hyprpaper = import ./hyprpaper.nix;
-  };

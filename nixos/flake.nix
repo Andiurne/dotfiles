@@ -49,6 +49,7 @@
 
 		modules = [
 			./mainConfig.nix
+			./hardwareConf/enchantedSlate.nix
 
 			hm_module
 			./andiurne_HM/module.nix
@@ -62,6 +63,7 @@
         	modules = [
               		./mainConfig.nix
 	      		./hardwareConf/VC_station.nix
+
 			hm_module
 			./devinr_HM/module.nix
            		];
