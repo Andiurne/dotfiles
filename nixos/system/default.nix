@@ -3,7 +3,6 @@
     imports = [
       ./boot.nix
       ./i18n.nix
-      ./nvidia.nix
       ./networking.nix
       ./packages.nix
       ./programs.nix

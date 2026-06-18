@@ -42,8 +42,8 @@
 	let
 		hm_module = home-manager.nixosModules.home-manager;
 	in{
-	/*
-	hypothetical genAttrs setup
+
+	#hypothetical genAttrs setup
 	nixosConfigurations = nixpkgs.lib.genAttrs
 	[
 	"enchantedSlate"
@@ -53,40 +53,11 @@
 		modules = [
 			./mainConfig.nix
 			./hardwareConf/${hostName}.nix
+			./hardwareConf/nvidia.nix
 			{ networking.hostName = hostName; }
 			hm_module
 			./users/${hostName}_userSet.nix
 		];
 	});
-	*/
-	nixosConfigurations = {
-	enchantedSlate = nixpkgs.lib.nixosSystem {
-		system = "x86_64-linux";
-		specialArgs = {inherit inputs;};
-
-		modules = [
-			./mainConfig.nix
-			./hardwareConf/enchantedSlate.nix
-			{ networking.hostName = "enchantedSlate"; }
-
-			hm_module
-			./users/andiurne
-		];
-	};
-
-        VC_station = nixpkgs.lib.nixosSystem {
-           	system = "x86_64-linux";
-        	specialArgs = { inherit inputs; };
-
-        	modules = [
-              		./mainConfig.nix
-	      		./hardwareConf/VC_station.nix
-			{ networking.hostName = "VC_station";}
-
-			hm_module
-			./users/devinr
-           		];
-          	};
-        };
       };
 }
