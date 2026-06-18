@@ -2,6 +2,7 @@
 environment.systemPackages = with pkgs; [
     # Basic graphical environment
     foot
+    mpv
     nerd-fonts.jetbrains-mono
     yazi
     inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -13,5 +14,11 @@ environment.systemPackages = with pkgs; [
     poppler
     wl-clipboard
     imagemagick
+
+    # Screen Capture
+    gpu-screen-recorder
+    hyprpicker
+    swappy
+    hyprshot
 ];
 }
