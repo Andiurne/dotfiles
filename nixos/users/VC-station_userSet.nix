@@ -1,1 +1,1 @@
-{ imports = [ ./devinr ]; }
+{...}: { imports = [ ./devinr ]; }

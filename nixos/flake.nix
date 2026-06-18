@@ -70,8 +70,7 @@
 			{ networking.hostName = "enchantedSlate"; }
 
 			hm_module
-			./users/andiurne/andiurne.nix
-			./users/andiurne/module.nix
+			./users/andiurne
 		];
 	};
 
@@ -85,8 +84,7 @@
 			{ networking.hostName = "VC_station";}
 
 			hm_module
-			./users/devinr/devinr.nix
-			./users/devinr/module.nix
+			./users/devinr
            		];
           	};
         };
