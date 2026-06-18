@@ -14,6 +14,8 @@ imports = [
 # HM Manages Itself
 programs.home-manager.enable = true;
 
+gtk.enable = true; # For swappy, noctalia provides theming with adw-gtk3
+
 # Basic HM config
 home = {
   username = "andiurne";

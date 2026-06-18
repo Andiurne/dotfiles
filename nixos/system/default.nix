@@ -14,8 +14,6 @@
         font-awesome
     ];
 
-    gtk.enable = true; # For swappy. noctalia provides theming
-
   # Misc. Service Config
   services = {
 
