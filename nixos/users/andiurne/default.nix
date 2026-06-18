@@ -4,6 +4,8 @@
     ./module.nix
   ];
 
+users.extraUsers.andiurne.shell = pkgs.fish;
+
 users.users.andiurne = {
   isNormalUser = true;
   description = "Andiurne";

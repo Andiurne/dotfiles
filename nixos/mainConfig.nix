@@ -18,15 +18,9 @@
 
   # Nix Settings
   nix.settings = {
-    allowed-users = ["devinr"];
     experimental-features = ["nix-command" "flakes"];
   };
   nixpkgs.config.allowUnfree = true;
-
-  # Set shell
-  users.extraUsers.devinr = {
-    shell = pkgs.fish;
-  };
 
   # Set console keymap (for tty)
   console.keyMap = "us";

@@ -3,6 +3,8 @@
     ./module.nix
   ];
 
+users.extraUsers.devinr.shell = pkgs.fish;
+
 users.users.devinr = {
   isNormalUser = true;
   description = "Devin Riehle";
