@@ -16,6 +16,10 @@ users.users.devinr = {
     github-desktop
     app2unit
     pear-desktop # YT Music
+
+    # Screenshot Utils
+    slurp
+    grim
   ];
 
   };
