@@ -16,11 +16,6 @@ users.users.devinr = {
     github-desktop
     app2unit
     pear-desktop # YT Music
-
-    # Screenshot Utils
-    slurp
-    grim
-    adw-gtk3 # for noctalia GTK theming on swappy
   ];
 
   };

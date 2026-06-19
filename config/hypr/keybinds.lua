@@ -10,7 +10,13 @@ mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + X", hl.dsp.window.resize())
 
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f -"))
+-- Screen Capture Modes
+-- Window
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+-- Region
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim -l 0 -g \"$(slurp)\" - | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+-- Fullscreen
+hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m active -m output -o ~/Pictures/Screenshots"))
 
 -- For snappy-switcher
 -- Start daemon on login

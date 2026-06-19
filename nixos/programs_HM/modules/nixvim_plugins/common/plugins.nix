@@ -6,7 +6,7 @@ in
   extraPlugins = with pkgs.vimPlugins; [ stay-centered-nvim ];
   plugins = {
     # Must have plugins to have a decent flow of work
-    cord.enable = true;
+    #cord.enable = true; # The bullshit discord RPC one
     remote-nvim = {
       enable = true;
       package = pkgs.vimPlugins.remote-nvim-nvim.overrideAttrs (_: {
