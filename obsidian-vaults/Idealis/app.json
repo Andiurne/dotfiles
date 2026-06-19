@@ -1,0 +1,22 @@
+{
+  "alwaysUpdateLinks": true,
+  "strictLineBreaks": true,
+  "newFileLocation": "current",
+  "showUnsupportedFiles": false,
+  "readableLineLength": true,
+  "useTab": true,
+  "showInlineTitle": false,
+  "propertiesInDocument": "hidden",
+  "vimMode": true,
+  "useMarkdownLinks": true,
+  "showLineNumber": true,
+  "newLinkFormat": "relative",
+  "spellcheck": true,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "trashOption": "none"
+}
