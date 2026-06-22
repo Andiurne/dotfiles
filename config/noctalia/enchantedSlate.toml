@@ -1,16 +1,5 @@
 [bar]
-order = [ "top", "soundlight" ]
-
-    [bar.soundlight]
-    auto_hide = true
-    background_opacity = 0.0
-    capsule = true
-    center = [ "output_volume", "brightness" ]
-    enabled = true
-    end = []
-    position = "right"
-    reserve_space = false
-    start = []
+order = [ "top" ]
 
     [bar.top]
     background_opacity = 0.82999998144805431

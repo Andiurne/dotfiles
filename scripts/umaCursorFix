@@ -1,0 +1,27 @@
+#!/usr/bin/env fish
+
+set oldName $argv[1]
+set workingName ./working
+set finalName $argv[2]
+
+for hlArchive in $oldName/hyprcursors/*.hlc
+  set bn (path basename -E $hlArchive)
+  7z x -bso0 -bsp0 -o$workingName/hyprcursors/$bn $hlArchive
+end
+
+for misnamedFrame in $workingName/hyprcursors/*/frame_2-*.png
+  mv $misnamedFrame (string replace "2-" "" $misnamedFrame)
+end
+
+for misnamedFrame in $workingName/hyprcursors/*/frame_6-*.png
+  mv $misnamedFrame (string replace "6-" "" $misnamedFrame)
+end
+
+mv $workingName/hyprcursors/not-allowed/frame_6.png $workingName/hyprcursors/not-allowed/frame_0.png
+
+cp (path resolve $oldName/manifest.hl) (path resolve $workingName/manifest.hl)
+
+hyprcursor-util -c $workingName > /dev/null
+rm -r $workingName
+mv theme_$finalName ~/.local/share/icons/$finalName
+echo "Installed to local icons as $finalName"

@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+
+for themeDir in *
+  if test -d $themeDir
+    set themeName (string replace " (Linux Hyprcursor)" "" (string replace "[pixloen] " "" $themeDir))
+    fish ~/.config/dotfiles/scripts/umaCursorFix $themeDir $themeName
+  end
+end
