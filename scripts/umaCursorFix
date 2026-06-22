@@ -4,6 +4,14 @@ set oldName $argv[1]
 set workingName ./working
 set finalName $argv[2]
 
+function changeHotspotXY
+  argparse x= y= -- $argv
+  for dirName in $argv
+    set filePath (path resolve $workingName/hyprcursors/$dirName/meta.hl)
+    sed -e "/hotspot_x/{a hotspot_x = $_flag_x\ " -e "d}" -e "/hotspot_y/{a hotspot_y = $_flag_y\ " -e "d}" -i $filePath
+  end
+end
+
 for hlArchive in $oldName/hyprcursors/*.hlc
   set bn (path basename -E $hlArchive)
   7z x -bso0 -bsp0 -o$workingName/hyprcursors/$bn $hlArchive
@@ -21,7 +29,14 @@ mv $workingName/hyprcursors/not-allowed/frame_6.png $workingName/hyprcursors/not
 
 cp (path resolve $oldName/manifest.hl) (path resolve $workingName/manifest.hl)
 
+# Fix cursor hotspots
+changeHotspotXY -x 0.5 -y 0 alias
+changeHotspotXY -x 0 -y 0 default help not-allowed pencil wait watch
+changeHotspotXY -x 0.12500 -y 0 pointer
+changeHotspotXY -x 0.5 -y 0.5 all-scroll bottom_left_corner bottom_right_corner cross left_side top_side xterm
+
 hyprcursor-util -c $workingName > /dev/null
 rm -r $workingName
-mv theme_$finalName ~/.local/share/icons/$finalName
-echo "Installed to local icons as $finalName"
+#mv theme_$finalName ~/.local/share/icons/$finalName
+mv theme_$finalName $finalName
+echo "Output to $finalName"
