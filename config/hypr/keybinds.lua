@@ -1,5 +1,5 @@
 local terminal    = "foot"
-local fileManager = "dolphin"
+local fileManager = "foot yazi"
 --local menu        = "hyprlauncher"
 local browser = "zen-beta"
 mainMod = "SUPER" -- Sets "Windows" key as main modifier
@@ -10,9 +10,21 @@ mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + X", hl.dsp.window.resize())
 
+-- Color Picker (unexpectedly useful)
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"))
+
 -- Screen Capture Modes
+-- Video
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("if pkill -2 -f 'gpu-screen-recorder'; true; else; gpu-screen-recorder -f 60 -a 'default_output|default_input' -fallback-cpu-encoding yes -w portal -o ~/Videos/Screencaps/$(date +%F-%H%M%S).mp4; end"))
+
 -- Window
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+hl.bind(mainMod .. " + SHIFT + S", function()
+    hl.config({cursor={invisible = true}})
+    -- This'll work after 0.55... hl.exec_scheduled_prop_refresh_immediately()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+    hl.config({cursor={invisible = false}})
+end
+)
 -- Region
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim -l 0 -g \"$(slurp)\" - | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
 -- Fullscreen
@@ -29,16 +41,16 @@ hl.bind("ALT + Tab", hl.dsp.exec_cmd("snappy-switcher next --mod alt"))
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod super"))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("app2unit -- " .. terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 -- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("app2unit -- " .. fileManager))
 --hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 --hl.bind(mainMod .. " + R", hl.dsp.exec_cmd())
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("app2unit -- " .. browser))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))

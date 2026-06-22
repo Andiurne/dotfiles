@@ -4,6 +4,8 @@ set oldName $argv[1]
 set workingName ./working
 set finalName $argv[2]
 
+# Takes -x and -y, then pushes them as hotspots to each meta.hl
+# in the directory BASE NAMES, which follow as arguments
 function changeHotspotXY
   argparse x= y= -- $argv
   for dirName in $argv
