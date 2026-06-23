@@ -16,6 +16,5 @@ programs = {
     };
 
     neovim.enable = true;
-    git.enable = true;
   };
 }
