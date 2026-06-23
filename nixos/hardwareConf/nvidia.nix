@@ -3,7 +3,7 @@
 # NOTE: PCI bus IDs are hardware dependant :(
 # This is for PRIME and such
 hardware.nvidia = {
-  open = false;
+  open = true;
   powerManagement.enable = true;
   prime = {
   	intelBusId = "PCI:0@0:2:0";

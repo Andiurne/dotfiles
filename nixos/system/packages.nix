@@ -6,6 +6,7 @@ environment.systemPackages = with pkgs; [
     nerd-fonts.jetbrains-mono
     yazi
     inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    git
 
     # Yazi optional deps.
     glib

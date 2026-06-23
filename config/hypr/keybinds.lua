@@ -19,10 +19,10 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("if pkill -2 -f 'gpu-screen-recorder'
 
 -- Window
 hl.bind(mainMod .. " + SHIFT + S", function()
-    hl.config({cursor={invisible = true}})
+   -- hl.config({cursor={invisible = true}})
     -- This'll work after 0.55... hl.exec_scheduled_prop_refresh_immediately()
     hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
-    hl.config({cursor={invisible = false}})
+    --hl.config({cursor={invisible = false}})
 end
 )
 -- Region
