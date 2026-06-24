@@ -1,8 +1,12 @@
 {pkgs,...}:{
-environment.systemPackages = with pkgs; [steam steam-run];
+environment.systemPackages = with pkgs; [steam steam-run protonplus];
 
 # Supposed to fix Steam being fucky
-hardware.graphics.enable32Bit = true;
+hardware.graphics = {
+  #enable = true; Should already be enabled by most modules
+  enable32Bit = true;
+  extraPackages = [ pkgs.vkd3d ];
+};
 
 programs.steam = {
   enable = true;
