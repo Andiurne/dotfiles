@@ -19,15 +19,21 @@ let
 in
 {
 imports = [
-  inputs.zen-browser.homeModules.beta
+  inputs.zen-browser.homeModules.twilight
 ];
 programs.zen-browser = {
   enable = true;
   nativeMessagingHosts = [pkgs.firefoxpwa];
 
-  profiles.default.search = {
-	  force = true;
-	  default = "ddg";
+  profiles.default = {
+	settings = {
+		"zen.view.compact.enable-at-startup" = true;
+		"zen.welcome-screen.seen" = true;
+	};
+	search = {
+		force = true;
+		default = "ddg";
+	};
   };
 
   # Where extensions and preferences are modified

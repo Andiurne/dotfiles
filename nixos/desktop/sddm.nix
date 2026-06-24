@@ -5,15 +5,20 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		enable = true;
 		theme = "default-left";
 		backgrounds = {
-			cemetery = /home/andiurne/.config/dotfiles/assets/Wallpapers/untilThen/cemetery.mp4;
+			#cemetery = /home/andiurne/.config/dotfiles/assets/Wallpapers/untilThen/cemetery.mp4;
 			shizune = pkgs.fetchurl {
 				name = "shizune.jpg";
 				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
-				hash = "sha256-7e531d42578b0908663994d8f223f1f0392201d4f631f0a2ae6dc066c271f464";
+				hash = "sha256-flMdQleLCQhmOZTY8iPx8DkiAdT2MfCirm3AZsJx9GQ=";
 			};
 		};
 		profileIcons = {
-			andiurne = /home/andiurne/.config/dotfiles/assets/Images/PFPs/currents/andiurne.png;
+			andiurne = pkgs.fetchurl {
+				name = "andiurne.png";
+				url = "https://avatars.githubusercontent.com/u/213026214";
+				hash = "sha256-G3mzXHITC/VHfz4oo3REVHleVMVJp0cYP+wqFjjDP8I=";
+			};
+			#andiurne = /home/andiurne/.config/dotfiles/assets/Images/PFPs/currents/andiurne.png;
 		};
 
 		settings = {
@@ -32,17 +37,17 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				brightness = 0;
 			};
 
-			LockScreen.Clock = {
+			"LockScreen.Clock" = {
 				display = true;
 				position = "top-right";
 				align = "right";
 				format = "HH:mm";
 				font-size = 70;
 				font-weight = 900;
-				color = "#ffffff";
+				color = "#FFFFFF";
 			};
 
-			LockScreen.Date = {
+			"LockScreen.Date" = {
 				display = true;
 				format = "dddd, MMMM dd, yyyy";
 				locale = "en_US";
@@ -52,7 +57,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				margin-top = 10;
 			};
 
-			LockScreen.Message = {
+			"LockScreen.Message" = {
 				display = false;
 				};
 
@@ -62,12 +67,12 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				brightness = 0;
 			};
 
-			LoginScreen.LoginArea = {
+			"LoginScreen.LoginArea" = {
 				position = "right";
 				margin = 120;
 			};
 
-			LoginScreen.LoginArea.Avatar = {
+			"LoginScreen.LoginArea.Avatar" = {
 				shape = "square";
 				border-radius = 35;
 				active-size = 120;
@@ -79,14 +84,14 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				inactive-border-color = "#aaaaaa";
 				};
 
-			LoginScreen.LoginArea.Username = {
+			"LoginScreen.LoginArea.Username" = {
 				#font-family
 				font-size = 16;
 				font-weight = 700;
 				color = "#ffffff";
 				margin = 10;
 			};
-			LoginScreen.LoginArea.PasswordInput = {
+			"LoginScreen.LoginArea.PasswordInput" = {
 				width = 200;
 				height = 30;
 				display-icon = true;
@@ -100,13 +105,13 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				border-radius-right = 10;
 				margin-top = 10;
 			};
-			LoginScreen.LoginArea.LoginButton = {};
-			LoginScreen.LoginArea.Spinner = {};
-			LoginScreen.LoginArea.WarningMessage = {};
-			LoginScreen.MenuArea = {};
-			LoginScreen.VirtualKeyboard = {};
+			"LoginScreen.LoginArea.LoginButton" = {};
+			"LoginScreen.LoginArea.Spinner" = {};
+			"LoginScreen.LoginArea.WarningMessage" = {};
+			"LoginScreen.MenuArea" = {};
+			"LoginScreen.VirtualKeyboard" = {};
 
-			Tooltips.enable = true;
+			"Tooltips".enable = true;
 		};
 	};
   }

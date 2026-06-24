@@ -1,4 +1,4 @@
-{config, pkgs, ...}: {
+{pkgs, ...}: {
 programs.yazi = {
     enable = true;
     enableFishIntegration = true;
@@ -27,6 +27,9 @@ programs.yazi = {
 
     keymap = {
         mgr.prepend_keymap = import ../../assets/gvfsKeymapList.nix;
+        mgr.append_keymap = [
+        { on = [ "g" "C" ]; run = "cd ~/.config/dotfiles"; desc = "Goto dotfiles repo"; }
+        ];
       };
 };
 }

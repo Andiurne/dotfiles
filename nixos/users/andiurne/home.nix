@@ -21,11 +21,6 @@ home = {
   username = "andiurne";
   homeDirectory = "/home/andiurne";
 
-  sessionVariables = {
-    HYPRCURSOR_THEME = "Silence Suzuka";
-    HYPRCURSOR_SIZE = 24;
-  };
-
   # Home-manager Pkgs without config
   packages = with pkgs; [
 ];
