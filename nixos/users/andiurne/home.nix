@@ -8,7 +8,7 @@ imports = [
   ../../desktop/HM_noctalia_conf.nix
 
   # Gaming
-  ../../gaming/HM_gamingConf.nix
+  ../../gaming/andiurne-HM_gamingConf.nix
 ];
 
 # HM Manages Itself

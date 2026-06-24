@@ -1,6 +1,6 @@
 {pkgs, ...}:{
   imports = [
-    ../../gaming/gamingConf.nix
+    ../../gaming/andiurne_gamingConf.nix
     ./module.nix
   ];
 
