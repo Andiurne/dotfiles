@@ -25,7 +25,7 @@ programs.zen-browser = {
   enable = true;
   nativeMessagingHosts = [pkgs.firefoxpwa];
 
-  search = {
+  profiles.default.search = {
 	  force = true;
 	  default = "ddg";
   };
