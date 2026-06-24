@@ -1,6 +1,4 @@
 [
-    { on = [ "g" "C"]; run = "cd ~/.config/dotfiles"; desc = "Goto dotfiles repo";}
-
     # Mount
     { on = [ "M" "m" ]; run = "plugin gvfs -- select-then-mount" ; desc = "Select device then mount" ;}
     # or this if you want to jump to mountpoint after mounted

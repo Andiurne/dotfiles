@@ -12,12 +12,5 @@
         HYPRCURSOR_SIZE = 24;
     };
 
-    programs.uwsm ={
-        enable = true;
-        waylandCompositors.hyprland = {
-            prettyName = "Hyprland";
-            comment = "UWSM Hyprland";
-            binPath = "/run/current-system/sw/bin/Hyprland";
-        };
-    };
+    programs.uwsm.enable = true;
   }
