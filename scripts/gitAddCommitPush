@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+git add ~/.config/dotfiles/*
+git commit -m $argv[2]
+git push -u origin $argv[1]
