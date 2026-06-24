@@ -7,6 +7,7 @@ environment.systemPackages = with pkgs; [
     yazi
     inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
     git
+    btop
 
     # Yazi optional deps.
     glib

@@ -1,4 +1,4 @@
-{config, pkgs, inputs, lib, ...}:
+{pkgs, inputs, ...}:
 # Copied from the NixOS wiki
 let
 	extension = shortId: guid: {
@@ -7,12 +7,6 @@ let
 			install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
 			installation_mode = "normal_installed";
 		};
-	};
-
-	prefs = {
-		# From about:config
-		"extensions.autoDisableScopes" = 0;
-		"extensions.pocket.enabled" = false;
 	};
 
 	extensions = [
@@ -30,10 +24,15 @@ imports = [
 programs.zen-browser = {
   enable = true;
   nativeMessagingHosts = [pkgs.firefoxpwa];
-  
+
+  search = {
+	  force = true;
+	  default = "ddg";
+  };
+
   # Where extensions and preferences are modified
   policies = {
-      DisableTelemtry = true;
+      DisableTelemetry = true;
       ExtensionSettings = builtins.listToAttrs extensions;
 
       SearchEngines = {
@@ -57,6 +56,12 @@ programs.zen-browser = {
 		Alias = "@mno";
 		}
 	];
+      };
+
+      Preferences = {
+	# USE DOUBLE QUOTES
+	"media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+	"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
   };
 };

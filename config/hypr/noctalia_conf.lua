@@ -1,18 +1,3 @@
--- IPC Keybinds
-local ipc = "noctalia msg"
-
--- Core binds
-hl.bind(mainMod .. "+C", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
-hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
-hl.bind(mainMod .. "+SUPER_L", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"), {special = "release"})
-hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
-
--- Session Binds
-hl.bind(mainMod .. "+L", hl.dsp.exec_cmd(ipc .. " session lock"))
-hl.bind("SUPER+SHIFT_L+L", hl.dsp.exec_cmd(ipc .. " session lock-and-suspend"))
-hl.bind("SUPER+Delete", hl.dsp.exec_cmd(ipc .. " panel-toggle session"))
-
-
 -- Windows 'n Shit
 hl.config({
   general = {
@@ -58,10 +43,3 @@ hl.layer_rule({
   blur = true,
   blur_popups = true,
 })
-
--- Media keys
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume-mute"))
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness-up"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness-down"))

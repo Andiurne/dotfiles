@@ -3,8 +3,8 @@ order = [ "top" ]
 
     [bar.top]
     background_opacity = 0.82999998144805431
-    center = [ "audio_visualizer", "clock", "audio_visualizer" ]
-    end = [ "tray", "battery", "notifications" ]
+    center = [ "audio_visualizer", "logo", "audio_visualizer" ]
+    end = [ "tray", "battery", "notifications", "clock" ]
     margin_ends = 10
     position = "left"
     radius = 80
@@ -189,6 +189,14 @@ scroll_step = 2
 
 [widget.clock]
 format = "%I:%M:%p"
+
+[widget.logo]
+command = "noctalia msg panel-toggle control-center"
+glyph = "sun-high"
+type = "custom_button"
+
+[widget.media]
+art_size = 28.0
 
 [widget.output_volume]
 scroll_step = 2

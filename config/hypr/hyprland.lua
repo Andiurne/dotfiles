@@ -15,7 +15,6 @@ require("autostart")
 require("windows")
 require("misc")
 require("keybinds")
-require("variables")
 
 require("noctalia_conf")
 require("noctalia")
