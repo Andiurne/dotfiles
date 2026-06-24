@@ -33,8 +33,8 @@ hl.bind("SUPER+Delete", hl.dsp.exec_cmd(ipc .. " panel-toggle session"))
 
 -- Media
 hl.bind(mainMod .. " + CONTROL + SPACE", hl.dsp.exec_cmd(ipc .. " media toggle"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up 2"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down 2"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume-mute"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness-up"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness-down"))
