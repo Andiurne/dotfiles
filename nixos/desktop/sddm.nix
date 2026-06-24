@@ -5,10 +5,15 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		enable = true;
 		theme = "default-left";
 		backgrounds = {
-			cemetery = ~/.config/dotfiles/assets/Wallpapers/untilThen/cemetery.mp4;
+			cemetery = /home/andiurne/.config/dotfiles/assets/Wallpapers/untilThen/cemetery.mp4;
+			shizune = pkgs.fetchurl {
+				name = "shizune.jpg";
+				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
+				hash = "sha256-7e531d42578b0908663994d8f223f1f0392201d4f631f0a2ae6dc066c271f464";
+			};
 		};
 		profileIcons = {
-			andiurne = ~/.config/dotfiles/assets/Images/PFPs/currents/andiurne.png;
+			andiurne = /home/andiurne/.config/dotfiles/assets/Images/PFPs/currents/andiurne.png;
 		};
 
 		settings = {
@@ -22,7 +27,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				padding-right = 120;
 				padding-bottom = 0;
 				padding-left = 0;
-				background = "cemetery";
+				background = "shizune";
 				blur = 0;
 				brightness = 0;
 
@@ -52,7 +57,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 			};
 
 			LoginScreen = {
-				background = "cemetery";
+				background = "shizune";
 				blur = 0;
 				brightness = 0;
 
