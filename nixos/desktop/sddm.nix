@@ -29,6 +29,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 
 		settings = let
 			primary = "#A19552";
+			secondary = "#aaaaaa";
 		in {
 			General = {
 				enable-animations = true;
@@ -49,7 +50,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 			"LockScreen.Clock" = {
 				display = true;
 				position = "top-left";
-				align = "right";
+				align = "left";
 				format = "HH:mm";
 				font-size = 70;
 				font-weight = 900;
@@ -117,10 +118,26 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 			"LoginScreen.LoginArea.LoginButton" = {};
 			"LoginScreen.LoginArea.Spinner" = {};
 			"LoginScreen.LoginArea.WarningMessage" = {};
-			"LoginScreen.MenuArea" = {};
-			"LoginScreen.VirtualKeyboard" = {};
+			"LoginScreen.MenuArea.Session" = {
+				content-color = primary;
+			};
+			"LoginScreen.MenuArea.Layout" = {
+				content-color = primary;
+			};
+			"LoginScreen.MenuArea.Keyboard" = {
+				content-color = primary;
+			};
+			"LoginScreen.MenuArea.Power" = {
+				content-color = primary;
+			};
+			"LoginScreen.VirtualKeyboard" = {
+				key-color = primary;
+			};
 
-			"Tooltips".enable = true;
+			"Tooltips" = {
+				enable = true;
+				content-color = primary;
+			};
 		};
 	};
   }
