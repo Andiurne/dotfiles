@@ -32,22 +32,23 @@
 
 	snappy-switcher.url = "github:OpalAayan/snappy-switcher";
 
-	hyprland.url = "github:hyprwm/Hyprland";
+hyprland.url = "github:hyprwm/Hyprland";
 
       };
     outputs = { self, nixpkgs,
     home-manager,
     ... } @ inputs:
 	let
+		#lib = nixpkgs.lib;
+		#system = "x86_64-linux";
 		hm_module = home-manager.nixosModules.home-manager;
-	in{
-
-  #packages.x86_64-linux.default = self.nixosConfigurations.bootstick.config.system.build.isoImage;
+		#pkgs = nixpkgs.legacyPackages.${system};
+	in {
 	nixosConfigurations = nixpkgs.lib.genAttrs
 	[
 	"enchantedSlate"
 	"VC-station"
-	] 
+	]
   (hostName: nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules = [
@@ -56,6 +57,8 @@
 			{ networking.hostName = hostName; }
 			hm_module
 			./users/${hostName}_userSet.nix
+			./overlays/${hostName}.nix
+
 		];
 	});
       };

@@ -27,7 +27,9 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 			#andiurne = /home/andiurne/.config/dotfiles/assets/Images/PFPs/currents/andiurne.png;
 		};
 
-		settings = {
+		settings = let
+			primary = "#A19552";
+		in {
 			General = {
 				enable-animations = true;
 				animated-background-placeholder = "";
@@ -46,12 +48,12 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 
 			"LockScreen.Clock" = {
 				display = true;
-				position = "top-right";
+				position = "top-left";
 				align = "right";
 				format = "HH:mm";
 				font-size = 70;
 				font-weight = 900;
-				color = "#FFFFFF";
+				color = primary;
 			};
 
 			"LockScreen.Date" = {
@@ -60,7 +62,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				locale = "en_US";
 				font-size = 30;
 				font-weight = 600;
-				color = "#ffffff";
+				color = primary;
 				margin-top = 10;
 			};
 
@@ -87,15 +89,15 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				inactive-opacity = 0.35;
 				active-border-size = 3;
 				inactive-border-size = 2;
-				active-border-color = "#ffffff";
-				inactive-border-color = "#aaaaaa";
+				active-border-color = primary;
+				inactive-border-color = secondary;
 				};
 
 			"LoginScreen.LoginArea.Username" = {
 				#font-family
 				font-size = 16;
 				font-weight = 700;
-				color = "#ffffff";
+				color = primary;
 				margin = 10;
 			};
 			"LoginScreen.LoginArea.PasswordInput" = {
@@ -104,8 +106,8 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				display-icon = true;
 				#font-family
 				font-size = 12;
-				content-color = "#FFFFFF";
-				background-color = "#FFFFFF";
+				content-color = primary;
+				background-color = primary;
 				background-opacity = 0.15;
 				border-size = 0;
 				border-radius-left = 10;
