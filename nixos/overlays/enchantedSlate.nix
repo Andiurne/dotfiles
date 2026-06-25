@@ -1,4 +1,6 @@
-{pkgs, ...}: {
-nixpkgs.overlays = [
-          (self: super: import ../flakes/ryubing.nix {inherit pkgs super;})
-];}
+{...}: {
+        imports = [
+        ./appimages/Ryubinx_1-3-315.nix
+        ./overrides/swayimg-5.4.nix
+        ];
+}
