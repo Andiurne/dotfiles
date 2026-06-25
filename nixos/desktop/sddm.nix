@@ -6,11 +6,17 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		theme = "default-left";
 		backgrounds = {
 			#cemetery = /home/andiurne/.config/dotfiles/assets/Wallpapers/untilThen/cemetery.mp4;
+      lilly_emptyLeft = ../assets/backgrounds/lilly_emptyLeft.png;
 			shizune = pkgs.fetchurl {
 				name = "shizune.jpg";
 				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
 				hash = "sha256-flMdQleLCQhmOZTY8iPx8DkiAdT2MfCirm3AZsJx9GQ=";
 			};
+      UT_festival = pkgs.fetchurl {
+          name = "UT_festival.jpg";
+          url = "https://eip.gg/wp-content/uploads/2024/06/Until-Then-Nicole-and-Mark.jpg";
+          hash = "sha256-IcU+WKf2fXKQzWNh6elj19aIwfe0jDTX+b4jBvkaC8I=";
+        };
 		};
 		profileIcons = {
 			andiurne = pkgs.fetchurl {
@@ -26,13 +32,14 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				enable-animations = true;
 				animated-background-placeholder = "";
 			};
+
 			LockScreen = {
 				display = true;
 				padding-top = 0;
 				padding-right = 120;
 				padding-bottom = 0;
 				padding-left = 0;
-				background = "shizune";
+				background = "lilly_emptyLeft";
 				blur = 0;
 				brightness = 0;
 			};
@@ -62,13 +69,13 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				};
 
 			LoginScreen = {
-				background = "shizune";
+				background = "lilly_emptyLeft";
 				blur = 0;
 				brightness = 0;
 			};
 
 			"LoginScreen.LoginArea" = {
-				position = "right";
+				#position = "right";
 				margin = 120;
 			};
 

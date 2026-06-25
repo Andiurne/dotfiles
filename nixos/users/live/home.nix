@@ -2,7 +2,7 @@
 # This is where home-managed programs.* and services.* go as options
 {pkgs, inputs, ...}: {
 imports = [
-  ../../programs_HM/devinr_imports.nix
+  ../../programs_HM/live_imports.nix
 
   # Desktop
   ../../desktop/HM_hyprConf.nix
@@ -17,8 +17,8 @@ gtk.enable = true; # For swappy, noctalia provides theming with adw-gtk3
 
 # Basic HM config
 home = {
-  username = "devinr";
-  homeDirectory = "/home/devinr";
+  username = "live";
+  homeDirectory = "/home/live";
 
   # Home-manager Pkgs without config
   packages = with pkgs; [

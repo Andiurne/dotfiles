@@ -29,7 +29,6 @@
         };
 
         nixvim.url = "github:nix-community/nixvim";
-            # Don't follow nixpkgs actually
 
 	snappy-switcher.url = "github:OpalAayan/snappy-switcher";
 
@@ -43,17 +42,17 @@
 		hm_module = home-manager.nixosModules.home-manager;
 	in{
 
-	#hypothetical genAttrs setup
+  #packages.x86_64-linux.default = self.nixosConfigurations.bootstick.config.system.build.isoImage;
 	nixosConfigurations = nixpkgs.lib.genAttrs
 	[
 	"enchantedSlate"
 	"VC-station"
-	] (hostName: nixpkgs.lib.nixosSystem {
+	] 
+  (hostName: nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules = [
 			./mainConfig.nix
 			./hardwareConf/${hostName}.nix
-			./hardwareConf/nvidia.nix
 			{ networking.hostName = hostName; }
 			hm_module
 			./users/${hostName}_userSet.nix
