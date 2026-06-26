@@ -5,8 +5,16 @@ programs.fish = {
   # I don't know how necessary it is to do shellInit again for hm.
   shellInit = ''
   set fish_greeting
-  set -gx EDITOR nvim    
+  set -gx EDITOR nvim
   '';
+
+  shellAliases = {
+    gs = "git status";
+    ga = "git add";
+    gc = "git commit";
+    gcm = "git commit -m";
+    gpm = "git push -u origin main";
+  };
 
   functions = {
     # Yazi's shell function

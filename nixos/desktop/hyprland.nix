@@ -5,7 +5,11 @@
         withUWSM = true;
       };
 
-    environment.systemPackages = with pkgs; [ xdg-desktop-portal-gtk hyprcursor king-halo-xcur ];
+    environment.systemPackages = with pkgs; [
+        xdg-desktop-portal-gtk
+        hyprcursor
+        king-halo-xcur
+    ];
 
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";

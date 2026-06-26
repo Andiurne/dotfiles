@@ -4,8 +4,6 @@
         cursor-theme = "king-halo-xcur";
     };
 
-    home.file.".local/share/icons/king-halo-xcur".source = ../../assets/cursors/king-halo-xcur;
-
     wayland.windowManager.hyprland = let
 	        sys = pkgs.stdenv.hostPlatform.system;
         in {

@@ -6,7 +6,6 @@ imports = [
   # Desktop
   ../../desktop/HM_hyprConf.nix
   ../../desktop/HM_noctalia_conf.nix
-  #../../desktop/HM_pointerCursor.nix
 
   # Gaming
   ../../gaming/andiurne-HM_gamingConf.nix

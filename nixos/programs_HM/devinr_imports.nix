@@ -9,6 +9,7 @@ imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
   /zen-browser.nix
   /obsidian.nix
   /foot.nix
+  /gtk.nix
   /qt.nix
 
   # Nixvim bs

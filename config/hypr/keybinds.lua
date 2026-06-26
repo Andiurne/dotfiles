@@ -1,6 +1,5 @@
 local terminal    = "foot"
-local fileManager = "foot yazi"
---local menu        = "hyprlauncher"
+local fileManager = "foot -- fish -C y"
 local browser = "zen-twilight"
 mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
