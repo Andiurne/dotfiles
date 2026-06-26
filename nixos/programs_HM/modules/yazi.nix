@@ -2,7 +2,7 @@
 programs.yazi = {
     enable = true;
     enableFishIntegration = true;
-    #shellWrapperName = "y";
+    shellWrapperName = "y";
 
     plugins = let yazi-plugins = pkgs.fetchFromGitHub {
         owner = "yazi-rs";
