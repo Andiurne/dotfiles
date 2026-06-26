@@ -18,14 +18,9 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 				 hash = "sha256-IcU+WKf2fXKQzWNh6elj19aIwfe0jDTX+b4jBvkaC8I=";
 			 };
 		};
-		profileIcons = {
-			/*andiurne = pkgs.fetchurl {
-				name = "andiurne.png";
-				url = "https://avatars.githubusercontent.com/u/213026214";
-				hash = "sha256-G3mzXHITC/VHfz4oo3REVHleVMVJp0cYP+wqFjjDP8I=";
-			};*/
-			devinr = ../../assets/faces/devinr.png;
-		};
+
+		profileIcons = pkgs.lib.genAttrs config.users.groups.users.members
+			(user: ../../assets/faces/${user}.png);
 
 		settings = let
 			primary = "#A19552";

@@ -1,7 +1,5 @@
 {lib, pkgs, inputs, ...}:
 {
-  
-
 	wayland.windowManager.hyprland = let
 		sys = pkgs.stdenv.hostPlatform.system;
 	in {
@@ -12,7 +10,7 @@
 
     extraLuaFiles = {
           # Note: this is import syntax
-          # The attribue name uses . as / in the final directory under XDG_CONFIG_HOME
+          # The attribute name uses . as / in the final directory under XDG_CONFIG_HOME
           #"main" = {
               # Lua file content, set either by specifying a path to a Lua file
               # or by providing a multi-line Lua string.

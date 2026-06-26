@@ -9,13 +9,13 @@ imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
   /zen-browser.nix
   /obsidian.nix
   /foot.nix
+  /qt.nix
 
   # Nixvim bs
   inputs.nixvim.homeModules.nixvim
 ];
 programs = {
   home-manager.enable = true;
-  kitty.enable = true;
   git.enable = true;
 
   nixvim = {

@@ -15,7 +15,6 @@ imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
 ];
 programs = {
   home-manager.enable = true;
-  kitty.enable = true;
   git.enable = true;
 
   nixvim = {
