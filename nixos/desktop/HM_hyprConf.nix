@@ -1,9 +1,15 @@
-{lib, pkgs, inputs, ...}:
+{pkgs, inputs, ...}:
 {
-	wayland.windowManager.hyprland = let
-		sys = pkgs.stdenv.hostPlatform.system;
-	in {
-		enable = true;
+    dconf.settings."org/gnome/desktop/interface" = {
+        cursor-theme = "king-halo-xcur";
+    };
+
+    home.file.".local/share/icons/king-halo-xcur".source = ../../assets/cursors/king-halo-xcur;
+
+    wayland.windowManager.hyprland = let
+	        sys = pkgs.stdenv.hostPlatform.system;
+        in {
+	        enable = true;
 		package = inputs.hyprland.packages.${sys}.hyprland;
 		portalPackage = inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
 		systemd.enable = false;

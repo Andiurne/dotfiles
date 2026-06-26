@@ -26,7 +26,7 @@ programs.yazi = {
       };
 
     keymap = {
-        mgr.prepend_keymap = import ../../assets/gvfsKeymapList.nix;
+        mgr.prepend_keymap = import ./gvfsKeymapList.nix;
         mgr.append_keymap = [
         { on = [ "g" "C" ]; run = "cd ~/.config/dotfiles"; desc = "Goto dotfiles repo"; }
         ];

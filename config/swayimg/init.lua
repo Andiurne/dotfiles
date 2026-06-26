@@ -13,3 +13,4 @@ swayimg.viewer.set_drag_button("MouseLeft")
 swayimg.gallery.set_window_color(bg)
 
 swayimg.viewer.on_key("q", function() swayimg.exit() end)
+swayimg.gallery.on_key("q", function() swayimg.exit() end)

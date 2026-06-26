@@ -1,5 +1,4 @@
-/*{...}:{
-programs.zen-browser.profiles.default.settings = */{
+{
 "accessibility.typeaheadfind.flashBar" = 0;
 "app.normandy.first_run" = false;
 "app.normandy.migrationsApplied" = 12;
@@ -55,5 +54,4 @@ programs.zen-browser.profiles.default.settings = */{
 "zen.view.window.scheme" = 0;
 "zen.welcome-screen.seen" = true;
 "zen.window-sync.enabled" = false;
-}#;
-#}
+}

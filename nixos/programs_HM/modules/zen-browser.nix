@@ -19,8 +19,6 @@ let
 in
 {
 imports = [
-  #./zen/prefs.nix
-  #./zen/mods.nix
   inputs.zen-browser.homeModules.twilight
 ];
 programs.zen-browser = {

@@ -1,18 +1,8 @@
 {pkgs, ...}:
-let
-name = "King Halo";
-size = 32;
-in {
-home = {
-        /*pointerCursor = {
-                gtk.enable = true;
-                x11.enable = true;
-                size = size;
-                name = name;
-                package = pkgs.king-halo-xcur;
-        };*/
-
-        file.".icons/default".source = "${pkgs.king-halo-xcur}/share/icons/king-halo-xcur";
-};
-
-}
+{home.pointerCursor = {
+    x11.enable = true;
+    gtk.enable = true;
+    name = "king-halo-xcur";
+    size = 32;
+    package = pkgs.king-halo-xcur;
+};}

@@ -6,7 +6,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		theme = "default-left";
 		backgrounds = {
 			cemetery = ../../assets/Wallpapers/untilThen/cemetery.mp4;
-			lilly_emptyLeft = ../assets/backgrounds/lilly_emptyLeft.png;
+			lilly_emptyLeft = ../../assets/backgrounds/lilly_emptyLeft.png;
 			shizune = pkgs.fetchurl {
 				name = "shizune.jpg";
 				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
