@@ -1,2 +1,2 @@
 nixos/hardware-configuration.nix
-hypr/.*
+confg/hypr/.*
