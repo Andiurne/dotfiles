@@ -17,7 +17,7 @@
         HYPRCURSOR_THEME = "King Halo";
         HYPRCURSOR_SIZE = 32;
         XCURSOR_THEME = "king-halo-xcur";
-        XCURSOR_SIZE = 24;
+        XCURSOR_SIZE = 32;
 
         QT_QPA_PLATFORMTHEME = "qt6ct";
     };

@@ -25,7 +25,7 @@ programs.zen-browser = {
   enable = true;
   nativeMessagingHosts = [pkgs.firefoxpwa];
 
-  profiles.default = {
+  profiles.andiurne = {
     # Just a massive file imported by converting prefs.js from my Cachy install
 	  settings = import ./zen/prefs.nix;
 	  mods = import ./zen/mods.nix;
@@ -46,20 +46,28 @@ programs.zen-browser = {
       SearchEngines = {
 	        Default = "ddg";
 	        Add = [
-	              	{ Name = "nixpkgs packages";
-		                URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
-		                IconURL = "https://wiki.nixos.org/favicon.ico";
-		                Alias = "@np";
-		              }
-		              { Name = "NixOS options";
-		                URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
-		                IconURL = "https://wiki.nixos.org/favicon.ico";
-		                Alias = "@no";
-		              }
-		              { Name = "MyNixOS search";
-		                URLTemplate = "https://mynixos.com/search?q={searchTerms}";
-		                Alias = "@mno";
-		              }
+	              	{
+			  Name = "nixpkgs packages";
+		          URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+		          IconURL = "https://wiki.nixos.org/favicon.ico";
+		          Alias = "@np";
+		        }
+		        {
+			  Name = "NixOS options";
+		          URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+		          IconURL = "https://wiki.nixos.org/favicon.ico";
+		          Alias = "@no";
+		        }
+		        {
+			  Name = "MyNixOS search";
+		          URLTemplate = "https://mynixos.com/search?q={searchTerms}";
+		          Alias = "@mno";
+		        }
+			{
+			  Name = "Noogle";
+			  URLTemplate = "https://noogle.dev/q/?term={searchTerms}";
+			  Alias = "@ng";
+			}
 	              ];
       };
 

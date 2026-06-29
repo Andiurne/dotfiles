@@ -2,7 +2,7 @@
 order = [ "top" ]
 
     [bar.top]
-    background_opacity = 0.99999997764825821
+    background_opacity = 1
     capsule_thickness = 0.69999998807907104
     center = [ "audio_visualizer", "group:g3", "audio_visualizer" ]
     end = [ "tray", "group:g2" ]

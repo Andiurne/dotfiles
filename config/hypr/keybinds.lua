@@ -24,10 +24,11 @@ hl.bind(mainMod .. "+C", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
 hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
 hl.bind(mainMod .. "+SUPER_L", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"), {special = "release"})
 hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
+hl.bind(mainMod .. "+SHIFT+R", hl.dsp.exec_cmd("hyprctl reload"))
 
 -- Session Binds
 hl.bind(mainMod .. "+L", hl.dsp.exec_cmd(ipc .. " session lock"))
-hl.bind("SUPER+SHIFT_L+L", hl.dsp.exec_cmd(ipc .. " session lock-and-suspend"))
+hl.bind("SUPER+SHIFT+L", hl.dsp.exec_cmd(ipc .. " session lock-and-suspend"))
 hl.bind("SUPER+Delete", hl.dsp.exec_cmd(ipc .. " panel-toggle session"))
 
 -- Media

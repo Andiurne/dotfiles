@@ -5,8 +5,8 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		enable = true;
 		theme = "default-left";
 		backgrounds = {
-			cemetery = ../../assets/Wallpapers/untilThen/cemetery.mp4;
-			lilly_emptyLeft = ../../assets/backgrounds/lilly_emptyLeft.png;
+			cemetery = ../assets/Wallpapers/untilThen/cemetery.mp4;
+			lilly_emptyLeft = ../assets/backgrounds/lilly_emptyLeft.png;
 			shizune = pkgs.fetchurl {
 				name = "shizune.jpg";
 				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
@@ -20,7 +20,7 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		};
 
 		profileIcons = pkgs.lib.genAttrs config.users.groups.users.members
-			(user: ../../assets/faces/${user}.png);
+			(user: ../assets/faces/${user}.png);
 
 		settings = let
 			primary = "#A19552";

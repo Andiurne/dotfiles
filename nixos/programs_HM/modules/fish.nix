@@ -1,4 +1,4 @@
-{config, pkgs,...}:{
+{...}:{
 programs.fish = {
   enable = true;
 
@@ -17,6 +17,10 @@ programs.fish = {
   };
 
   functions = {
+    dt = ''
+    $argv[1] & disown & exit
+    '';
+
     # Yazi's shell function
     # THIS IS DONE BY SETTING SHELLWRAPPER IN YAZI'S HM
     /*y = ''

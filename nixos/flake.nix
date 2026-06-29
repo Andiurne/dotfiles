@@ -58,6 +58,7 @@ hyprland.url = "github:hyprwm/Hyprland";
 			hm_module
 			./users/${hostName}_userSet.nix
 			./overlays/${hostName}.nix
+			./secrets/${hostName}.nix
 
 		];
 	});
