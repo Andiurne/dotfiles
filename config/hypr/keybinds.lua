@@ -10,6 +10,31 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("app2unit -- " .. terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("app2unit -- " .. fileManager))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("app2unit -- " .. browser))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("app2unit -- obsidian"))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("app2unit -- github-desktop"))
+
+-- Color Picker (unexpectedly useful)
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"))
+
+-- Screen Capture Modes
+-- Video
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("if pkill -2 -f 'gpu-screen-recorder'; true; else; gpu-screen-recorder -f 60 -a 'default_output|default_input' -fallback-cpu-encoding yes -w portal -o ~/Videos/Screencaps/$(date +%F-%H%M%S).mp4; end"))
+-- Window
+hl.bind(mainMod .. " + SHIFT + S", function()
+   -- hl.config({cursor={invisible = true}})
+    -- This'll work after 0.55... hl.exec_scheduled_prop_refresh_immediately()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+    --hl.config({cursor={invisible = false}})
+end
+)
+-- Region
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim -l 0 -g \"$(slurp)\" - | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
+-- Fullscreen
+hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m active -m output -o ~/Pictures/Screenshots"))
+
+-- Alt+Tab (standard MRU)
+hl.bind("ALT + Tab", hl.dsp.exec_cmd("snappy-switcher next --mod alt"))
+-- Super+Tab (workspace-filtered)
+hl.bind("SUPER + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod super"))
 
 -------------------
 --- NOCTALIA BINDS
@@ -85,27 +110,3 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e+1" }))
 --------------
 -- RANDOM APPS
 -- -----------
-
--- Color Picker (unexpectedly useful)
-hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"))
-
--- Screen Capture Modes
--- Video
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("if pkill -2 -f 'gpu-screen-recorder'; true; else; gpu-screen-recorder -f 60 -a 'default_output|default_input' -fallback-cpu-encoding yes -w portal -o ~/Videos/Screencaps/$(date +%F-%H%M%S).mp4; end"))
--- Window
-hl.bind(mainMod .. " + SHIFT + S", function()
-   -- hl.config({cursor={invisible = true}})
-    -- This'll work after 0.55... hl.exec_scheduled_prop_refresh_immediately()
-    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window --freeze --raw | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
-    --hl.config({cursor={invisible = false}})
-end
-)
--- Region
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim -l 0 -g \"$(slurp)\" - | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png"))
--- Fullscreen
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m active -m output -o ~/Pictures/Screenshots"))
-
--- Alt+Tab (standard MRU)
-hl.bind("ALT + Tab", hl.dsp.exec_cmd("snappy-switcher next --mod alt"))
--- Super+Tab (workspace-filtered)
-hl.bind("SUPER + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod super"))

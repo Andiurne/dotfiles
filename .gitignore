@@ -1,4 +1,4 @@
 nixos/hardware-configuration.nix
 confg/hypr/.*
 nixos/secrets
-nixos/assets
+nixPkgs/localSources

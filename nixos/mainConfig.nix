@@ -6,8 +6,18 @@
   ...
   }:
 {
-  # This is where modularity should happen! Not with import ./*** later!
-  # I think. Maybe.
+  # Nix Settings
+  nix.settings = {
+    # Don't compile hyprland yourself, idjit...
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    trusted-users = ["root" "@wheel"];
+
+    experimental-features = ["nix-command" "flakes"];
+  };
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
       # Base DE
       ./desktop
@@ -16,11 +26,6 @@
       ./system
   ];
 
-  # Nix Settings
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-  };
-  nixpkgs.config.allowUnfree = true;
 
   # Set console keymap (for tty)
   console.keyMap = "us";

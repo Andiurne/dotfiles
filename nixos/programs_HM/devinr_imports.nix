@@ -6,7 +6,7 @@ imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
 
   # Locals
   /equibop.nix
-  /zen-browser.nix
+  /zen-devinr.nix
   /obsidian.nix
   /foot.nix
   /gtk.nix

@@ -32,7 +32,8 @@
 
 	snappy-switcher.url = "github:OpalAayan/snappy-switcher";
 
-hyprland.url = "github:hyprwm/Hyprland";
+	hyprland.url = "github:hyprwm/Hyprland";
+	hyprqt6engine.url = "github:hyprwm/hyprqt6engine";
 
       };
     outputs = { self, nixpkgs,
