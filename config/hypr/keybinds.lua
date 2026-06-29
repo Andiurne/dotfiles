@@ -50,6 +50,9 @@ hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
 hl.bind(mainMod .. "+SUPER_L", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"), {special = "release"})
 hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
 hl.bind(mainMod .. "+SHIFT+R", hl.dsp.exec_cmd("hyprctl reload"))
+hl.bind(mainMod .. "+SHIFT+W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher /win "))
+hl.bind(mainMod .. "+SHIFT+SLASH", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher /"))
 
 -- Session Binds
 hl.bind(mainMod .. "+L", hl.dsp.exec_cmd(ipc .. " session lock"))

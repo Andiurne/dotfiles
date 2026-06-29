@@ -17,7 +17,7 @@ require("misc")
 require("keybinds")
 
 require("noctalia_conf")
-require("noctalia")
+require("noctalia").apply_theme()
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
