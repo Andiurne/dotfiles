@@ -52,6 +52,7 @@ hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
 hl.bind(mainMod .. "+C", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
 hl.bind(mainMod .. "+SHIFT+W", hl.dsp.exec_cmd(ipc.. " panel-toggle wallpaper"))
 hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(ipc.." panel-toggle launcher /win "))
+hl.bind(mainMod .. "+SHIFT+N", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center notifications"))
 -- Session Binds
 hl.bind(mainMod .. "+L", hl.dsp.exec_cmd(ipc .. " session lock"))
 hl.bind("SUPER+SHIFT+L", hl.dsp.exec_cmd(ipc .. " session lock-and-suspend"))
