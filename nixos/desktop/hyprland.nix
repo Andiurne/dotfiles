@@ -11,6 +11,7 @@
         hyprcursor
         king-halo-xcur
         qt6Packages.qt6ct
+        papirus-icon-theme
         # Doesn't currently work, oh well
         #inputs.hyprqt6engine.packages.${stdenv.hostPlatform.system}.default
     ];

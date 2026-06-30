@@ -45,15 +45,13 @@ hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 local ipc = "noctalia msg"
 
 -- Core binds
-hl.bind(mainMod .. "+C", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
 hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
+hl.bind(mainMod .. "+SHIFT+R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. "+SUPER_L", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"), {special = "release"})
 hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
-hl.bind(mainMod .. "+SHIFT+R", hl.dsp.exec_cmd("hyprctl reload"))
-hl.bind(mainMod .. "+SHIFT+W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
-hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher /win "))
-hl.bind(mainMod .. "+SHIFT+SLASH", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher /"))
-
+hl.bind(mainMod .. "+C", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
+hl.bind(mainMod .. "+SHIFT+W", hl.dsp.exec_cmd(ipc.. " panel-toggle wallpaper"))
+hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(ipc.." panel-toggle launcher /win "))
 -- Session Binds
 hl.bind(mainMod .. "+L", hl.dsp.exec_cmd(ipc .. " session lock"))
 hl.bind("SUPER+SHIFT+L", hl.dsp.exec_cmd(ipc .. " session lock-and-suspend"))

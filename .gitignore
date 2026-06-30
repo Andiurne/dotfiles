@@ -2,3 +2,4 @@ nixos/hardware-configuration.nix
 confg/hypr/.*
 nixos/secrets
 nixPkgs/localSources
+nixos/assets/Wallpapers/wallhaven
