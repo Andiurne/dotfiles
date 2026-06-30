@@ -21,7 +21,7 @@ order = [ "top" ]
         [[bar.top.capsule_group]]
         fill = "surface_variant"
         id = "g1"
-        members = [ "date", "wallpaper", "mpvpaper", "wallhaven" ]
+        members = [ "date", "mpvpaper", "wallhaven" ]
         opacity = 1.0
         padding = 6.0
 
@@ -248,7 +248,10 @@ enabled = true
 scale = 0.5
 
 [plugin_settings."noctalia/mpvpaper"]
-video_directory = "~/Pictures/Wallpapers"
+video_directory = "~/Pictures/Wallpapers/animated"
+
+[plugin_settings."noctalia/wallhaven"]
+download_dir = "~/Pictures/Wallpapers/wallhaven"
 
 [plugins]
 enabled = [ "noctalia/screen_recorder", "noctalia/kaomoji", "noctalia/wallhaven", "noctalia/mpvpaper" ]
@@ -308,19 +311,22 @@ directory = "~/Pictures/Wallpapers"
 per_monitor_directories = true
 
     [wallpaper.default]
-    path = "/home/devinr/Pictures/Wallpapers/raidenKatana.jpg"
+    path = "/home/devinr/Pictures/Wallpapers/6x standard Until Then OST cover.jpg"
 
     [wallpaper.last]
-    path = "/home/devinr/Pictures/Wallpapers/haven_aurora.jpg"
+    path = "/home/devinr/Pictures/Wallpapers/6x standard Until Then OST cover.jpg"
 
     [wallpaper.monitors.DP-1]
     path = "/home/devinr/Pictures/Wallpapers/raidenKatana.jpg"
 
     [wallpaper.monitors.DP-2]
-    path = "/home/devinr/Pictures/Wallpapers/haven_aurora.jpg"
+    path = "/home/devinr/Pictures/Wallpapers/raidenKatana.jpg"
+
+    [wallpaper.monitors.DP-5]
+    path = "/home/devinr/Pictures/Wallpapers/6x standard Until Then OST cover.jpg"
 
     [wallpaper.monitors.DP-6]
-    path = "/home/devinr/Pictures/Wallpapers/haven_aurora.jpg"
+    path = "/home/devinr/Pictures/Wallpapers/6x standard Until Then OST cover.jpg"
 
     [wallpaper.monitors.Unknown-1]
     path = "/home/devinr/Pictures/Wallpapers/untilThen/Mark & Nicole Piano Dinner.png"
