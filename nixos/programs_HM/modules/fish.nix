@@ -11,7 +11,7 @@ programs.fish = {
     gs = "git status";
     ga = "git add";
     gc = "git commit";
-    gcm = "git commit -m";
+    gcam = "git commit -a -m";
     gpm = "git push -u origin main";
   };
 

@@ -1,13 +1,5 @@
 {...}:{wayland.windowManager.hyprland.settings.config =
 {
-	# Aesthetics
-	xwayland.forceZeroScaling = true;
-
-	general = {
-		gaps_in = 5;
-		gaps_out = 20;
-	};
-
 	input = {
 		kb_layout = "us";
 		kb_variant = "";

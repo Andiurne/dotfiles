@@ -4,6 +4,8 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+	hmHyprLib.url = "github:Andiurne/hmHyprLib";
+
 	noctalia = {
 		url = "github:noctalia-dev/noctalia";
 		inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +43,7 @@
     outputs = { self, nixpkgs,
     home-manager,
     agenix,
+    hmHyprLib,
     ... } @ inputs:
 	let
 		#lib = nixpkgs.lib;

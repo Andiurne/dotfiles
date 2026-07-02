@@ -1,11 +1,5 @@
-{fullBind, lua, lib, dspBind}:
-let
-	window = method: (lua ("hl.dsp.window." + method + "()"));
-	windowArgs = method: args: (lua ("hl.dsp.window." + method + "(" + args + ")"));
-	layout = name: (lua ("hl.dsp.layout(\"" + name + "\")"));
-	focus = rule: (lua ("hl.dsp.focus(" + rule + ")"));
-	workspaceArgs = method: args: (lua ("hl.dsp.workspace." + method + "(\"" + args + "\")"));
-in [
+{dspBind, fullBind, window, layout, workspaceArgs, windowArgs, focus, lib}:
+[
 (dspBind "mainMod" "F" (window "fullscreen"))
 #(fullBind "mainMod" "X" (window "resize") "")
 (dspBind "mainMod" "J" (layout "togglesplit"))

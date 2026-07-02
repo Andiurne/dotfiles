@@ -7,6 +7,7 @@
     services.hyprpolkitagent.enable = false;
 
     imports = map (dir: ./hyprConf + dir) [
+    /aesthetics.nix
     /config.nix
     /device.nix
     #/env.nix Shouldn't be necessary
@@ -15,7 +16,6 @@
     /keybinds.nix
     /luaVars.nix
     /monitor.nix
-    /noctalia_conf.nix
     /rules.nix
     ];
 

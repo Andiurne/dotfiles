@@ -1,18 +1,5 @@
-{lib, ...}:{wayland.windowManager.hyprland.settings.on =
-let
-	lua = lib.generators.mkLuaInline;
-	autostart = list: {
-		_args = [
-			"hyprland.start"
-			(lua ("function()\n " +
-				builtins.concatStringsSep " \n "
-				(map (cmd: "hl.exec_cmd(\"" + cmd + "\")") list) +
-				"\n end"
-				))
-		];
-	};
-in
-[
+{inputs, ...}:{wayland.windowManager.hyprland.settings.on =
+with inputs.hmHyprLib.lib; [
 (autostart
 	[
 		"noctalia"
