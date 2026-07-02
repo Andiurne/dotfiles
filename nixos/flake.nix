@@ -35,14 +35,17 @@
 	hyprland.url = "github:hyprwm/Hyprland";
 	hyprqt6engine.url = "github:hyprwm/hyprqt6engine";
 
+	agenix.url = "github:ryantm/agenix";
+
       };
     outputs = { self, nixpkgs,
     home-manager,
+    agenix,
     ... } @ inputs:
 	let
 		#lib = nixpkgs.lib;
 		#system = "x86_64-linux";
-		hm_module = home-manager.nixosModules.home-manager;
+		#hm_module = home-manager.nixosModules.home-manager;
 		#pkgs = nixpkgs.legacyPackages.${system};
 	in {
 	nixosConfigurations = nixpkgs.lib.genAttrs
@@ -56,11 +59,10 @@
 			./mainConfig.nix
 			./hardwareConf/${hostName}.nix
 			{ networking.hostName = hostName; }
-			hm_module
+			home-manager.nixosModules.home-manager
 			./users/${hostName}_userSet.nix
 			./overlays/${hostName}.nix
 			./secrets/${hostName}.nix
-
 		];
 	});
       };

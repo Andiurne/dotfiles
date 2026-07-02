@@ -1,5 +1,10 @@
 {pkgs, inputs, ...}: {
 environment.systemPackages = with pkgs; [
+    # Secrets Management
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    keepassxc # Remember to enable FdoSecrets!!!
+    git-credential-keepassxc
+
     # Basic graphical environment
     foot
     mpv

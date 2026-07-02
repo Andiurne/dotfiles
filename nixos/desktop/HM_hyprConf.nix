@@ -1,10 +1,23 @@
-{pkgs, inputs, ...}:
+{pkgs, inputs, config, ...}:
 {
     dconf.settings."org/gnome/desktop/interface" = {
         cursor-theme = "king-halo-xcur";
     };
 
     services.hyprpolkitagent.enable = false;
+
+    imports = map (dir: ./hyprConf + dir) [
+    /config.nix
+    /device.nix
+    #/env.nix Shouldn't be necessary
+    /events.nix
+    /gesture.nix
+    /keybinds.nix
+    /luaVars.nix
+    /monitor.nix
+    /noctalia_conf.nix
+    /rules.nix
+    ];
 
     wayland.windowManager.hyprland = let
 	        sys = pkgs.stdenv.hostPlatform.system;
@@ -14,19 +27,12 @@
 		portalPackage = inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
 		systemd.enable = false;
 
-                extraLuaFiles = {
-                # Note: this is import syntax
-                # The attribute name uses . as / in the final directory under XDG_CONFIG_HOME
-                #"main" = {
-                    # Lua file content, set either by specifying a path to a Lua file
-                    # or by providing a multi-line Lua string.
-                    #   content = ./hypr/main.lua;
-
-                    # Whether to generate a require(...) call for this
-                    # file in $XDG_CONFIG_HOME/hypr/hyprland.lua.
-                    # Default = true;
-                    #  autoLoad = true;
-                    #};
-      };
-	};
+                # Just require the hot-reloaded files
+                # Theoretically I *could* port the lua conf into nix...
+                # but like why?
+                extraConfig = ''
+                require("scratchpad")
+                require("noctalia").apply_theme()
+                '';
+    };
 }

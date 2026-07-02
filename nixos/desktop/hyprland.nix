@@ -18,6 +18,7 @@
 
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
         HYPRCURSOR_THEME = "King Halo";
         HYPRCURSOR_SIZE = 32;

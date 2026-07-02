@@ -1,5 +1,5 @@
 {config, pkgs, inputs, lib, ...}: {
-imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
+imports = map (x: ./modules + x ) [
   # Shadows
   /yazi.nix
   /fish.nix
@@ -9,10 +9,13 @@ imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
   /zen-andiurne.nix
   /obsidian.nix
   /foot.nix
+
   /gtk.nix
   /qt.nix
 
-  # Nixvim bs
+  /keepassxc.nix
+] ++
+[
   inputs.nixvim.homeModules.nixvim
 ];
 programs = {

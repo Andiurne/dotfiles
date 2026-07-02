@@ -17,6 +17,8 @@ users.users.andiurne = {
     github-desktop
     app2unit
     pear-desktop # YT Music
+    fractal
+    gimp
   ];
 
   };
