@@ -20,6 +20,10 @@ home = {
   username = "devinr";
   homeDirectory = "/home/devinr";
 
+  file = {
+    ".face".source = ../../assets/faces/devinr.png;
+  };
+
   # Home-manager Pkgs without config
   packages = with pkgs; [
 ];

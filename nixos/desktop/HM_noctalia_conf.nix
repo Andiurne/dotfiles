@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{config, inputs, ...}: {
 imports = [
 	inputs.noctalia.homeModules.default
 ];
@@ -12,7 +12,7 @@ programs.noctalia = {
 	# nix shell nixpkgs#json-diff -c bash -c "json-diff <(jq -S . ~/.config/noctalia/settings.json) <(noctalia-shell ipc call state all | jq -S .settings)"
 	# (this might be worth defining in script
 	settings = {
-
+		general.avatarImage = config.home.homeDirectory + "/.face";
 	};
 };
 }

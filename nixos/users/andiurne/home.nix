@@ -22,6 +22,9 @@ home = {
   homeDirectory = "/home/andiurne";
 
   # File symlinks
+  file = {
+    ".face".source = ../../assets/faces/andiurne.png;
+  };
 
   # Home-manager Pkgs without config
   packages = with pkgs; [
