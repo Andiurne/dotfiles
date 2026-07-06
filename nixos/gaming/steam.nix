@@ -12,6 +12,7 @@ hardware.graphics = {
 programs.steam = {
   enable = true;
   package = pkgs.millennium-steam;
+  extraPackages = with pkgs; [ king-halo-xcur-default ];
   remotePlay.openFirewall = false;
   dedicatedServer.openFirewall = false;
   localNetworkGameTransfers.openFirewall = false;

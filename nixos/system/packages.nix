@@ -4,7 +4,6 @@ environment.systemPackages = with pkgs; [
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
     keepassxc # Remember to enable FdoSecrets!!!
     git-credential-keepassxc
-    git
 
     # Basic graphical environment
     foot
@@ -13,6 +12,8 @@ environment.systemPackages = with pkgs; [
     yazi
     inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
     btop
+    git
+    comma
 
     # Yazi optional deps.
     glib
