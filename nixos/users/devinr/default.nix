@@ -1,5 +1,6 @@
 {pkgs, ...}:{
   imports = [
+    ../../gaming/steam.nix
     ./module.nix
   ];
 
@@ -12,8 +13,6 @@ users.users.devinr = {
 
   # Local pkgs that AREN'T HM-compatible
   packages = with pkgs; [
-    gh
-    github-desktop
     app2unit
     pear-desktop # YT Music
   ];

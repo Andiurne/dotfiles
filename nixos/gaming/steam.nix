@@ -1,5 +1,6 @@
-{pkgs,...}:{
-environment.systemPackages = with pkgs; [steam steam-run protonplus];
+{pkgs, inputs, ...}:{
+nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+environment.systemPackages = with pkgs; [steam-run protonplus];
 
 # Supposed to fix Steam being fucky
 hardware.graphics = {
@@ -10,6 +11,7 @@ hardware.graphics = {
 
 programs.steam = {
   enable = true;
+  package = pkgs.millennium-steam;
   remotePlay.openFirewall = false;
   dedicatedServer.openFirewall = false;
   localNetworkGameTransfers.openFirewall = false;

@@ -4,12 +4,12 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-	hmHyprLib.url = "github:Andiurne/hmHyprLib";
 
 	noctalia = {
 		url = "github:noctalia-dev/noctalia/cachix";
 	};
-
+	hmHyprLib.url = "github:Andiurne/hmHyprLib";
+	millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 	silentSDDM = {
 		url = "github:uiriansan/SilentSDDM";
 		inputs.nixpkgs.follows = "nixpkgs";
@@ -44,12 +44,7 @@
     agenix,
     hmHyprLib,
     ... } @ inputs:
-	let
-		#lib = nixpkgs.lib;
-		#system = "x86_64-linux";
-		#hm_module = home-manager.nixosModules.home-manager;
-		#pkgs = nixpkgs.legacyPackages.${system};
-	in {
+	{
 	nixosConfigurations = nixpkgs.lib.genAttrs
 	[
 	"enchantedSlate"
