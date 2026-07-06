@@ -12,6 +12,7 @@
         king-halo-xcur
         qt6Packages.qt6ct
         papirus-icon-theme
+        pavucontrol
         # Doesn't currently work, oh well
         #inputs.hyprqt6engine.packages.${stdenv.hostPlatform.system}.default
     ];

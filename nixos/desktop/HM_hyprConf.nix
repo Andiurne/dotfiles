@@ -31,6 +31,12 @@
                 # Theoretically I *could* port the lua conf into nix...
                 # but like why?
                 extraConfig = ''
+                hl.config({
+                    misc = {
+                        force_default_wallpaper = 0,
+                        disable_hyprland_logo = false,
+                    },
+                    })
                 require("scratchpad")
                 require("noctalia").apply_theme()
                 '';

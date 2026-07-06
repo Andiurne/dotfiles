@@ -21,11 +21,11 @@ programs.fish = {
     '';
 
     screencap-region = ''
-    grim -l 0 -g \"$(slurp)\" - | swappy -f - -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png
+    grim -l 0 -g "$(slurp)" - | swappy -f -
     '';
 
     screencap-window = ''
-    hyprshot -m window --freeze --raw | swappy -f -o ~/Pictures/Screenshots/$(date +%F-%H%M%S).png
+    hyprshot -m window --freeze --raw | swappy -f -
     '';
 
     screenrec-toggle = ''

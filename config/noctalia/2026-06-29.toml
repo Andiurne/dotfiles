@@ -272,7 +272,6 @@ enabled = [ "noctalia/screen_recorder", "noctalia/kaomoji", "noctalia/wallhaven"
     name = "Legacy"
 
 [shell]
-avatar_path = "/home/devinr/.face"
 launch_apps_as_systemd_services = true
 polkit_agent = true
 screen_time_enabled = true

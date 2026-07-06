@@ -1,20 +1,5 @@
 {config, pkgs, inputs, lib, ...}: {
-imports = map (x: if builtins.typeOf x == "path" then ./modules + x else x) [
-  # Shadows
-  /yazi.nix
-  /fish.nix
-
-  # Locals
-  /equibop.nix
-  /zen-devinr.nix
-  /obsidian.nix
-  /foot.nix
-  /gtk.nix
-  /qt.nix
-
-  # Nixvim bs
-  inputs.nixvim.homeModules.nixvim
-];
+imports =  [ ./shared_imports.nix ];
 programs = {
   home-manager.enable = true;
   git.enable = true;
