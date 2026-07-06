@@ -7,16 +7,6 @@ imports = [ inputs.silentSDDM.nixosModules.default ];
 		backgrounds = {
 			cemetery = ../assets/Wallpapers/untilThen/cemetery.mp4;
 			lilly_emptyLeft = ../assets/backgrounds/lilly_emptyLeft.png;
-			shizune = pkgs.fetchurl {
-				name = "shizune.jpg";
-				url = "https://images.steamusercontent.com/ugc/2389811413355892693/D6EDB292DBAAF3481CDE3D31871A164364A9AF5B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false";
-				hash = "sha256-flMdQleLCQhmOZTY8iPx8DkiAdT2MfCirm3AZsJx9GQ=";
-			};
-			UT_festival = pkgs.fetchurl {
-				name = "UT_festival.jpg";
-				 url = "https://eip.gg/wp-content/uploads/2024/06/Until-Then-Nicole-and-Mark.jpg";
-				 hash = "sha256-IcU+WKf2fXKQzWNh6elj19aIwfe0jDTX+b4jBvkaC8I=";
-			 };
 		};
 
 		profileIcons = pkgs.lib.genAttrs config.users.groups.users.members

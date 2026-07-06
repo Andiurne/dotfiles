@@ -12,7 +12,7 @@
 # Session
 (ipcBind "mainMod" "L" " session lock")
 (ipcBind "subMod" "L" " session lock-and-suspend")
-(ipcBind "mainMod" "Delete" " panel-toggle session")
+(ipcBind "CTRL+ALT+DELETE" "" " panel-toggle session")
 
 # Media
 (ipcBind "mainMod" "CONTROL + SPACE" " media toggle")
