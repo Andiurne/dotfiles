@@ -9,7 +9,9 @@ imports = map (x: ./modules + x ) [
   /zen-andiurne.nix
   /obsidian.nix
   /foot.nix
+
   /git.nix
+  /gh.nix
 
   /gtk.nix
   /qt.nix

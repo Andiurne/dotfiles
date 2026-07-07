@@ -4,7 +4,7 @@ enable = true;
 settings = {
     Default = {
         save_dir = "$HOME/Pictures/Screenshots";
-        save_filename_format = "swappy-%F-%H%H%S.png";
+        save_filename_format = "%F-%H%H%S_swappy.png";
     };
 };
 };}
