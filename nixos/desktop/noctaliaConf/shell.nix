@@ -4,6 +4,10 @@
     polkit_agent = true;
     screen_time_enabled = true;
     settings_show_advanced = true;
+    launcher = {
+        app_grid = true;
+        session_search = true;
+    };
     panel = {
         launcher_compact = true;
         launcher_session_search = false;
