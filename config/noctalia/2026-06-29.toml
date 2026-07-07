@@ -1,7 +1,4 @@
 [wallpaper]
-directory = "~/Pictures/Wallpapers"
-per_monitor_directories = true
-
     [wallpaper.default]
     path = "/home/devinr/Pictures/Wallpapers/6x standard Until Then OST cover.jpg"
 

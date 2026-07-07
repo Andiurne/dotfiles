@@ -17,7 +17,6 @@ users.users.andiurne = {
     pear-desktop # YT Music
     fractal
     gimp
-    ani-cli
   ];
 
   };

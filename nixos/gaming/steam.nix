@@ -1,5 +1,7 @@
 {pkgs, inputs, ...}:{
-nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+nixpkgs.overlays = [
+inputs.millennium.overlays.default
+];
 environment.systemPackages = with pkgs; [steam-run protonplus];
 
 # Supposed to fix Steam being fucky
