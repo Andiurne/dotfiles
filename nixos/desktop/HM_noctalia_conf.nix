@@ -22,7 +22,7 @@ programs.noctalia =  {
 			per_monitor_directories = true;
 		};
 		nightlight.enabled = true;
-		notification.scale = 0.5;
+		notification.scale = 0.75;
 		location.auto_locate = true;
 	}
 	# Imports from noctaliaConf

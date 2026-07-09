@@ -3,10 +3,14 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+	home-manager = {
+	  url = "github:nix-community/home-manager";
+	  inputs.nixpkgs.follows = "nixpkgs";
+        };
 	noctalia = {
 		url = "github:noctalia-dev/noctalia/cachix";
 	};
+	hyprland.url = "github:hyprwm/Hyprland";
 	hmHyprLib.url = "github:Andiurne/hmHyprLib";
 	millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 	silentSDDM = {
@@ -14,11 +18,10 @@
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-
-        home-manager = {
-          url = "github:nix-community/home-manager";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
+	lintree = {
+	  url = "path:./flakes/lintree";
+	  inputs.nixpkgs.follows = "nixpkgs";
+	};
 
         zen-browser = {
           url = "github:0xc000022070/zen-browser-flake";
@@ -32,8 +35,6 @@
 
 	snappy-switcher.url = "github:OpalAayan/snappy-switcher";
 
-	hyprland.url = "github:hyprwm/Hyprland";
-	hyprqt6engine.url = "github:hyprwm/hyprqt6engine";
 
 	agenix.url = "github:ryantm/agenix";
 

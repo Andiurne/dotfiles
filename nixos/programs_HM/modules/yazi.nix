@@ -4,12 +4,15 @@ programs.yazi = {
     enableFishIntegration = true;
     shellWrapperName = "y";
 
-    plugins = let yazi-plugins = pkgs.fetchFromGitHub {
-        owner = "yazi-rs";
-        repo = "plugins";
-        rev = "...";
-        hash = "sha256-...";
-      }; in {
+    plugins =
+    let
+        yazi-plugins = pkgs.fetchFromGitHub {
+            owner = "yazi-rs";
+            repo = "plugins";
+            rev = "...";
+            hash = "sha256-...";
+        };
+    in {
           gvfs = pkgs.fetchFromGitHub {
               # NOTE: This was made using nixos-prefetch-github, and refers
               # to a specific commit. Will probably need to be manually
@@ -29,6 +32,8 @@ programs.yazi = {
         mgr.prepend_keymap = import ./gvfsKeymapList.nix;
         mgr.append_keymap = [
         { on = [ "g" "C" ]; run = "cd ~/.config/dotfiles"; desc = "Goto dotfiles repo"; }
+        {on = [ "g" "w"]; run = "cd ~/Pictures/Wallpapers"; desc = "Goto wallpapers";}
+        { on = [ "u" ]; run = "shell --block lintree %h"; desc = "Run lintree on current directory"; }
         ];
       };
 };

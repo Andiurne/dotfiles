@@ -1,16 +1,20 @@
-{pkgs, inputs, ...}: {
+{pkgs, inputs, ...}:
+let
+    system = pkgs.stdenv.hostPlatform.system;
+in {
 environment.systemPackages = with pkgs; [
     # Secrets Management
-    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.agenix.packages.${system}.default
     keepassxc # Remember to enable FdoSecrets!!!
     git-credential-keepassxc
 
     # Basic graphical environment
     foot
+    inputs.lintree.packages.${system}.default
     mpv
     nerd-fonts.jetbrains-mono
     yazi
-    inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.snappy-switcher.packages.${system}.default
     btop
     git
     comma
