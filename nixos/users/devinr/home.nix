@@ -21,7 +21,10 @@ home = {
   homeDirectory = "/home/devinr";
 
   file = {
-    ".face".source = ../../assets/faces/devinr.png;
+    "face.png" = {
+      source = ../../assets/faces/devinr.png;
+      executable = true;
+    };
   };
 
   # Home-manager Pkgs without config

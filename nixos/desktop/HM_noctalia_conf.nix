@@ -14,7 +14,7 @@ programs.noctalia =  {
 	# nix shell nixpkgs#json-diff -c bash -c "json-diff <(jq -S . ~/.config/noctalia/settings.json) <(noctalia-shell ipc call state all | jq -S .settings)"
 	# (this might be worth defining in script
 	settings = (foldImports {
-		general.avatarImage = config.home.homeDirectory + "/.face";
+		general.avatarImage = config.home.homeDirectory + "/face.png";
 		bar.order = [ "leftMain" ];
 		weather.unit = "imperial";
 		wallpaper = {

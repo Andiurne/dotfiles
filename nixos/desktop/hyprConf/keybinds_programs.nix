@@ -4,7 +4,7 @@
 (pvarBind "mainMod" "W" "browser")
 (simpleBind "mainMod" "O" "app2unit -- obsidian")
 #(simpleBind "mainMod" "G" "app2unit -- github-desktop")
-(simpleBind "subMod" "C" "hyprpicker -a")
+(simpleBind "subMod" "P" "hyprpicker -a")
 
 # SCREEN CAPTURE
 (simpleBind "mainMod" "R" "fish -c screenrec-toggle")

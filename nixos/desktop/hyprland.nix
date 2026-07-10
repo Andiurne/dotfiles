@@ -12,9 +12,9 @@
         king-halo-xcur
         qt6Packages.qt6ct
         papirus-icon-theme
+        hyprpicker # provides freeze and color picking
+        hyprshot # for window and freezing
         pavucontrol
-        # Doesn't currently work, oh well
-        #inputs.hyprqt6engine.packages.${stdenv.hostPlatform.system}.default
     ];
 
     environment.sessionVariables = {

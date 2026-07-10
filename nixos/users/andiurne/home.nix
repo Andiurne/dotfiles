@@ -23,7 +23,10 @@ home = {
 
   # File symlinks
   file = {
-    ".face".source = ../../assets/faces/andiurne.png;
+    "face.png" = {
+      source = ../../assets/faces/andiurne.png;
+      executable = true;
+    };
   };
 
   # Home-manager Pkgs without config

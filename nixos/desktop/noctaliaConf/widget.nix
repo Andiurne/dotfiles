@@ -1,6 +1,8 @@
 {widget =
 {
     date.format = "%a - %d %m";
+    wallhaven.type = "noctalia/wallhaven:wallhaven";
+    mpvpaper.type = "noctalia/mpvpaper:mpvpaper";
 
     logo =
     {

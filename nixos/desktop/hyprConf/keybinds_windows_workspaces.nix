@@ -18,6 +18,8 @@
 # Move workspace with mouse scroll
 (dspBind "mainMod" "mouse_down" (focus "{workspace = \"e-1\"}"))
 (dspBind "mainMod" "mouse_up" (focus "{workspace = \"e+1\"}"))
+(dspBind "mainMod" "C" (focus "{workspace = \"empty\"}"))
+(dspBind "subMod" "C" (windowArgs "move" "{workspace = \"empty\"}"))
 ]
 ++
 # Move Focus w/ Arrow Keys

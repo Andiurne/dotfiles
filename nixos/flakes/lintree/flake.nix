@@ -20,7 +20,7 @@
         {packages = forAllSystems ({pkgs}: {
                default = pkgs.buildGoModule rec {
                         pname = "lintree";
-                        version = "0.1.3";
+                        version = "v0.1.3";
                         src = pkgs.fetchFromGitHub {
                                 owner = "PatchMon";
                                 repo = "lintree";
