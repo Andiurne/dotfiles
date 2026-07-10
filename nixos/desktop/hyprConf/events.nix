@@ -6,6 +6,7 @@ with inputs.hmHyprLib.lib; [
 		"snappy-switcher --daemon"
 		"equibop"
 		"keepassxc"
+		"steam -silent"
 	]
 )
 {
