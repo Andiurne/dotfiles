@@ -1,6 +1,7 @@
 {pkgs, ...}:{
   imports = [
     ../../gaming/steam.nix
+    ./virt-manager.nix
     ./module.nix
   ];
 
@@ -9,7 +10,7 @@ users.extraUsers.devinr.shell = pkgs.fish;
 users.users.devinr = {
   isNormalUser = true;
   description = "Devin Riehle";
-  extraGroups = [ "networkmanager" "wheel" "users" ];
+  extraGroups = [ "networkmanager" "wheel" "users" "libvrtd"];
 
   # Local pkgs that AREN'T HM-compatible
   packages = with pkgs; [
