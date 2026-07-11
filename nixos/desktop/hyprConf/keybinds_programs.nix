@@ -1,17 +1,17 @@
 {simpleBind, pvarBind}:[
-(pvarBind "mainMod" "T" "terminal")
-(pvarBind "mainMod" "E" "fileManager")
-(pvarBind "mainMod" "W" "browser")
-(simpleBind "mainMod" "O" "app2unit -- obsidian")
-#(simpleBind "mainMod" "G" "app2unit -- github-desktop")
-(simpleBind "subMod" "P" "hyprpicker -a")
+(pvarBind "SUPER + T" "terminal")
+(pvarBind "SUPER + E" "fileManager")
+(pvarBind "SUPER + W" "browser")
+(simpleBind "SUPER + O" "app2unit -- obsidian")
+#(simpleBind "SUPER + G" "app2unit -- github-desktop")
+(simpleBind "SUPER+SHIFT + P" "hyprpicker -a")
 
 # SCREEN CAPTURE
-(simpleBind "mainMod" "R" "fish -c screenrec-toggle")
-(simpleBind "mainMod" "S" "fish -c screencap-region")
-(simpleBind "subMod" "S" "fish -c screencap-window")
-(simpleBind "Print" "" "fish -c screencap-screen")
+(simpleBind "SUPER + R" "fish -c screenrec-toggle")
+(simpleBind "SUPER + S" "fish -c screencap-region")
+(simpleBind "SUPER+SHIFT + S" "fish -c screencap-window")
+(simpleBind "Print" "fish -c screencap-screen")
 
-(simpleBind "ALT + Tab" "" "snappy-switcher next --mod alt")
-(simpleBind "mainMod" "TAB" "snappy-switcher next --workspace --mod super")
+(simpleBind "ALT + Tab" "snappy-switcher next --mod alt")
+(simpleBind "SUPER + TAB" "snappy-switcher next --workspace --mod super")
 ]

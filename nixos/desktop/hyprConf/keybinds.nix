@@ -1,7 +1,7 @@
 {inputs, lib, ...}:
 with inputs.hmHyprLib.lib; {wayland.windowManager.hyprland.settings = { bind = [
 (fullBind
-	"XF86AudioMicMute" ""
+	"XF86AudioMicMute"
 	(exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
 	{locked = true; repeating = true;}
 )
