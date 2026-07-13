@@ -5,6 +5,11 @@ imports = [
 	inputs.noctalia.homeModules.default
 ];
 
+home.file.".config/noctalia/user-templates.toml" =
+{
+	source = ../assets/user-templates.toml;
+};
+
 programs.noctalia =  {
 	enable = true;
 
@@ -14,7 +19,7 @@ programs.noctalia =  {
 	# nix shell nixpkgs#json-diff -c bash -c "json-diff <(jq -S . ~/.config/noctalia/settings.json) <(noctalia-shell ipc call state all | jq -S .settings)"
 	# (this might be worth defining in script
 	settings = (foldImports {
-		general.avatarImage = config.home.homeDirectory + "/face.png";
+		shell.avatarImage = config.home.homeDirectory + "/face.png";
 		bar.order = [ "leftMain" ];
 		weather.unit = "imperial";
 		wallpaper = {
@@ -24,7 +29,7 @@ programs.noctalia =  {
 		nightlight.enabled = true;
 		notification.scale = 0.75;
 		location.auto_locate = true;
-	}
+}
 	# Imports from noctaliaConf
 	[
 		"controlCenter"
@@ -33,7 +38,6 @@ programs.noctalia =  {
 		"lockscreen"
 		"plugins"
 		"shell"
-		"templates"
 		"theme"
 		"widget"
 	]

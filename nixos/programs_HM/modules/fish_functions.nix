@@ -42,11 +42,11 @@ programs.fish.functions =
     '';
 
     run = ''
-    $argv[1] & disown
+    $argv & disown
     '';
 
     runKill = ''
-    $argv[1] & disown & exit
+    $argv & disown & exit
     '';
 
     # Yazi's shell function

@@ -153,11 +153,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1783757533,
-        "narHash": "sha256-UO/EfweTmrEySF2tYH2Wt631BFZVGGtD2dyus8M22Mw=",
+        "lastModified": 1783759342,
+        "narHash": "sha256-+J+lRGxxSUjDg/gTB6MRjRj56WzQBx4qJyxga4k06NM=",
         "owner": "Andiurne",
         "repo": "hmHyprLib",
-        "rev": "240e1a5cb48fea94cf193721da8e2f48af3bd9d0",
+        "rev": "72bf9278734d76a30f88fd7398fd0a8b6903ac7a",
         "type": "github"
       },
       "original": {

@@ -53,6 +53,7 @@ programs.yazi = {
     keymap = {
         mgr.prepend_keymap = import ./gvfsKeymapList.nix;
         mgr.append_keymap = [
+        {on = [ "P" ]; run = "paste --force"; desc = "Paste w/ overwrite";}
         { on = [ "g" "C" ]; run = "cd ~/.config/dotfiles"; desc = "Goto dotfiles repo"; }
         {on = [ "g" "w"]; run = "cd ~/Pictures/Wallpapers"; desc = "Goto wallpapers";}
         {on = [ "g" "W"]; run = "cd ~/Pictures/Wallpapers/wallhaven"; desc = "Goto wallhaven";}

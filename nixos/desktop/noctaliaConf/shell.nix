@@ -7,11 +7,10 @@
     launcher = {
         app_grid = true;
         session_search = true;
+        compact = true;
     };
     panel = {
-        launcher_compact = true;
-        launcher_session_search = false;
-        session_placement = "centered";
+        session_placement = "floating";
         transparency_mode = "glass";
     };
     screen_corners.enabled = true;

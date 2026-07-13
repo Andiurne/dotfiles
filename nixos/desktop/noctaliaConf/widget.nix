@@ -17,8 +17,10 @@
         show_when_idle = true;
         width = 188.0;
     };
-    output_volume.scroll_step = 2;
-    volume.show_label = false;
+    volume = {
+        scroll_step = 2;
+        show_label = false;
+    };
     brightness =
     {
         scroll_step = 2;

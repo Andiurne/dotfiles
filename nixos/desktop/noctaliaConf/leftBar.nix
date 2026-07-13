@@ -9,10 +9,11 @@
         padding = 10;
         position = "left";
         radius = 0;
-        radius_bottom_left = -80;
-        radius_bottom_right = -80;
-        radius_top_left = -80;
-        radius_top_right = -80;
+        radius_bottom_left = 0;
+        radius_bottom_right = 80;
+        radius_top_left = 0;
+        radius_top_right = 80;
+        concave_edge_corners = true;
         start = [ "group:g1" "workspaces" ];
         thickness = 40;
 

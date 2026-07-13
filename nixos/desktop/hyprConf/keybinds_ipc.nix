@@ -4,7 +4,7 @@
 (ipcBind "SUPER + comma" "settings-toggle")
 (addFlags (ipcBind "SUPER + SUPER_L" "panel-toggle launcher") {special = "release";})
 (ipcBind "SUPER + V" "panel-toggle clipboard")
-(ipcBind "SUPER+SHIFT + X" "panel-toggle control-center")
+(ipcBind "SUPER+ X" "panel-toggle control-center")
 (ipcBind "SUPER+SHIFT + W" "panel-toggle wallpaper")
 (ipcBind "SUPER+SHIFT + TAB" "panel-toggle launcher /win")
 

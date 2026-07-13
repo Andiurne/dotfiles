@@ -7,6 +7,5 @@ services.upower.enable = true;
 
 environment.systemPackages = with pkgs; [
     mpvpaper # Video wallpaper plugin
-    #emacsPackages.kaomoji # I *think* required for Kaomoji plugin?
 ];
 }
