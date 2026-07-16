@@ -15,6 +15,7 @@ users.users.devinr = {
   packages = with pkgs; [
     app2unit
     pear-desktop # YT Music
+    ani-cli
   ];
 
   };
