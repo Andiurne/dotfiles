@@ -34,13 +34,6 @@ programs.fish.functions =
     runKill foot (pwd)
     '';
 
-    btrfs-mount = ''
-    options = $argv[1]
-    target = $argv[2]
-    mountPoint = $argv[3]
-    sudo mount -o $options $target $mountPoint
-    '';
-
     run = ''
     $argv & disown
     '';

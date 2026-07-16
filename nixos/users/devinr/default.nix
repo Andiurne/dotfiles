@@ -1,7 +1,6 @@
 {pkgs, ...}:{
   imports = [
     ../../gaming/steam.nix
-    ./virt-manager.nix
     ./module.nix
   ];
 

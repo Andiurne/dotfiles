@@ -5,7 +5,6 @@ with inputs.hmHyprLib.lib; [
 		"noctalia"
 		"snappy-switcher --daemon"
 		"equibop"
-		"keepassxc"
 		"steam -silent"
 	]
 )

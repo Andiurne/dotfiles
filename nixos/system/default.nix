@@ -7,22 +7,11 @@
       ./packages.nix
       ./programs.nix
       ./yazi.nix
+      ./text.nix
     ];
 
-    fonts.packages = with pkgs; [
-	nerd-fonts.jetbrains-mono
-        font-awesome
-    ];
 
-  # Misc. Service Config
-  services = {
-
-    # X11 keymap, US INTL
-    xserver.xkb = {
-      layout = "us";
-      variant = "intl";
-    };
-
+    services = {
     # CUPS Printing
     printing.enable = true;
 

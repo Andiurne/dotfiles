@@ -14,7 +14,6 @@
         papirus-icon-theme
         hyprpicker # provides freeze and color picking
         hyprshot # for window and freezing
-        pavucontrol
     ];
 
     environment.sessionVariables = {

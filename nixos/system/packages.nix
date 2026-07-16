@@ -18,6 +18,7 @@ environment.systemPackages = with pkgs; [
     btop
     git
     comma
+    pwvucontrol
 
     # Yazi optional deps.
     glib
