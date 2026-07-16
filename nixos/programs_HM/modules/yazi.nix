@@ -32,6 +32,27 @@ programs.yazi = {
             sort_reverse = true;
             sort_dir_first = true;
         };
+
+        opener =
+        {
+            set-wallpaper = [
+                {
+                    run = "noctalia msg wallpaper-set %s";
+                    orphan = true;
+                    desc = "Set as wallpaper";
+                }
+            ];
+        };
+
+        open =
+        {
+            prepend_rules = [
+                {
+                    mime = "image/*";
+                    use = ["open" "set-wallpaper"];
+                }
+            ];
+        };
     };
 
     initLua = ''
