@@ -4,7 +4,7 @@
     ];
 
     boot = {
-      blacklistedKernelModules = [ "hyperv_fb" "i915" "hyperv_drm" ];
+      blacklistedKernelModules = [ "hyperv_fb" "hyperv_drm" ];
     };
     #services = {
     #  xrdp = {
@@ -31,12 +31,29 @@
     #networking.firewall.allowedTCPPorts = [5900]; # For wayvnc
 
     security.rtkit.enable = true;
-    services.pipewire.pulse.enable = true;
     services.pipewire = {
       enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
       extraConfig = {
-        /*pipewire = {
-         "91-null-sinks" = {
+        pipewire = {
+         "91-null-and-vban" = {
+           "context.modules" = [
+            {name = "libpipewire-module-vban-send";
+              args = {
+                "local.ifname" = "eth0";
+                "source.ip" = "10.42.139.228";
+                "destination.ip" = "10.42.140.1";
+                "destination.port" = 42000;
+                "sess.name" = "VBAN Sink";
+                "target.object" = "Main-Output-Proxy";
+                "stream.props" = {
+                  "node.name" = "VBAN-Sink";
+                  "target.object" = "Main-Output-Proxy";
+                };
+              };}
+           ];
            "context.objects" = [
            {
              factory = "adapter";
@@ -50,7 +67,7 @@
            }
            ];
          };
-         "rtp-sink" = {
+         /*"rtp-sink" = {
            "context.modules" = [
              {
                "name" = "libpipewire-module-rtp-sink";
@@ -70,9 +87,9 @@
                };
              }
            ];
-          };
-        };*/
-        pipewire-pulse = {
+          };*/
+        };
+        /*pipewire-pulse = {
           "pulse-rtp" = {
             "pulse.cmd" = [
               {
@@ -85,19 +102,9 @@
               }
             ];
           };
-        };
+        };*/
       };
     };
-
-    /*environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "nvidia";
-      XDG_SESSION_TYPE = "wayland";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      WLR_NO_HARDWARE_CURSORS = 1;
-    };*/
-
-
 
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
