@@ -35,14 +35,13 @@
 	  url = "github:pystardust/ani-cli/master";
 	  flake = false;
 	};
+	grub2-themes.url = "github:vinceliuice/grub2-themes";
 
 	agenix.url = "github:ryantm/agenix";
-
       };
     outputs = { self, nixpkgs,
     home-manager,
-    agenix,
-    hmHyprLib,
+    grub2-themes,
     ... } @ inputs:
 	{
 	nixosConfigurations = nixpkgs.lib.genAttrs
@@ -52,14 +51,16 @@
 	]
   (hostName: nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
-		modules = [
-			./mainConfig.nix
-			./hardwareConf/${hostName}.nix
-			{ networking.hostName = hostName; }
-			home-manager.nixosModules.home-manager
-			./users/${hostName}_userSet.nix
-			./overlays/${hostName}.nix
-			./secrets/${hostName}.nix
+		modules =
+		[
+		  grub2-themes.nixosModules.default
+		  ./mainConfig.nix
+		  ./hardwareConf/${hostName}.nix
+		  { networking.hostName = hostName; }
+		  home-manager.nixosModules.home-manager
+		  ./users/${hostName}_userSet.nix
+		  ./overlays/${hostName}.nix
+		  ./secrets/${hostName}.nix
 		];
 	});
       };

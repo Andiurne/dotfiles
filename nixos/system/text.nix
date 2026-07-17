@@ -5,6 +5,7 @@
     font-awesome
   ];
 
+  console.useXkbConfig = true;
   services = {
     xserver.xkb = {
       layout = "us";

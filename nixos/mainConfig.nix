@@ -37,7 +37,7 @@
 
 
   # Set console keymap (for tty)
-  console.keyMap = "us";
+  #console.keyMap = "us";
 
   # Date & Time
   time.timeZone = "America/Los_Angeles";

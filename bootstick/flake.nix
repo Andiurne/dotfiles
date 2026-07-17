@@ -35,29 +35,35 @@
   };
 
   outputs = { self, nixpkgs,
-  home-manager,
-  hmHyprLib, ...} @ inputs:{
-  packages.x86_64-linux.default =
-  self.nixosConfigurations.bootstick.config.system.build.isoImage;
-  nixosConfigurations = {
-    bootstick = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs; };
-      modules =
-      [
-        ./mainConfig.nix
-        ({pkgs, modulesPath, ...}: {
-          imports =
+    home-manager,
+    hmHyprLib,
+    ...} @ inputs:
+    {
+      packages.x86_64-linux.default = self.nixosConfigurations.bootstick.config.system.build.isoImage;
+      nixosConfigurations = {
+        bootstick = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {inherit inputs; };
+          modules =
           [
-            (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+            ./mainConfig.nix
+            ({pkgs, modulesPath, ...}: {
+              imports =
+              [
+                (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+              ];
+
+              networking.hostName = "bootstick";
+              # Install utils
+              environment.systemPackages = with pkgs; [
+                gparted
+              ];
+            })
+            home-manager.nixosModules.home-manager
+            ./user
+	    ./overlays/bootstick.nix
           ];
-        })
-        { networking.hostName = "bootstick"; }
-        home-manager.nixosModules.home-manager
-        ./user
-	./overlays/bootstick.nix
-      ];
+      };
     };
-  };
   };
 }
