@@ -35,11 +35,12 @@ programs.fish.functions =
     '';
 
     run = ''
-    $argv & disown
+    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('" $argv "'))")
     '';
 
-    runKill = ''
-    $argv & disown & exit
+    launch = ''
+    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('" $argv "'))")
+    exit
     '';
 
     # Yazi's shell function

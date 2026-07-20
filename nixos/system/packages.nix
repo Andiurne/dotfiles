@@ -28,7 +28,9 @@ environment.systemPackages = with pkgs; [
     wl-clipboard
     imagemagick
 
+    # File Openers
     swayimg # Wayland image viewer that overlays a terminal
+    zathura # Minimal pdf viewer
 
     # Screen Capture
     gpu-screen-recorder

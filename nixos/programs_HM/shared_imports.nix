@@ -8,6 +8,7 @@ imports = map (x: ./modules + x ) [
   /equibop.nix
   /obsidian.nix
   /foot.nix
+  /nixvim.nix
 
   /git.nix
   /gh.nix
@@ -25,13 +26,6 @@ imports = map (x: ./modules + x ) [
 programs = {
   home-manager.enable = true;
   git.enable = true;
-
-  nixvim = {
-  	enable = true;
-	defaultEditor = true;
-	vimdiffAlias = true;
-  	imports = [ ./modules/nixvim.nix ];
-  };
 
   # Misc enables
   ## For yazi

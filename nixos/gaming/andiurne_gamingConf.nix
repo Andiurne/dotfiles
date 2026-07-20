@@ -1,13 +1,7 @@
 {pkgs, inputs, ...}: {
   imports = [
     ./steam.nix
+    (import ./ryubing "andiurne")
   ];
 
-
-
-  users.users.andiurne = {
-    packages = with pkgs; [
-      ryubing
-    ];
-  };
 }

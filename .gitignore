@@ -4,3 +4,4 @@ nixos/secrets
 nixPkgs/localSources
 nixos/assets/Wallpapers/wallhaven
 config/noctalia
+nixos/gaming/ryubing
