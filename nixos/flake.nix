@@ -64,7 +64,7 @@
 		  ./secrets/${hostName}.nix
 		];
 	}) // {
-	  "WSL" = {
+	  WSL = nixpkgs.lib.nixosSystem {
 	    specialArgs = { inherit inputs; };
 	    modules =
 	    [
@@ -75,6 +75,31 @@
 	      home-manager.nixosModules.home-manager
 	      ./users/devinr
 	      ./overlays/VC-station.nix
+	    ];
+	  };
+	  bootstick = nixpkgs.lib.nixosSystem {
+	    system = "x86_64-linux";
+	    specialArgs = {inherit inputs; };
+	    modules =
+	    [
+	      ./mainConfig.nix
+	      ./system
+	      ./desktop
+	      home-manager.nixosModules.home-manager
+	      ./users/nixos
+	      ./overlays/bootstick.nix
+	      ({pkgs, modulesPath, ...}:
+	      {
+		imports = [
+		  (modulesPath + "/installer/cd-dvd/insallation-cd-minimal.nix")
+		];
+
+		networking.hostName = "bootstick";
+		environment.systemPackages = with pkgs;
+		[
+		  gparted
+		];
+	      })
 	    ];
 	  };
 	};
