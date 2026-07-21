@@ -11,7 +11,4 @@
 (simpleBind "SUPER + S" "fish -c screencap-region")
 (simpleBind "SUPER+SHIFT + S" "fish -c screencap-window")
 (simpleBind "Print" "fish -c screencap-screen")
-
-(simpleBind "ALT + Tab" "snappy-switcher next --mod alt")
-(simpleBind "SUPER + TAB" "snappy-switcher next --workspace --mod super")
 ]

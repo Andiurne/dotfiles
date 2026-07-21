@@ -22,7 +22,6 @@
             "discord"
             "steam"
             "yazi"
-            "snappy-switcher"
             "hyprtoolkit"
         ];
     };

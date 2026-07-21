@@ -13,6 +13,9 @@
 (ipcBind "SUPER+SHIFT + L" "session lock-and-suspend")
 (ipcBind "CTRL+ALT+Delete" "panel-toggle session")
 
+# Window Switcher
+(ipcBind "ALT + TAB" "window-switcher")
+
 # Media
 (ipcBind "SUPER + CONTROL + SPACE" "media toggle")
 (addFlags (ipcBind "XF86AudioRaiseVolume"  "volume-up 2") {locked = true; repeating = true;})

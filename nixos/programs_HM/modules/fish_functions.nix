@@ -10,12 +10,22 @@ home.packages = with pkgs; [
 
 programs.fish.functions =
 {
+    nvimFindBase = ''
+    set -l tmp (mktemp -t "yazi-chooser.XXXXX")
+    command yazi ~/Code --cwd-file="$tmp"
+    if read cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+        nvim
+    end
+    rm -f -- "$tmp"
+    '';
+
     screencap-screen = ''
     hyprshot -m active -m output -o ~/Pictures/Screenshots
     '';
 
     screencap-region = ''
-    grim -l 0 -g "$(slurp)" - | swappy -f -
+    hyprshot -m region -z --raw | swappy -f -
     '';
 
     screencap-window = ''

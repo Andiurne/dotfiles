@@ -30,7 +30,6 @@
           };
         };
         nixvim.url = "github:nix-community/nixvim";
-	snappy-switcher.url = "github:OpalAayan/snappy-switcher";
 	ani-cli-src = {
 	  url = "github:pystardust/ani-cli/fix";
 	  flake = false;

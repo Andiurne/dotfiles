@@ -14,7 +14,6 @@ environment.systemPackages = with pkgs; [
     mpv
     nerd-fonts.jetbrains-mono
     yazi
-    inputs.snappy-switcher.packages.${system}.default
     btop
     git
     comma

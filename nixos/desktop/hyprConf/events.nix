@@ -3,7 +3,6 @@ with inputs.hmHyprLib.lib; [
 (autostart
 	[
 		"noctalia"
-		"snappy-switcher --daemon"
 		"equibop"
 		"steam -silent"
 	]
