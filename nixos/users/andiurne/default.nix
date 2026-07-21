@@ -17,6 +17,7 @@ users.users.andiurne = {
     fractal
     gimp
     ani-cli
+    ntfs3g
   ];
 
 

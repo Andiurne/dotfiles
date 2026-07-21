@@ -19,6 +19,7 @@ users.users.nixos = {
     app2unit
     pear-desktop # YT Music
     wireshark
+    ntfs3g
   ];
 
 
