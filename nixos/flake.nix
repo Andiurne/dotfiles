@@ -42,28 +42,36 @@
     home-manager,
     grub2-themes,
     ... } @ inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
 	{
-	nixosConfigurations = nixpkgs.lib.genAttrs
-	[
-	"enchantedSlate"
-	"VC-station"
-	]
-	(hostName: nixpkgs.lib.nixosSystem {
-		specialArgs = { inherit inputs; };
-		modules =
-		[
-		  grub2-themes.nixosModules.default
-		  ./mainConfig.nix
-		  ./system
-		  ./desktop
-		  ./hardwareConf/${hostName}.nix
-		  { networking.hostName = hostName; }
-		  home-manager.nixosModules.home-manager
-		  ./users/${hostName}_userSet.nix
-		  ./overlays/${hostName}.nix
-		  ./secrets/${hostName}.nix
-		];
-	}) // {
+
+	  nixosConfigurations = nixpkgs.lib.genAttrs
+	  [
+	    "enchantedSlate"
+	    "VC-station"
+	  ]
+	  (hostName: nixpkgs.lib.nixosSystem {
+	    specialArgs = { inherit inputs; };
+	    modules =
+	    [
+	      grub2-themes.nixosModules.default
+	      ./mainConfig.nix
+	      ./system
+	      ./desktop
+	      ./hardwareConf/${hostName}.nix
+	      {
+		networking.hostName = hostName;
+		boot.kernelPackages = pkgs.linuxPackages_latest;
+	      }
+	      home-manager.nixosModules.home-manager
+	      ./users/${hostName}_userSet.nix
+	      ./overlays/${hostName}.nix
+	      ./secrets/${hostName}.nix
+	    ];
+	  }) // {
 	  WSL = nixpkgs.lib.nixosSystem {
 	    specialArgs = { inherit inputs; };
 	    modules =
@@ -78,7 +86,7 @@
 	    ];
 	  };
 	  bootstick = nixpkgs.lib.nixosSystem {
-	    system = "x86_64-linux";
+	    system = system;
 	    specialArgs = {inherit inputs; };
 	    modules =
 	    [
@@ -91,7 +99,7 @@
 	      ({pkgs, modulesPath, ...}:
 	      {
 		imports = [
-		  (modulesPath + "/installer/cd-dvd/insallation-cd-minimal.nix")
+		  (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
 		];
 
 		networking.hostName = "bootstick";

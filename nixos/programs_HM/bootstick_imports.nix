@@ -11,6 +11,7 @@ imports = map (x: ./modules + x ) [
   /keepassxc.nix
   /zen_live.nix
   /btop.nix
+  /nixvim.nix
 ] ++
 [
   inputs.nixvim.homeModules.nixvim
@@ -24,7 +25,6 @@ programs = {
   	enable = true;
 	defaultEditor = true;
 	vimdiffAlias = true;
-  	imports = [ ./modules/nixvim.nix ];
   };
 
   # Misc enables
