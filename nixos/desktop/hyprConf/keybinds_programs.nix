@@ -2,6 +2,7 @@
 (pvarBind "SUPER + T" "terminal")
 (pvarBind "SUPER + E" "fileManager")
 (pvarBind "SUPER + W" "browser")
+(pvarBind "SUPER + V" "editor")
 (simpleBind "SUPER + O" "app2unit -- obsidian")
 #(simpleBind "SUPER + G" "app2unit -- github-desktop")
 (simpleBind "SUPER+SHIFT + P" "hyprpicker -a")
