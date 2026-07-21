@@ -45,11 +45,11 @@ programs.fish.functions =
     '';
 
     run = ''
-    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('" $argv "'))")
+    hyprctl eval ("hl.dispatch(hl.dsp.exec_cmd('$argv'))")
     '';
 
     launch = ''
-    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('" $argv "'))")
+    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('$argv'))")
     exit
     '';
 
