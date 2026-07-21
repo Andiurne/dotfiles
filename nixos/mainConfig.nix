@@ -27,15 +27,6 @@
   };
   nixpkgs.config.allowUnfree = true;
 
-  imports = [
-      # Base DE
-      ./desktop
-
-      # System Stuff
-      ./system
-  ];
-
-
   # Set console keymap (for tty)
   #console.keyMap = "us";
 

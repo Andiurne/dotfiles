@@ -48,12 +48,14 @@
 	"enchantedSlate"
 	"VC-station"
 	]
-  (hostName: nixpkgs.lib.nixosSystem {
+	(hostName: nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules =
 		[
 		  grub2-themes.nixosModules.default
 		  ./mainConfig.nix
+		  ./system
+		  ./desktop
 		  ./hardwareConf/${hostName}.nix
 		  { networking.hostName = hostName; }
 		  home-manager.nixosModules.home-manager
@@ -61,6 +63,20 @@
 		  ./overlays/${hostName}.nix
 		  ./secrets/${hostName}.nix
 		];
-	});
+	}) // {
+	  "WSL" = {
+	    specialArgs = { inherit inputs; };
+	    modules =
+	    [
+	      ./mainConfig.nix
+	      ./system
+	      ./hardwareConf/WSL.nix
+	      { networking.hostName = "WSL"; }
+	      home-manager.nixosModules.home-manager
+	      ./users/devinr
+	      ./overlays/VC-station.nix
+	    ];
+	  };
+	};
       };
 }
