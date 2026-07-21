@@ -4,7 +4,6 @@ let
 in {
 environment.systemPackages = with pkgs; [
     # Secrets Management
-    inputs.agenix.packages.${system}.default
     keepassxc # Remember to enable FdoSecrets!!!
     git-credential-keepassxc
 

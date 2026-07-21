@@ -1,9 +1,5 @@
-{hostName, ...}:
+{...}:
 {
-  imports = [
-    ./overlays/${hostName}.nix
-  ];
-
   nix.settings = {
     # Don't compile hyprland yourself, idjit...
     substituters = [

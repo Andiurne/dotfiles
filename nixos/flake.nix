@@ -36,8 +36,6 @@
 	  flake = false;
 	};
 	grub2-themes.url = "github:vinceliuice/grub2-themes";
-
-	agenix.url = "github:ryantm/agenix";
       };
     outputs = { self, nixpkgs,
     home-manager,
@@ -55,9 +53,10 @@
 	  [
 	    "enchantedSlate"
 	    "VC-station"
+	    "bootstick"
 	  ]
 	  (hostName: lib.nixosSystem {
-	    specialArgs = { inherit inputs hostName; };
+	    specialArgs = { inherit inputs; };
 	    modules =
 	    [
 	      ./nixSettings.nix
@@ -70,7 +69,9 @@
 		  config.allowUnfree = true;
 		  # Might need to compile locally sometimes, but is
 		  # but is needed for config to apply to nixpkgs
-		  overlays = [ nix-cachyos-kernel.overlays.default ];
+		  overlays = [
+		    nix-cachyos-kernel.overlays.default
+		  ];
 		};
 		networking.hostName = hostName;
 		boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
@@ -81,9 +82,9 @@
 	      ./overlays/${hostName}.nix
 	      ./secrets/${hostName}.nix
 	    ];
-	  }) // {
+	  });
 	  /* I don't feel like making this work, but I'll leave it here for now
-	  WSL = lib.nixosSystem {
+	  nixosConfigurations.WSL = lib.nixosSystem {
 	    specialArgs = { inherit inputs; };
 	    modules =
 	    [
@@ -96,32 +97,5 @@
 	      ./overlays/VC-station.nix
 	    ];
 	  };*/
-	  bootstick = lib.nixosSystem {
-	    system = system;
-	    specialArgs = {inherit inputs; hostName = "bootstick"; };
-	    modules =
-	    [
-	      ./nixSettings.nix
-	      grub2-themes.nixosModules.default
-	      ./system
-	      ./desktop
-	      home-manager.nixosModules.home-manager
-	      ./users/nixos
-	      ./overlays/bootstick.nix
-	      ({pkgs, modulesPath, ...}:
-	      {
-		imports = [
-		  (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
-		];
-
-		networking.hostName = "bootstick";
-		environment.systemPackages = with pkgs;
-		[
-		  gparted
-		];
-	      })
-	    ];
-	  };
-	};
       };
 }
