@@ -3,6 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+	nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 	home-manager = {
 	  url = "github:nix-community/home-manager";
 	  inputs.nixpkgs.follows = "nixpkgs";
@@ -41,38 +42,48 @@
     outputs = { self, nixpkgs,
     home-manager,
     grub2-themes,
+    nix-cachyos-kernel,
     ... } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
     in
 	{
+	  packages.${system}.bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
 
-	  nixosConfigurations = nixpkgs.lib.genAttrs
+	  nixosConfigurations = lib.genAttrs
 	  [
 	    "enchantedSlate"
 	    "VC-station"
 	  ]
-	  (hostName: nixpkgs.lib.nixosSystem {
-	    specialArgs = { inherit inputs; };
+	  (hostName: lib.nixosSystem {
+	    specialArgs = { inherit inputs hostName; };
 	    modules =
 	    [
+	      ./nixSettings.nix
 	      grub2-themes.nixosModules.default
-	      ./mainConfig.nix
 	      ./system
 	      ./desktop
 	      ./hardwareConf/${hostName}.nix
-	      {
+	      ({pkgs, ...}: {
+		nixpkgs = {
+		  config.allowUnfree = true;
+		  # Might need to compile locally sometimes, but is
+		  # but is needed for config to apply to nixpkgs
+		  overlays = [ nix-cachyos-kernel.overlays.default ];
+		};
 		networking.hostName = hostName;
-		boot.kernelPackages = pkgs.linuxPackages_latest;
-	      }
+		boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+		time.timeZone = "America/Los_Angeles";
+	      })
 	      home-manager.nixosModules.home-manager
 	      ./users/${hostName}_userSet.nix
 	      ./overlays/${hostName}.nix
 	      ./secrets/${hostName}.nix
 	    ];
 	  }) // {
-	  WSL = nixpkgs.lib.nixosSystem {
+	  /* I don't feel like making this work, but I'll leave it here for now
+	  WSL = lib.nixosSystem {
 	    specialArgs = { inherit inputs; };
 	    modules =
 	    [
@@ -84,13 +95,14 @@
 	      ./users/devinr
 	      ./overlays/VC-station.nix
 	    ];
-	  };
-	  bootstick = nixpkgs.lib.nixosSystem {
+	  };*/
+	  bootstick = lib.nixosSystem {
 	    system = system;
-	    specialArgs = {inherit inputs; };
+	    specialArgs = {inherit inputs; hostName = "bootstick"; };
 	    modules =
 	    [
-	      ./mainConfig.nix
+	      ./nixSettings.nix
+	      grub2-themes.nixosModules.default
 	      ./system
 	      ./desktop
 	      home-manager.nixosModules.home-manager

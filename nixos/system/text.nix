@@ -1,11 +1,13 @@
 {pkgs, ...}:
 {
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    font-awesome
-  ];
-
-  console.useXkbConfig = true;
+  fonts = {
+    fontconfig.enable = true;
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      font-awesome
+    ];
+  };
   services = {
     xserver.xkb = {
       layout = "us";
