@@ -26,13 +26,13 @@ programs.foot = {
 		key-bindings = {
 			scrollback-up-page = "Page_Up";
 			scrollback-down-page = "Page_Down";
-			search-start = "Control+Shift+f";
+			search-start = "Control+Shift+slash";
 		};
 
 		search-bindings = {
 			cancel = "Escape";
-			find-prev = "Shift+F3";
-			find-next = "F3 Control+6";
+			find-prev = "Control+shift+n";
+			find-next = "Control+n";
 		};
 	};
 };

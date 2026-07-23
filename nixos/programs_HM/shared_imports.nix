@@ -7,7 +7,7 @@ imports = map (x: ./modules + x ) [
   # Locals
   /equibop.nix
   /obsidian.nix
-  /foot.nix
+  /kitty.nix
   /nixvim.nix
 
   /git.nix

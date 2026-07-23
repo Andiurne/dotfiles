@@ -1,8 +1,16 @@
-{simpleBind, pvarBind}:[
-(pvarBind "SUPER + T" "terminal")
-(pvarBind "SUPER + E" "fileManager")
-(pvarBind "SUPER + W" "browser")
-(pvarBind "SUPER + V" "editor")
+{simpleBind, pvarBind}:let
+	ipc = "noctalia msg ";
+	terminal = "kitty";
+	shell = "fish";
+	fileManager = "${terminal} -- ${shell} -C y";
+	browser = "zen-twilight";
+	editor = "${terminal} -- ${shell} -C nvimFindBase";
+in [
+(simpleBind "SUPER + T" "${terminal}")
+(simpleBind "SUPER+SHIFT + T" "kitten quick-access-terminal")
+(simpleBind "SUPER + E" "${fileManager}")
+(simpleBind "SUPER + W" "${browser}")
+(simpleBind "SUPER + V" "${editor}")
 (simpleBind "SUPER + O" "app2unit -- obsidian")
 #(simpleBind "SUPER + G" "app2unit -- github-desktop")
 (simpleBind "SUPER+SHIFT + P" "hyprpicker -a")

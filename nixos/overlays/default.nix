@@ -1,7 +1,7 @@
 {inputs, ...}:
 {
         imports = [
-        ./overrides/swayimg_5-4.nix
+        ./overrides/swayimg_latest.nix
         ./overrides/ani-cli-src.nix
 
         ./local/king-halo-xcur.nix

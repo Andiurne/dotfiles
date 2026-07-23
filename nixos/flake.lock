@@ -3,11 +3,11 @@
     "ani-cli-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1784573879,
-        "narHash": "sha256-jX4x4B/I+0R7UzRM5Z6ScClRR6EneLqQQxm0nmvBcKY=",
+        "lastModified": 1784821560,
+        "narHash": "sha256-ZV1oZxMmcEEhe3ejFvT+4fAwaxePv5dsb3Xv6AzGx0Y=",
         "owner": "pystardust",
         "repo": "ani-cli",
-        "rev": "d8bd09f7d428803ce0378b5d3be53fbc74e44884",
+        "rev": "b1223380a2e9fbcd7b4a5f3eed904a0686df83b9",
         "type": "github"
       },
       "original": {
