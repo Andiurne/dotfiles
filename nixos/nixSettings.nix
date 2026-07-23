@@ -1,5 +1,13 @@
-{...}:
+{inputs, ...}:
 {
+  imports = [./overlays];
+  nixpkgs = {
+		  config.allowUnfree = true;
+		  overlays = [
+		    inputs.nix-cachyos-kernel.overlays.pinned
+		  ];
+	};
+
   nix.settings = {
     # Don't compile hyprland yourself, idjit...
     substituters = [

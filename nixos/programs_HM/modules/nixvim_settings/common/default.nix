@@ -86,7 +86,7 @@ in
 
     undofile = true;
 
-    wrap = true;
+    wrap = false;
     linebreak = true;
 
     virtualedit = "block";

@@ -16,14 +16,26 @@ programs.equibop = {
     notifyAboutUpdates = false;
     enabledThemes = [ "XCX.css" ];
     plugins = {
-
         MessageLoggerEnhanced = {
             enabled = true;
             ignoreSelf = true;
         };
+        CustomTimestamps = {
+            enabled = true;
+            formats = {
+                sameDayFormat = "[Today at] HH:mm:ss";
+                lastDayFormat = "[Yesterday at] HH:mm";
+                lastWeekFormat = "ddd DD.MM.YYYY HH:mm";
+                sameElseFormat = "ddd DD.MM.YYYY HH:mm";
+            };
+        };
     } // lib.genAttrs
     # Plugins that are simple enables
     [
+        "SidebarChat"
+        "TenorGifSearch"
+        "CollapsibleUI"
+        "AdvancedPermissions"
         "FakeNitro"
 
         "BetterAudioPlayer"
@@ -136,7 +148,6 @@ programs.equibop = {
         "EquibopStreamFixes"
         "Declutter"
         "Dearrow"
-        "CustomTimestamps"
         "CopyFileContents"
         "CharacterCounter"
         "CallTimer"

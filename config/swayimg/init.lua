@@ -32,7 +32,7 @@ swayimg.enable_overlay(true)
 swayimg.enable_antialiasing(true)
 
 swayimg.imagelist.set_order("mtime")
---swayimg.imagelist.enable_reverse(true)
+swayimg.imagelist.enable_reverse(true)
 swayimg.imagelist.enable_recursive(false)
 swayimg.imagelist.enable_adjacent(true)
 

@@ -5,6 +5,7 @@
 
     boot = {
       blacklistedKernelModules = [ "hyperv_fb" "hyperv_drm" ];
+		  kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     };
     #services = {
     #  xrdp = {
