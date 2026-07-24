@@ -2,3 +2,7 @@
 input_path = "~/.config/nvim/lua/matugen-template.lua"
 output_path = "~/.config/nvim/lua/matugen.lua"
 post_hook = 'pkill -SIGUSR1 nvim'
+
+[templates.noctalia-starship]
+input_path = "starship-hm.toml"
+output_path = "$XDG_CONFIG_HOME/noctalia-starship.toml"

@@ -1,5 +1,8 @@
 {lib, ...}:{
-  imports = [ ./fish_functions.nix];
+  imports = [
+  ./fish_functions.nix
+  ./starship.nix
+  ];
 
 programs.fish = {
   enable = true;
@@ -8,7 +11,16 @@ programs.fish = {
   shellInit = ''
   set fish_greeting
   set -gx EDITOR nvim
+
+  function starship_transient_prompt_func
+    starship module character
+  end
+
+  function starship_transient_rprompt_func
+    starship module time
+  end
   starship init fish | source
+  enable_transience
   '';
   shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake path:$XDG_CONFIG_HOME/dotfiles/nixos";
@@ -23,22 +35,5 @@ programs.fish = {
 
 
 };
-programs.starship = {
-  enable = true;
-  enableFishIntegration = true;
-  enableInteractive = true;
-  presets =
-  [
-    "nerd-font-symbols"
-    "no-runtime-versions"
-  ];
-  settings = {
-    format = "$all";
-    character = {
-      success_symbol = "[>](bold green)";
-      error_symbol = "[~>](bold red)";
-    };
-    cmd_duration.disabled = true;
-  };
-};
+
 }
