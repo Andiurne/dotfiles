@@ -5,15 +5,14 @@ programs.yazi = {
     shellWrapperName = "y";
 
     plugins =
-    let
-        yazi-plugins = pkgs.fetchFromGitHub {
-            owner = "yazi-rs";
-            repo = "plugins";
-            rev = "...";
-            hash = "sha256-...";
+    {
+        augment-command = pkgs.fetchFromGitHub {
+                owner = "hankertrix";
+                repo = "augment-command.yazi";
+                rev = "dd2d6cf";
+                hash = "sha256-sB2t3Gg+WdPG6OE8pD6VovD+x9nN21Jn8XydZZdTqCg=";
         };
-    in {
-          gvfs = pkgs.fetchFromGitHub {
+        gvfs = pkgs.fetchFromGitHub {
                 # NOTE: This was made using nixos-prefetch-github, and refers
                 # to a specific commit. Will probably need to be manually
                 # updated every now and again when sumthn breaks.
@@ -22,8 +21,10 @@ programs.yazi = {
                 repo = "gvfs.yazi";
 	        rev = "3abc0a258f9d7aeaa453a2d0d6e103c5a305953d";
 		hash = "sha256-UHneVJ+YXyDuPrZS+PZbs9n9h+VN5M2QG36FdprBkJc=";
-            };
         };
+        starship = pkgs.yaziPlugins.starship;
+        git = pkgs.yaziPlugins.git;
+    };
 
     settings = {
         mgr = {

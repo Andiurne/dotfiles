@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:
+{pkgs, lib, inputs, ...}:
 let
     system = pkgs.stdenv.hostPlatform.system;
 in {
@@ -12,11 +12,12 @@ environment.systemPackages = with pkgs; [
     inputs.lintree.packages.${system}.default
     mpv
     nerd-fonts.jetbrains-mono
-    yazi
     btop
     git
     comma
     pwvucontrol
+    yazi
+
 
     # Yazi optional deps.
     glib

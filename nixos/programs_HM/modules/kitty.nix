@@ -3,9 +3,9 @@
     enableGitIntegration = true;
     shellIntegration.enableFishIntegration = true;
     font = {
-        name = "Agave Nerd Font";
-        package = pkgs.nerd-fonts.agave;
-        size = 16;
+        name = "FantasqueSansM Nerd Font Mono";
+        package = pkgs.nerd-fonts.fantasque-sans-mono;
+        size = 14;
     };
 
     extraConfig = ''
@@ -28,6 +28,9 @@
         confirm_os_window_close = 0;
         background_opacity = 0.78;
         scrollback_lines = 10000;
+
+        # Window Layout
+        window_padding_width = 10;
     };
 
     keybindings = {

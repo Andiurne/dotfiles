@@ -1,4 +1,4 @@
-{...}:{
+{lib, ...}:{
   imports = [ ./fish_functions.nix];
 
 programs.fish = {
@@ -25,5 +25,20 @@ programs.fish = {
 };
 programs.starship = {
   enable = true;
+  enableFishIntegration = true;
+  enableInteractive = true;
+  presets =
+  [
+    "nerd-font-symbols"
+    "no-runtime-versions"
+  ];
+  settings = {
+    format = "$all";
+    character = {
+      success_symbol = "[>](bold green)";
+      error_symbol = "[~>](bold red)";
+    };
+    cmd_duration.disabled = true;
+  };
 };
 }
