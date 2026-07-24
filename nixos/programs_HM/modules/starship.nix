@@ -2,6 +2,7 @@
   enable = true;
   enableFishIntegration = true;
   enableInteractive = true;
+  configPath = "${config.xdg.configHome}/starship/starship-hm.toml";
   presets =
   [
     #"nerd-font-symbols"
@@ -26,7 +27,6 @@
   in {
     add_newline = true;
     continuation_prompt = "| ";
-    configPath = "${config.xdg.configHome}/dotfiles/nixos/assets/starship-hm.toml";
 
     /*palette = "noctalia";
     palettes.noctalia = {
