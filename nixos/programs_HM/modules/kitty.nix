@@ -3,9 +3,9 @@
     enableGitIntegration = true;
     shellIntegration.enableFishIntegration = true;
     font = {
-        name = "JetBrainsMono Nerd Font";
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        size = 12;
+        name = "Agave Nerd Font";
+        package = pkgs.nerd-fonts.agave;
+        size = 16;
     };
 
     extraConfig = ''
@@ -13,8 +13,9 @@
     '';
 
     quickAccessTerminalConfig = {
-        grab_keyboard = "yes";
+        grab_keyboard = "no";
         edge = "bottom";
+        lines = "1";
         background_opacity = 0.78;
     };
 

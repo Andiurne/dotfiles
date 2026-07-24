@@ -5,7 +5,7 @@ home.packages = with pkgs; [
     hyprshot
     slurp
     gpu-screen-recorder
-    foot
+    kitty
 ];
 
 programs.fish.functions =
@@ -38,10 +38,6 @@ programs.fish.functions =
     else
       gpu-screen-recorder -f 60 -a 'default_output|default_input' -fallback-cpu-encoding yes -w portal -o ~/Videos/Screencaps/$(date +%F-%H%M%S).mp4
     end
-    '';
-
-    reload = ''
-    runKill foot (pwd)
     '';
 
     run = ''

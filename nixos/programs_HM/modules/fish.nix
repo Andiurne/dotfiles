@@ -1,4 +1,4 @@
-{config, ...}:{
+{...}:{
   imports = [ ./fish_functions.nix];
 
 programs.fish = {
@@ -8,14 +8,22 @@ programs.fish = {
   shellInit = ''
   set fish_greeting
   set -gx EDITOR nvim
+  starship init fish | source
   '';
   shellAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake path:$XDG_CONFIG_HOME/dotfiles/nixos";
     gs = "git status";
     ga = "git add";
     gc = "git commit";
     gcam = "git commit -a -m";
     gpm = "git push -u origin main";
+    e = "exit";
+    C = "cd ..";
   };
 
-  };
+
+};
+programs.starship = {
+  enable = true;
+};
 }
