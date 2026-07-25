@@ -1,0 +1,50 @@
+"$schema" = "https://starship.rs/config-schema.json"
+add_newline = false
+continuation_prompt = "| "
+format = "[](bold {{ colors.secondary.default.hex }})$directory[](fg:{{ colors.secondary.default.hex }} bg:{{ colors.tertiary.default.hex }})$git_branch$git_status$git_state[]({{ colors.tertiary.default.hex }})[ $all](bright-black)"
+right_format = "$time"
+
+[directory]
+format = "[ | $path ](fg:{{ colors.on_secondary.default.hex }} bg:{{ colors.secondary.default.hex }})[$read_only](fg:{{ colors.on_error.default.hex }} bg:{{ colors.secondary.default.hex }})"
+home_symbol = "~"
+read_only = " "
+truncation_length = 0
+truncation_symbol = "../"
+
+[fill]
+symbol = " "
+
+[git_branch]
+format = "[ $symbol\\[$branch\\]](fg:{{ colors.on_tertiary.default.hex }} bg:{{ colors.tertiary.default.hex }})"
+symbol = " "
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+conflicted = "!!!"
+deleted = " "
+disabled = false
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+format = "[: $all_status $ahead_behind ](fg:{{ colors.on_tertiary.default.hex }} bg:{{ colors.tertiary.default.hex }})"
+modified = " "
+renamed = "󰑕 "
+staged = "[++($count)](fg:{{ colors.on_tertiary.default.hex }} bg:{{ colors.tertiary.default.hex }})"
+stashed = " "
+untracked = " "
+up_to_date = ""
+
+[os]
+disabled = true
+format = "[$symbol / ](fg:{{ colors.on_secondary.default.hex }} bg:{{ colors.secondary.default.hex }})"
+
+[os.symbols]
+Arch = "󰣇"
+NixOS = ""
+Ubuntu = ""
+Unknown = "󰠥"
+Windows = ""
+
+[time]
+disabled = false
+format = "[󰥔 $time](fg:bright-black)"
+time_format = "%R"

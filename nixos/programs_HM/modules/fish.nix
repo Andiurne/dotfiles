@@ -13,10 +13,12 @@ programs.fish = {
   shellInit = ''
   set fish_greeting
   set -gx EDITOR nvim
-
-
   '';
   shellAliases = {
+
+  };
+
+  shellAbbrs = {
     rebuild = lib.concatStringsSep " "
     [
       "if"

@@ -45,30 +45,31 @@ programs.starship = {
 
     format = lib.concatStrings
     [
-      "[╭](bold ${primary})"
-      "$os$username$hostname"
-      "[](fg:${primary} bg:${secondary})"
-      "$directory"
+      "[](bold ${secondary})"
+      "[ / $username$hostname $memory_usage]${secondary_fill}"
       "[](fg:${secondary} bg:${tertiary})"
-      "$git_branch$git_status"
-      "[](${tertiary})"
-      "[ $all](bright-black)"
-      "$fill"
-      "$time$cmd_duration$line_break"
-      "$character"
+      "[ $directory ]${tertiary_fill}"
+      "[](fg:${tertiary} bg:${primary})"
+      "[ $git_branch$git_status$git_state ]${primary_fill}"
+      "[](${primary})"
+      "[ $time$memory_usage$cmd_duration$line_break](bright-black)"
+      " $character"
     ];
 
     line_break.disabled = false;
 
+    memory_usage = {
+      format = " // $symbol : \${ram_pct} ";
+      symbol = "";
+    };
+
     time = {
       disabled = false;
-      format = "[󰥔 $time](fg:bright-black)";
+      format = "󰥔 $time";
       time_format = "%R";
     };
 
-    fill = {
-      symbol = " ";
-    };
+    fill.symbol = " ";
 
     env_var = {
       disabled = true;
@@ -78,8 +79,8 @@ programs.starship = {
     };
 
     os = {
-      disabled = false;
-      format = "[$symbol]${primary_fill}";
+      disabled = true;
+      format = "$symbol";
       symbols = {
         NixOS = "";
         Windows = "";
@@ -93,51 +94,53 @@ programs.starship = {
       disabled = false;
       style_user = "primary";
       style_root = "error";
-      format = "[/ $user]${primary_fill}";
-      show_always = false;
+      format = "$user";
+      show_always = true;
     };
 
     hostname = {
       disabled = false;
       ssh_only = true;
-      format = "[@$hostname]${primary_fill}";
+      format = "@$hostname";
     };
 
     directory = {
-      truncation_length = 3;
+      truncation_length = 0;
       truncation_symbol = "../";
       home_symbol = "~";
       read_only = "";
-      format = "[ $path]${secondary_fill}[ $read_only ](fg:${error} bg:${secondary})";
+      format = "$path[ $read_only](fg:${error} bg:${tertiary})";
     };
 
     git_branch = {
-      symbol = " ";
-      format = ''[ $symbol\[$branch\]]${tertiary_fill}'';
+      symbol = "";
+      format = ''$symbol\[$branch\]'';
     };
 
     git_status = {
       disabled = false;
-      format = "[: $all_status $ahead_behind ]${tertiary_fill}";
-      conflicted = "!!!";
-      up_to_date = "";
+      format = ":$all_status $ahead_behind ";
+      conflicted = "!!! ";
+      up_to_date = "󰔓 ";
       untracked = " ";
       ahead = "⇡\${count}";
       diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
       behind = "⇣\${count}";
       stashed = " ";
       modified = " ";
-      staged = "[++\($count\)]${tertiary_fill}";
+      staged = "++\($count\)";
       renamed = "󰑕 ";
       deleted = " ";
     };
 
+    git_state.disabled = false;
+
     character = {
-      success_symbol = "[╰->](bold ${primary})";
-      error_symbol = "[╰](bold ${primary})[~>](bold ${error})";
+      success_symbol = "[↳](bold ${primary})";
+      error_symbol = "[↳](bold ${error})";
     };
     cmd_duration = {
-      format = "[ // $duration](bright-black)";
+      format = " // $duration";
       show_notifications = false;
       min_time_to_notify = 45000;
       disabled = false;

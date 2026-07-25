@@ -6,3 +6,7 @@ post_hook = 'pkill -SIGUSR1 nvim'
 [theme.templates.user.noctalia-starship]
 input_path = "~/.config/starship/starship-hm.toml"
 output_path = "~/.config/starship.toml"
+
+[theme.templates.user.noctalia-starship-yazi]
+input_path = "~/.config/dotfiles/nixos/assets/starship-yazi.toml"
+output_path = "~/.config/yazi/starship-yazi.toml"
