@@ -1,7 +1,0 @@
-# Noctalia Starship Palette
-
-[palettes.noctalia]
-# Material Colors
-<* for name, value in colors *>
-{{ name | replace: "terminal_background", "tbg" | replace: "terminal_normal_", "" | replace "terminal_", "" }} = "{{ value.default.hex }}"
-<* endfor *>

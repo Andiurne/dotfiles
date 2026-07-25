@@ -1,37 +1,47 @@
-{config, lib, ...}:{programs.starship = {
+{config, lib, ...}:{
+programs.fish.shellInit = ''
+function starship_transient_prompt_func
+    starship module character
+end
+
+function starship_transient_rprompt_func
+    starship module time
+    starship module cmd_duration
+end
+
+  starship init fish | source
+  enable_transience
+'';
+
+programs.starship = {
   enable = true;
   enableFishIntegration = true;
   enableInteractive = true;
   configPath = "${config.xdg.configHome}/starship/starship-hm.toml";
   presets =
   [
-    #"nerd-font-symbols"
+    "nerd-font-symbols"
     "no-runtime-versions"
   ];
-  settings = let
+  settings = with rec {
     primary = "{{ colors.primary.default.hex }}";
     on_primary = "{{ colors.on_primary.default.hex }}";
-    primary_fill = "(fg:{{ colors.on_primary.default.hex }} bg: {{ colors.primary.default.hex }})";
+    primary_fill = "(fg:${on_primary} bg:${primary})";
 
     secondary = "{{ colors.secondary.default.hex }}";
-    on_secondary = " {{ colors.on_secondary.default.hex }}";
-    secondary_fill = "(fg:{{ colors.on_secondary.default.hex }} bg: {{ colors.secondary.default.hex }})";
+    on_secondary = "{{ colors.on_secondary.default.hex }}";
+    secondary_fill = "(fg:${on_secondary} bg:${secondary})";
 
     tertiary = "{{ colors.tertiary.default.hex }}";
-    on_tertiary = " {{ colors.on_tertiary.default.hex }}";
-    tertiary_fill = "(fg:{{ colors.on_tertiary.default.hex }} bg: {{ colors.tertiary.default.hex }})";
+    on_tertiary = "{{ colors.on_tertiary.default.hex }}";
+    tertiary_fill = "(fg:${on_tertiary} bg:${tertiary})";
 
     error = "{{ colors.error.default.hex }}";
-    on_error = " {{ colors.on_error.default.hex }}";
-    error_fill = "(fg:{{ colors.on_error.default.hex }} bg: {{ colors.error.default.hex }})";
-  in {
-    add_newline = true;
+    on_error = "{{ colors.on_error.default.hex }}";
+    error_fill = "(fg:${on_error} bg:${error})";
+  }; {
+    add_newline = false;
     continuation_prompt = "| ";
-
-    /*palette = "noctalia";
-    palettes.noctalia = {
-
-    };*/
 
     format = lib.concatStrings
     [
@@ -41,6 +51,8 @@
       "$directory"
       "[](fg:${secondary} bg:${tertiary})"
       "$git_branch$git_status"
+      "[](${tertiary})"
+      "[ $all](bright-black)"
       "$fill"
       "$time$cmd_duration$line_break"
       "$character"
@@ -51,6 +63,11 @@
     time = {
       disabled = false;
       format = "[󰥔 $time](fg:bright-black)";
+      time_format = "%R";
+    };
+
+    fill = {
+      symbol = " ";
     };
 
     env_var = {
@@ -91,7 +108,7 @@
       truncation_symbol = "../";
       home_symbol = "~";
       read_only = "";
-      format = "[ $path]${secondary_fill}[ read_only ](fg:${error} bg:${secondary})";
+      format = "[ $path]${secondary_fill}[ $read_only ](fg:${error} bg:${secondary})";
     };
 
     git_branch = {
@@ -117,8 +134,14 @@
 
     character = {
       success_symbol = "[╰->](bold ${primary})";
-      error_symbol = "[╰~>](bold ${error})";
+      error_symbol = "[╰](bold ${primary})[~>](bold ${error})";
     };
-    cmd_duration.disabled = true;
+    cmd_duration = {
+      format = "[ // $duration](bright-black)";
+      show_notifications = false;
+      min_time_to_notify = 45000;
+      disabled = false;
+      min_time = 5000;
+    };
   };
 };}

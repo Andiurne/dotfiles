@@ -1,8 +1,10 @@
-{lib, ...}:{
+{pkgs, lib, ...}:{
   imports = [
   ./fish_functions.nix
   ./starship.nix
   ];
+
+  home.packages = with pkgs; [ libnotify ];
 
 programs.fish = {
   enable = true;
@@ -12,18 +14,22 @@ programs.fish = {
   set fish_greeting
   set -gx EDITOR nvim
 
-  function starship_transient_prompt_func
-    starship module character
-  end
 
-  function starship_transient_rprompt_func
-    starship module time
-  end
-  starship init fish | source
-  enable_transience
   '';
   shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake path:$XDG_CONFIG_HOME/dotfiles/nixos";
+    rebuild = lib.concatStringsSep " "
+    [
+      "if"
+      "sudo nixos-rebuild switch"
+      "--flake path:$XDG_CONFIG_HOME/dotfiles/nixos"
+      ";"
+      "notify-send -a \"nixos-rebuild\" -n \"nix-snowflake\""
+      "\"Rebuild Completed :D\""
+      "; else;"
+      "notify-send -a \"nixos-rebuild\" -n \"nix-snowflake\""
+      "\"Rebuild Failed :(\""
+      "; end"
+    ];
     gs = "git status";
     ga = "git add";
     gc = "git commit";
