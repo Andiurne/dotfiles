@@ -10,6 +10,7 @@
     colorschemes.base16.enable = true;
     extraConfigLua = ''
         require('matugen').setup()
+        require('colorizer').setup()
         vim.cmd([[colorscheme ansi]])
     '';
     extraFiles = {

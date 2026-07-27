@@ -1,9 +1,13 @@
 keys:
   - &andiurne age1fnnq89dsu0vj2s26pa7yt58jj4ylj69lzwku0zjvk62900m9mu3swwq6a0
   - &enchantedSlate age1l8k24urdc8gx5eks6kajum52s0p6mg5t5zxrg5kswxzftm2jnffsqvvtjm
+  - &devinr age1qqmq39d0sxy5gex7dmta8t65qnu08t6n63w2mkr52uwvpns0hvks5srvqv
+  - &vc-station age1rgffpespcyjn0d8jglk7km9kfrfhdyev6camd3rck6pn8y47ze4sug23v3
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *andiurne
+          - *devinr
           - *enchantedSlate
+          - *vc-station

@@ -10,7 +10,7 @@ in [
 (simpleBind "SUPER+SHIFT + T" "kitten quick-access-terminal")
 (simpleBind "SUPER + E" "${fileManager}")
 (simpleBind "SUPER + W" "${browser}")
-(simpleBind "SUPER + V" "${editor}")
+(simpleBind "SUPER+SHIFT + V" "${editor}")
 (simpleBind "SUPER + O" "app2unit -- obsidian")
 #(simpleBind "SUPER + G" "app2unit -- github-desktop")
 (simpleBind "SUPER+SHIFT + P" "hyprpicker -a")

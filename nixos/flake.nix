@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ani-cli-src = {
-      url = "github:pystardust/ani-cli/fix";
+      url = "github:pystardust/ani-cli/master";
       flake = false;
     };
 
@@ -53,10 +53,18 @@
     sops-nix,
     ... } @ inputs:
       let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
   in
   {
-    packages.x86_64-linux.bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
+    packages.x86_64-linux = {
+      bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
+      ani-cli = pkgs.ani-cli.overrideAttrs (old: {
+	src = inputs.ani-cli-src;
+	version = "v4.15";
+	runtimeInputs = old.runtimeInputs ++ [ pkgs.botan3 ];
+      });
+    };
 
     nixosConfigurations = lib.genAttrs
       [
@@ -76,6 +84,7 @@
 	./desktop
 	./hardwareConf/${hostName}.nix
 	./users/${hostName}_userSet.nix
+	#./secrets/sops.nix
 	./secrets/${hostName}.nix
 	{
 	networking.hostName = hostName;

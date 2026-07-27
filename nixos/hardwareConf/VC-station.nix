@@ -7,21 +7,18 @@
       blacklistedKernelModules = [ "hyperv_fb" "hyperv_drm" ];
 		  kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     };
-    #services = {
-    #  xrdp = {
-    #    defaultWindowManager = "${pkgs.uwsm}/bin/uwsm start default";
-    #    enable = true;
-    #    extraConfDirCommands = ''
-    #    substituteInPlace $out/xrdp.ini \
-    #      --replace-fail 'port=3389' 'port=vsock://-1:3389' \
-    #      --replace-fail '#vmconnect=true' 'vmconnect=true' \
-    #      --replace-fail 'security_layer=negotiate' 'security_layer=rdp' \
-    #      --replace-fail 'crypt_level=high' 'crypt_level=none' \
-    #      --replace-fail 'bitmap_compression=true' 'bitmap_compression=false'
-    #    '';
-    #  };
-    #};
-    #systemd.services.xrdp.serviceConfig.ExecStart = lib.mkforce "${pkgs.xrdp}/bin/xrdp --nodaemon --config /etc/xrdp/xrdp.ini";
+
+    sops = {
+      defaultSopsFile = ../secrets/vc-station.yaml;
+      age = {
+        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        keyFile = "/home/devinr/.config/sops/age/keys.txt";
+      };
+      secrets = {
+        example_key = {};
+        example_number = {};
+      };
+    };
 
     nixpkgs.config.nvidia.acceptLicense = true;
     hardware.nvidia = {

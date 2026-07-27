@@ -3,7 +3,7 @@
 # so the concatenation within lua doesn't die... I think
 (ipcBind "SUPER + comma" "settings-toggle")
 (addFlags (ipcBind "SUPER + SUPER_L" "panel-toggle launcher") {special = "release";})
-(ipcBind "SUPER+SHIFT + V" "panel-toggle clipboard")
+(ipcBind "SUPER + V" "panel-toggle clipboard")
 (ipcBind "SUPER+ X" "panel-toggle control-center")
 (ipcBind "SUPER+SHIFT + W" "panel-toggle wallpaper")
 (ipcBind "SUPER+SHIFT + TAB" "panel-toggle launcher /win")

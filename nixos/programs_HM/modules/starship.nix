@@ -51,7 +51,7 @@ home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
     [
       "[](bold ${secondary})"
       "[/$username$hostname]${secondary_fill}"
-      "[](fg:${secondary} bg:${tertiary})"
+      "[ ](fg:${secondary} bg:${tertiary})"
       "[$directory]${tertiary_fill}"
       "[](fg:${tertiary} bg:${primary})"
       "[$git_branch$git_status$git_state]${primary_fill}"
@@ -70,7 +70,7 @@ home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
 
     time = {
       disabled = false;
-      format = "[󰥔 $time](bright black)";
+      format = "[󰥔 $time](bright-black)";
       time_format = "%R";
     };
 
@@ -145,7 +145,7 @@ home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
       error_symbol = "[↳](bold ${error})";
     };
     cmd_duration = {
-      format = "[ - $duration](bright black)";
+      format = "[ - $duration](bright-black)";
       show_notifications = false;
       min_time_to_notify = 45000;
       disabled = false;
