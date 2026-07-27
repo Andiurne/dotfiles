@@ -54,7 +54,7 @@ home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
       "[ ](fg:${secondary} bg:${tertiary})"
       "[$directory]${tertiary_fill}"
       "[](fg:${tertiary} bg:${primary})"
-      "[$git_branch$git_status$git_state]${primary_fill}"
+      "[ $git_branch$git_status$git_state]${primary_fill}"
       "[](${primary})"
       "[>- $time$memory_usage$cmd_duration$line_break](bright-black)"
       " $character"
