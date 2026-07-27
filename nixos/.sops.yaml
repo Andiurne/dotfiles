@@ -1,0 +1,9 @@
+keys:
+  - &andiurne age1fnnq89dsu0vj2s26pa7yt58jj4ylj69lzwku0zjvk62900m9mu3swwq6a0
+  - &enchantedSlate age1l8k24urdc8gx5eks6kajum52s0p6mg5t5zxrg5kswxzftm2jnffsqvvtjm
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *andiurne
+          - *enchantedSlate

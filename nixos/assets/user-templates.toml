@@ -4,9 +4,9 @@ output_path = "~/.config/nvim/lua/matugen.lua"
 post_hook = 'pkill -SIGUSR1 nvim'
 
 [theme.templates.user.noctalia-starship]
-input_path = "~/.config/starship/starship-hm.toml"
-output_path = "~/.config/starship.toml"
+input_path = "~/.config/starship/starship-template.toml"
+output_path = "~/.config/starship/starship.toml"
 
 [theme.templates.user.noctalia-starship-yazi]
-input_path = "~/.config/dotfiles/nixos/assets/starship-yazi.toml"
+input_path = "~/.config/dotfiles/nixos/assets/templates/starship-yazi.toml"
 output_path = "~/.config/yazi/starship-yazi.toml"

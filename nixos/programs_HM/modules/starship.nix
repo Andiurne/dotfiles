@@ -1,4 +1,4 @@
-{config, lib, ...}:{
+{config, pkgs, lib, ...}:{
 programs.fish.shellInit = ''
 function starship_transient_prompt_func
     starship module character
@@ -14,16 +14,17 @@ end
 '';
 
 programs.starship = {
-  enable = true;
-  enableFishIntegration = true;
-  enableInteractive = true;
-  configPath = "${config.xdg.configHome}/starship/starship-hm.toml";
-  presets =
-  [
-    "nerd-font-symbols"
-    "no-runtime-versions"
-  ];
-  settings = with rec {
+    enable = true;
+    enableFishIntegration = true;
+    enableInteractive = true;
+    configPath = "${config.xdg.configHome}/starship/starship.toml";
+};
+
+home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
+  # Only the bullest of shits is done here, in order to properly do noctalia theming
+  source =
+  # Colors as formatted string for Noctalia template engine
+  with rec {
     primary = "{{ colors.primary.default.hex }}";
     on_primary = "{{ colors.on_primary.default.hex }}";
     primary_fill = "(fg:${on_primary} bg:${primary})";
@@ -39,33 +40,37 @@ programs.starship = {
     error = "{{ colors.error.default.hex }}";
     on_error = "{{ colors.on_error.default.hex }}";
     error_fill = "(fg:${on_error} bg:${error})";
-  }; {
+  };
+  # Call the toml generator
+  (pkgs.formats.toml {}).generate "starship-template"
+  {
     add_newline = false;
     continuation_prompt = "| ";
 
     format = lib.concatStrings
     [
       "[](bold ${secondary})"
-      "[ / $username$hostname $memory_usage]${secondary_fill}"
+      "[/$username$hostname]${secondary_fill}"
       "[](fg:${secondary} bg:${tertiary})"
-      "[ $directory ]${tertiary_fill}"
+      "[$directory]${tertiary_fill}"
       "[](fg:${tertiary} bg:${primary})"
-      "[ $git_branch$git_status$git_state ]${primary_fill}"
+      "[$git_branch$git_status$git_state]${primary_fill}"
       "[](${primary})"
-      "[ $time$memory_usage$cmd_duration$line_break](bright-black)"
+      "[>- $time$memory_usage$cmd_duration$line_break](bright-black)"
       " $character"
     ];
 
     line_break.disabled = false;
 
     memory_usage = {
-      format = " // $symbol : \${ram_pct} ";
+      disabled = false;
+      format = " - $symbol : [\${ram_pct}](bold error)";
       symbol = "";
     };
 
     time = {
       disabled = false;
-      format = "󰥔 $time";
+      format = "[󰥔 $time](bright black)";
       time_format = "%R";
     };
 
@@ -105,7 +110,7 @@ programs.starship = {
     };
 
     directory = {
-      truncation_length = 0;
+      truncation_length = 3;
       truncation_symbol = "../";
       home_symbol = "~";
       read_only = "";
@@ -140,11 +145,12 @@ programs.starship = {
       error_symbol = "[↳](bold ${error})";
     };
     cmd_duration = {
-      format = " // $duration";
+      format = "[ - $duration](bright black)";
       show_notifications = false;
       min_time_to_notify = 45000;
       disabled = false;
       min_time = 5000;
     };
   };
-};}
+};
+}

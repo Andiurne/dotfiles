@@ -8,7 +8,7 @@ users.extraUsers.andiurne.shell = pkgs.fish;
 users.users.andiurne = {
   isNormalUser = true;
   description = "Andiurne";
-  extraGroups = [ "networkmanager" "wheel" "users" "wireshark" ];
+  extraGroups = [ "networkmanager" "wheel" "users" "wireshark" "keys" ];
 
   # Local pkgs that AREN'T HM-compatible
   packages = with pkgs; [
@@ -19,8 +19,6 @@ users.users.andiurne = {
     ani-cli
     ntfs3g
   ];
-
-
 
   };
 }

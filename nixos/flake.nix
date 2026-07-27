@@ -16,6 +16,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    steam-presence = {
+      url = "github:JustTemmie/steam-presence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +50,7 @@
     home-manager,
     grub2-themes,
     nix-cachyos-kernel,
+    sops-nix,
     ... } @ inputs:
       let
       lib = nixpkgs.lib;
@@ -61,6 +70,7 @@
        [
 	home-manager.nixosModules.home-manager
 	grub2-themes.nixosModules.default
+	sops-nix.nixosModules.sops
 	./nixSettings.nix
 	./system
 	./desktop
