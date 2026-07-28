@@ -8,18 +8,6 @@
 		  kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     };
 
-    sops = {
-      defaultSopsFile = ../secrets/vc-station.yaml;
-      age = {
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-        keyFile = "/home/devinr/.config/sops/age/keys.txt";
-      };
-      secrets = {
-        example_key = {};
-        example_number = {};
-      };
-    };
-
     nixpkgs.config.nvidia.acceptLicense = true;
     hardware.nvidia = {
       open = false;

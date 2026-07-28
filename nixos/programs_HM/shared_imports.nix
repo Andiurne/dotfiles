@@ -18,6 +18,7 @@ imports = map (x: ./modules + x ) [
   /swappy.nix
 
   /keepassxc.nix
+  /swayimg.nix
 ] ++
 [
   inputs.nixvim.homeModules.nixvim
