@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:{
+{pkgs, config, inputs, lib, ...}:{
 imports = [ inputs.steam-presence.nixosModules.steam-presence ];
 
 nixpkgs.overlays = [
@@ -25,8 +25,17 @@ programs.steam = {
     enable = true;
     # Hardcoded for now because this has taken too long to solve
     # Should be solved in future by figuring out system-wide sops
-    steamApiKeyFile = "/home/andiurne/.config/sops-nix/secrets/STEAM_API_KEY";
-    userIds = [ "76561198303411470" ];
+    steamApiKeyFile = builtins.toPath config.sops.secrets.STEAM_API_KEY.path;
+    userIds = [ (lib.strings.trim (builtins.readFile ../secrets/STEAM_USER_ID)) ];
+    coverArt = {
+      steamGridDB = {
+        enable = true;
+        apiKeyFile = builtins.toPath config.sops.secrets.STEAM_GRID_DB_API_KEY.path;
+      };
+    };
+    localGames = {
+      enable = false;
+    };
   };
 };
 programs.gamemode.enable=true;

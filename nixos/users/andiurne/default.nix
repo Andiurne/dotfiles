@@ -8,7 +8,7 @@ users.extraUsers.andiurne.shell = pkgs.fish;
 users.users.andiurne = {
   isNormalUser = true;
   description = "Andiurne";
-  extraGroups = [ "networkmanager" "wheel" "users" "wireshark" "keys" ];
+  extraGroups = [ "networkmanager" "wheel" "users" "wireshark" "keys"];
 
   # Local pkgs that AREN'T HM-compatible
   packages = with pkgs; [
