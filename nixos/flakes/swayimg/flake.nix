@@ -22,7 +22,15 @@
         in
         {
                 packages = forAllSystems ({pkgs}: {
-                        default = pkgs.swayimg.overrideAttrs { version = "v5.5"; };
+                        default = pkgs.swayimg.overrideAttrs {
+                                src = pkgs.fetchFromGithub {
+                                        owner = "artemsen";
+                                        repo = "swayimg";
+                                        rev = "v5.5";
+                                        hash = "...";
+                                };
+                                version = "v5.5";
+                        };
                 });
 
                 homeModules = {

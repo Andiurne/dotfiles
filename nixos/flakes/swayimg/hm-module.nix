@@ -2,40 +2,201 @@
   config,
   lib,
   pkgs,
+  options,
   ...
 }:
-let
-  cfg = config.programs.swayimg;
-  opt = lib.mkOption;
-  types = lib.types;
-  argbHexFormat = "^0x[a-f\d]{8}$";
+/*
+TODO
 
-  mkDisableOption = description:(opt {
-    type = lib.types.bool;
+fix regex to match "extended posix regex"
+see https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_04
+returns a list of the captured groups
+strMatching uses this as a bool test
+
+viewer
+  - set_abs_position
+  - set_abs_scale
+  - on_mouse
+gallery.on_mouse
+*/
+let
+  inherit (lib)
+    types
+    mkOption
+  ;
+  cfg = config.programs.swayimg;
+
+    # Types adapted from the Lua source file upstream,
+  # at github:artemsen/swayimg/extra/swayimg.lua
+  # last updated from commit c99591f
+  appmode_t = types.enum [
+    "viewer"
+    "slideshow"
+    "gallery"
+  ];
+  color_t = types.str; #types.strMatching "^0x[abcdefABCDEF0123456789]{8}$";
+  order_t = types.enum [
+    "none"
+    "alpha"
+    "numeric"
+    "mtime"
+    "size"
+    "random"
+  ];
+  vdir_t = types.enum [
+    "first"
+    "last"
+    "next"
+    "prev"
+    "next_dir"
+    "prev_dir"
+    "random"
+  ];
+  fixed_scale_t = types.enum [
+    "optimal"
+    "width"
+    "height"
+    "fit"
+    "fill"
+    "real"
+    "keep"
+  ];
+  fixed_position_t = types.enum [
+    "center"
+    "topcenter"
+    "bottomcenter"
+    "leftcenter"
+    "rightcenter"
+    "topleft"
+    "topright"
+    "bottomleft"
+    "bottomright"
+  ];
+  rotation_t = types.enum [
+    90
+    180
+    270
+  ];
+  bkgmode_t = types.enum [
+    "extend"
+    "mirror"
+    "auto"
+  ];
+  gdir_t = types.enum [
+    "first"
+    "last"
+    "up"
+    "down"
+    "left"
+    "right"
+    "pgup"
+    "pgdown"
+  ];
+  aspect_t = types.enum [
+    "fit"
+    "fill"
+    "keep"
+  ];
+  block_position_t = types.enum [
+    "topleft"
+    "topright"
+    "bottomleft"
+    "bottomright"
+  ];
+  mbutton_t = types.enum [
+    "MouseLeft"
+    "MouseRight"
+    "MouseMiddle"
+    "MouseSide"
+    "MouseExtra"
+    "ScrollUp"
+    "ScrollDown"
+    "ScrollLeft"
+    "ScrollRight"
+  ];
+  # Has a whole regex for text in {}, implement later
+  text_template_t = types.strMatching lib.concatStrings [
+    "*"
+  ];
+
+
+  mkDisableOption = name:(mkOption {
+    type = types.bool;
     default = true;
-    description = description;
+    description = "Whether to enable ${name}.";
   });
 
-  keyBinding = lib.types.submodule (
-  {
+  # Common submodules
+  setWindowBkgOpt = mkOption {
+    type = types.either color_t bkgmode_t;
+    default = "auto";
+    description = ''
+    Window background mode, or an explicit color.
+    '';
+  };
+
+  textSubmodule = {options = {
+    pos = mkOption {
+      type = block_position_t;
+      default = "topleft";
+    };
+    scheme = mkOption {
+      type = types.listOf text_template_t;
+      default = [
+        "File:\t{name}"
+        "Format:\t{format}"
+        "File size:\t{sizehr}"
+        "File time:\t{time}"
+        "EXIF date:\t{meta.Exif.Photo.DateTimeOriginal}"
+        "EXIF camera:\t{meta.Exif.Image.Model}"
+      ];
+    };
+  };};
+
+  chessboardModule = {options = {
+    size = mkOption {
+      type = types.ints.unsigned;
+      default = 20;
+    };
+    color1 = mkOption {
+      type = color_t;
+      default = "0xff333333";
+    };
+    color2 = mkOption {
+      type = color_t;
+      default = "0xff4c4c4c";
+    };
+  };};
+
+  keyBinding = types.submodule (
+  {name, ...}:{
     options = {
-      key = {
-        type = lib.strMatching lib.concatStrings [
-        "^(?=(Ctrl-|Alt-|Shift-){0,3})"
-        "(?!(Ctrl-|Alt-|Shift-)*\1)"
-        "(Ctrl-|Alt-|Shift-)*"
+      key = mkOption {
+        type = types.str;
+        /*
+        Old strMatching code. It helps make sure the config is valid,
+        but it also messes with theme templating. (It also doesn't work
+        because it's based on Mozilla regex, not posix...)
+
+        lib.strMatching lib.concatStrings [
+        "^(?=(Ctrl+|Alt+|Shift+){0,3})"
+        "(?!(Ctrl+|Alt+|Shift+)*\1)"
+        "(Ctrl+|Alt+|Shift+)*"
         # Idk where they're getting "key descriptors" from
         # Find the list if possible
         "(\w|Escape|Insert|Return)$"
-        ];
-        default = null;
+        ];*/
+        default = name;
         description = ''
-        A keybind descriptor in the format (<mod>-)*<sym> to trigger the keybind.
+        A keybind descriptor in the format (<mod>+)*<sym> to trigger the keybind.
+        Defaults to the name of the keybind, for efficient definition in the form
+        of
+        `on_key."Ctrl+a".functionBody = '''';`
         '';
-        example = "Ctrl-a";
+        example = "Ctrl+a";
       };
 
-      functionBody = opt {
+      functionBody = mkOption {
         type = types.lines;
         default = null;
         description = ''
@@ -45,28 +206,54 @@ let
     };
   });
 
-  luaFunctionType = lib.types.submodule (
-    {name, ...}:
-    {
-      options = {
-        name = lib.mkOption {
-          type = lib.types.singleLineStr;
+  luaTypes = with types; oneOf [
+    str
+    number
+    color_t
+    luaFunctionDeclaration
+  ];
+
+  luaFunctionCall = types.submodule ({name, ...}: {options = {
+    function = mkOption {
+      type = types.str;
+      default = name;
+      description = ''
+      Lua path of the function to call.
+      '';
+      example = "viewer.on_key";
+    };
+
+    arguments = mkOption {
+      type = types.listOf luaTypes;
+      default = [];
+      description = ''
+      Arguments to pass the to the function, as a list.
+      '';
+    };
+
+  };});
+
+  luaFunctionDeclaration = types.submodule (
+    {name, ...}:{options = {
+
+        name = mkOption {
+          type = types.singleLineStr;
           default = name;
           description = ''
             Name of the local lua function to be declared.
           '';
         };
 
-        arguments = lib.mkOption {
-          type = lib.types.listOf lib.types.singleLineStr;
+        parameters = mkOption {
+          type = types.listOf lib.types.singleLineStr;
           default = [];
           description = ''
-            A list of names of function arguments to declare.
+            A list of names of function parameters to declare.
           '';
         };
 
-        body = lib.mkOption {
-          type = lib.types.lines;
+        body = mkOption {
+          type = types.lines;
           default = ''
 
           '';
@@ -86,7 +273,12 @@ in
       "programs"
       "swayimg"
       "settings"
-    ] "Upstream moved to a lua config. This option has been replaced by programs.swayimg.initLua.")
+    ] "Upstream moved to a lua config. This option has been replaced by programs.swayimg.extraLua.")
+    (lib.mkRemovedOptionModule [
+      "programs"
+      "swayimg"
+      "initLua"
+    ] "Renamed to extraLua to avoid ambiguity with new option syntax. Functions identically.")
   ];
 
   options.programs.swayimg = {
@@ -94,28 +286,30 @@ in
 
     package = lib.mkPackageOption pkgs "swayimg" { };
 
-    /* List of options to make
-    - functions.<name> ✓
-    - enable_* -> *.enable = true
-    - (viewer|gallery|slideshow).on_key -> <mode>.binds = [{key; function;}];
-    */
-
-    functions = opt {
-      type = types.attrSetOf luaFunctionType;
+    functions = mkOption {
+      type = types.attrsOf luaFunctionDeclaration;
       default = { };
       description = ''
         An attribute set of user-defined lua functions, written to
-        the top of {file}`XDG_CONFIG_HOME`/swayimg/init.lua
+        the top of {file}`XDG_CONFIG_HOME`/`configPath` (default swayimg/init.lua)
       '';
       example = lib.literalExpression ''
       # TODO: insert examples
       '';
     };
 
+    configPath = mkOption {
+      type = types.str;
+      default = "swayimg/init.lua";
+      description = ''
+      Relative path to write the configuration file to, from {file}`XDG_CONFIG_HOME`. Useful for templating engines.
+      Defaults to swayimg/init.lua
+      '';
+    };
 
-    extraLua = opt {
+    extraLua = mkOption {
       type = with types; nullOr (either path lines);
-      default = null;
+      default = "";
       description = ''
         Extra lua written to
         {file}`$XDG_CONFIG_HOME/swayimg/init.lua`.
@@ -143,41 +337,126 @@ in
     In keeping with attempting to nix-ify the configuration more,
     I'll move the mode sub-options under, appropriately,
     swayimg.<name>.<options>
-    one of which will be "isInitial," and use assertions
-    to have only one be true.
     */
+    mode = mkOption {
+      type = appmode_t;
+      default = "viewer";
+      description = ''
+      The mode of swayimg on startup.
+      '';
+    };
+
     viewer = {
-      default_scale = opt {
-      };
-      default_position;
-      drag_button;
-      autocenter;
-      loop;
-      preload;
-      history;
-      mark_color;
-      pinch_factor;
-
-      # Settable by function call
-      window_background;
-      image_chessboard;
-      text = {
-        topleft;
-        topright;
-        bottomleft;
-      };
-
-      # Bind List (set of submodules)
-      on_key = opt {
-        type = types.attrSetOf keyBinding;
-        # This could include the default keybinds...
-        default = [];
+      default_scale = mkOption {
+        type = fixed_scale_t;
+        default = "optimal";
         description = ''
-        An attribute set of keybindings for viewer mode.
+        The default scaling mode for images in viewer.
+        '';
+      };
+
+      default_position = mkOption {
+        type = fixed_position_t;
+        default = "center";
+        description = ''
+        The default position for images in viewer.
+        '';
+      };
+
+      drag_button = mkOption {
+        type = mbutton_t;
+        default = "MouseLeft";
+        description = ''
+        Mouse button to drag image.
+        '';
+      };
+
+      autocenter = mkDisableOption "automatic centering.";
+
+      loop = mkDisableOption "image list loop mode.";
+
+      preload = mkOption {
+        type = types.ints.unsigned;
+        default = 1;
+        description = ''
+        Number of images to preload.
+        '';
+      };
+
+      history = mkOption {
+        type = types.ints.unsigned;
+        default = 1;
+        description = ''
+        Number of images in history cache.
+        '';
+      };
+
+      mark_color = mkOption {
+        type = color_t;
+        default = "0xff808080";
+        description = ''
+        Mark icon color.
+        '';
+      };
+
+      pinch_factor = mkOption {
+        type = types.number;
+        default = 1;
+        description = ''
+        Factor to scale by for the pinch gesture.
+        '';
+      };
+
+      # Set by function call
+      set_abs_position = mkOption {
+        type = luaFunctionCall;
+        default = {
+          function = "viewer.set_abs_position";
+          arguments = [];
+        };
+      };
+      #set_abs_scale;
+      #on_mouse;
+
+      set_text = mkOption {
+        type = types.submodule textSubmodule;
+        description = ''
+        A submodule defining the initial text format for viewer mode.
+        '';
+      };
+
+      set_window_background = setWindowBkgOpt; /*{
+        type = types.either color_t bkgmode_t;
+        default = "0xff000000";
+        description = ''
+        An initial window background color to set by function call,
+        in ARGB format.
+
+        Program internally disables chessboard if set, and thus is
+        not mutually exclusive to set.
+        '';
+        example = "0xff808080";
+      };*/
+
+      set_image_chessboard = mkOption {
+        type = types.submodule chessboardModule;
+        description = ''
+        A submodule defining the initial chessboard pattern for viewer mode.
+        '';
+      };
+
+
+      # Bind List (list of submodules)
+      on_key = mkOption {
+        type = types.attrsOf keyBinding;
+        # This could include the default keybinds...
+        default = {};
+        description = ''
+        A list of keybindings for viewer mode.
         Each binding is of the format:
         # on_key
         <name> = {
-          key = "Return";
+          key = "Return"; # Defaults to <name>
           functionBody = \'\'
             swayimg.mode = "gallery"
           \'\'
@@ -185,28 +464,185 @@ in
         '';
       };
     };
-    slideshow = {};
-    gallery = {};
+
+    slideshow = {
+      timeout = mkOption {
+        type = types.number;
+        default = 5;
+        description = ''
+        Timeout in seconds after which the next image should be opened.
+        '';
+      };
+
+      default_scale = mkOption {
+        type = fixed_scale_t;
+        default = "fit";
+        description = ''
+        The default scaling mode used for slideshow images.
+        '';
+      };
+
+      history = mkOption {
+        type = types.ints.unsigned;
+        default = 0;
+        description = ''
+        How many images to store in the history cache.
+        '';
+      };
+
+
+      set_window_background = setWindowBkgOpt;
+      set_text = mkOption {
+        type = types.submodule textSubmodule;
+        default = {};
+        description = ''
+        Text format to set for slideshow mode.
+        '';
+      };
+      on_key = {
+        type = types.attrsOf keyBinding;
+        default = {};
+        description = ''
+        An attribute set of submodules defining keybinds for slideshow mode.
+        '';
+      };
+    };
+
+    gallery = {
+      thumb_size = mkOption {
+        type = types.ints.unsigned;
+        default = 200;
+        description = ''
+        Thumbnail size of gallery images in pixels.
+        '';
+      };
+
+      aspect = mkOption {
+        type = aspect_t;
+        default = "fill";
+        description = ''
+        Thumbnail aspect ratio of gallery images.
+        '';
+      };
+
+      padding_size = mkOption {
+        type = types.ints.unsigned;
+        default = 5;
+        description = ''
+        Padding size in pixels between gallery images.
+        '';
+      };
+
+      border_size = mkOption {
+        type = types.ints.unsigned;
+        default = 5;
+        description = ''
+        Border size in pixels of selected thumbnail.
+        '';
+      };
+
+      border_color = mkOption {
+        type = color_t;
+        default = "0xffaaaaaa";
+        description = ''
+        Border color for selected thumbnail, in ARGB hex.
+        '';
+      };
+
+      selected_scale = mkOption {
+        type = types.number;
+        default = 1.15;
+        description = ''
+        Scaling factor for selected thumbnail.
+        '';
+      };
+
+      selected_color = mkOption {
+        type = color_t;
+        default = "0xff404040";
+        description = ''
+        Background color of the selected thumbnail, in ARGB hex.
+        '';
+      };
+
+      unselected_color = mkOption {
+        type = color_t;
+        default = "0xff202020";
+        description = ''
+        Background color of unselected thumbnails, in ARGB hex.
+        '';
+      };
+
+      window_color = mkOption {
+        type = color_t;
+        default = "0xff000000";
+        description = ''
+        Background color of the window in gallery mode.
+        '';
+      };
+
+      pinch_factor = mkOption {
+        type = types.number;
+        # The default for gallery is 100?? For some reason?
+        # Inspect the source code for the fuckery.
+        default = 100;
+        description = ''
+        Pinch gesture scaling factor.
+        '';
+      };
+
+      hover = mkDisableOption "mouse following.";
+
+      cache = mkOption {
+        type = types.ints.unsigned;
+        default = 100;
+        description = ''
+        Number of image thumbnails to store in memory.
+        '';
+      };
+
+      preload = lib.mkEnableOption "preloading invisible thumbnails";
+      embedded_thumb = mkDisableOption "using embedded thumbnails";
+      pstore = lib.mkEnableOption "persistent storage for thumbnails";
+
+      set_text = mkOption {
+        type = types.submodule textSubmodule;
+        default = {};
+        description = ''
+        Text format for gallery mode.
+        '';
+      };
+
+      on_key = mkOption {
+        type = types.attrsOf keyBinding;
+        default = {};
+        description = ''
+        Attribute set of keybindings for gallery mode, of the format:
+        ```
+        # on_key
+        <name> = {
+          key = "Ctrl+a"; # defaults to <name>
+          functionBody = \'\'
+            swayimg.exit()
+          \'\';
+        }
+        ```
+        '';
+      };
+    };
 
     imagelist = {
-      order = opt {
-        type = types.enum [
-          "none"
-          "alpha"
-          "numeric"
-          "mtime"
-          "size"
-          "random"
-        ];
+      order = mkOption {
+        type = order_t;
         default = "numeric";
         description = ''
         Sorting order to use when constructing the image list.
         '';
       };
 
-      reverse = types.mkEnableOption "reverse sorting order";
-      recursive = types.mkEnableOption "recursive directory reading";
-      adjacent = types.mkEnableOption "adding adjacent files from same dir";
+      reverse = lib.mkEnableOption "reverse sorting order";
+      recursive = lib.mkEnableOption "recursive directory reading";
+      adjacent = lib.mkEnableOption "adding adjacent files from same dir";
       fsmon = mkDisableOption ''
         Enable file system monitoring.
       '';
@@ -217,7 +653,7 @@ in
         Whether to show the text layer on startup.
       '';
 
-      font = opt {
+      font = mkOption {
         type = types.str;
         default = "monospace";
         description = ''
@@ -225,7 +661,7 @@ in
         '';
       };
 
-      size = opt {
+      size = mkOption {
         type = types.int;
         default = 24;
         description = ''
@@ -233,18 +669,18 @@ in
         '';
       };
 
-      spacing = opt {
+      spacing = mkOption {
         type = types.int;
         default = 0;
       };
 
-      padding = opt {
+      padding = mkOption {
         type = types.int;
         default = 10;
       };
 
-      color = opt {
-        type = types.strMatching argbHexFormat;
+      color = mkOption {
+        type = color_t;
         default = "0xff000000";
         description = ''
         Text color in ARGB hex format;
@@ -252,8 +688,8 @@ in
         example = "0xff00aa99";
       };
 
-      background = opt {
-        type = types.strMatching argbHexFormat;
+      background = mkOption {
+        type = color_t;
         default = "0x00000000";
         description = ''
         Background color for text in ARGB hex format.
@@ -261,15 +697,15 @@ in
         example = "0xff00aa99";
       };
 
-      shadow = opt {
-        type = types.strMatching argbHexFormat;
+      shadow = mkOption {
+        type = color_t;
         default = "0x0d000000";
         description = ''
         Color of text shadow in ARGB hex format.
         '';
       };
 
-      timeout = opt {
+      timeout = mkOption {
         type = types.number;
         default = 5;
         description = ''
@@ -277,7 +713,7 @@ in
         '';
       };
 
-      status_timeout = opt {
+      status_timeout = mkOption {
         type = types.number;
         default = 3;
         description = ''
@@ -303,15 +739,10 @@ in
       Whether to orient images using EXIF data.
     '';
 
-    overlay = types.mkEnableOption "overlay mode";
+    overlay = lib.mkEnableOption "overlay mode";
 
-    dnd_button = opt {
-      type = types.enum [
-        # I don't know if other mouse buttons
-        # work. Or any button, for that matter. Test.
-        "MouseRight"
-        "MouseLeft"
-      ];
+    dnd_button = mkOption {
+      type = mbutton_t;
       default = "MouseRight";
       description = ''
         Drag-and-drop mouse binding.
@@ -320,15 +751,171 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config =
+  let
+    defaultValue = attributePath:
+      lib.getAttrFromPath
+      (attributePath ++ ["default"])
+      options.programs.swayimg
+      ;
+
+    toLuaVal = value:
+    if lib.isBool value
+      then lib.boolToString value
+      # Check for hex number, which lua parses as an actual number
+      else if builtins.isList (builtins.match "0x[abcdefABCDEF0123456789]{8}" (toString value))
+        then value
+      else if builtins.isString value
+        then ''"${value}"''
+      else toString value
+    ;
+
+    sectionToLua = section: lib.lists.flatten (lib.mapAttrsToList (attr: value:
+    # Checks for function call set values
+    if builtins.isAttrs value
+      then
+        lib.attrsets.mapAttrsToList
+        (name: module: mkSwayimgCall section name module)
+        value
+      else if builtins.isAttrs value then []
+      else mkLuaSectionAttribute section attr
+      ) cfg.subsection
+      );
+
+    mkOnKeyCall = mode: keyDescriptor: body: mkSwayimgCall mode "on_key"
+      [
+        (toLuaVal keyDescriptor)
+        ''
+        function ()
+        ${body}
+        end
+        ''
+      ]
+      /*''
+      swayimg.${mode}.on_key("${keyDescriptor}", function()
+        ${body}
+      end)
+      ''*/;
+
+    mkSwayimgCall =
+    mode: functionName: argumentList:
+      let
+        path = if isNull mode then "${functionName}" else "${mode}.${functionName}";
+      in
+      ''
+      swayimg.${path}(${builtins.concatStringsSep ", " argumentList})
+      ''
+    ;
+
+    isCallAttr = attr: builtins.any (e: e == attr)
+      [
+        "on_key"
+      ];
+
+    # These could be merged by parsing attribute paths
+    # But that would also forbid names with periods
+    mkLuaGlobalAttribute = attribute:
+      if (defaultValue [ attribute ] == cfg.${attribute})
+      then ""
+      else "swayimg.${attribute} = ${toLuaVal cfg.${attribute}}\n"
+    ;
+    mkLuaSectionAttribute = section: attribute:
+      if (defaultValue [ section attribute ] == cfg.${section}.${attribute})
+      then ""
+      else "swayimg.${section}.${attribute} = ${toLuaVal cfg.${section}.${attribute}}\n"
+    ;
+    extraLuaText = if builtins.isPath cfg.extraLua then builtins.readFile cfg.extraLua else cfg.extraLua;
+  in
+  lib.mkIf cfg.enable {
     assertions = [
       (lib.hm.assertions.assertPlatform "programs.swayimg" pkgs lib.platforms.linux)
     ];
 
     home.packages = [ cfg.package ];
 
-    xdg.configFile."swayimg/init.lua" = lib.mkIf (cfg.initLua != null) {
-      text = if builtins.isPath cfg.initLua then builtins.readFile cfg.initLua else cfg.initLua;
+    xdg.configFile.${cfg.configPath} = {
+      text = lib.concatStrings
+      ((map mkLuaGlobalAttribute [
+        "mode"
+        "antialiasing"
+        "decoration"
+        "overlay"
+        "exif_orientation"
+        "dnd_button"
+      ])
+      ++
+      (map (mkLuaSectionAttribute "imagelist") [
+        "order"
+        "reverse"
+        "recursive"
+        "adjacent"
+        "fsmon"
+      ])
+      ++
+      (map (mkLuaSectionAttribute "text") [
+        "visible"
+        "font"
+        "size"
+        "spacing"
+        "padding"
+        "color"
+        "background"
+        "shadow"
+        "timeout"
+        "status_timeout"
+      ])
+      ++
+
+      /*
+      ++
+      (map (mkLuaSectionAttribute "viewer") [
+        "default_scale"
+        "default_position"
+        "drag_button"
+        "autocenter"
+        "loop"
+        "preload"
+        "history"
+        "mark_color"
+        "pinch_factor"
+      ])
+      ++
+      (# viewer on_key calls
+      lib.attrsets.mapAttrsToList
+      (name: module: mkOnKeyCall "viewer" module.key module.functionBody)
+      cfg.viewer.on_key
+      )*/
+      # ++ sets
+      ++
+      (map (mkLuaSectionAttribute "slideshow") [
+        "timeout"
+        "default_scale"
+        "history"
+      ])
+      # ++ on_key
+      ++
+      (map (mkLuaSectionAttribute "gallery") [
+        "thumb_size"
+        "aspect"
+        "padding_size"
+        "border_size"
+        "border_color"
+        "selected_scale"
+        "selected_color"
+        "unselected_color"
+        "window_color"
+        "pinch_factor"
+        "hover"
+        "cache"
+        "preload"
+        "embedded_thumb"
+        "pstore"
+      ])
+      # ++ set_text, on_key, on_mouse
+      ++
+      [
+        (if isNull extraLuaText then "" else extraLuaText)
+      ]);
     };
   };
 }
