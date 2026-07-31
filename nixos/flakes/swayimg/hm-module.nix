@@ -13,11 +13,6 @@ see https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag
 returns a list of the captured groups
 strMatching uses this as a bool test
 
-viewer
-  - set_abs_position
-  - set_abs_scale
-  - on_mouse
-gallery.on_mouse
 */
 let
   inherit (lib)
@@ -97,12 +92,13 @@ let
     "fill"
     "keep"
   ];
-  block_position_t = types.enum [
+  block_positions = [
     "topleft"
     "topright"
     "bottomleft"
     "bottomright"
   ];
+  block_position_t = types.enum block_positions;
   mbutton_t = types.enum [
     "MouseLeft"
     "MouseRight"
@@ -135,43 +131,77 @@ let
     '';
   };
 
-  textSubmodule = {options = {
-    pos = mkOption {
-      type = block_position_t;
-      default = "topleft";
-    };
-    scheme = mkOption {
-      type = types.listOf text_template_t;
-      default = [
+  set_text_option = mode: lib.genAttrs block_positions (position: mkOption{
+        type = with types; listOf str;
+        default = [];
+        description = ''
+        Text formatting for the `${position}` text in ${mode} mode.
+        Written as a list, with string entries according to swayimg
+        formatting.
+        '';
+        example = [
         "File:\t{name}"
         "Format:\t{format}"
-        "File size:\t{sizehr}"
-        "File time:\t{time}"
-        "EXIF date:\t{meta.Exif.Photo.DateTimeOriginal}"
-        "EXIF camera:\t{meta.Exif.Image.Model}"
-      ];
-    };
-  };};
+        ];
+  });
 
-  chessboardModule = {options = {
-    size = mkOption {
-      type = types.ints.unsigned;
-      default = 20;
+  on_key_option = mode: mkOption {
+        type = types.attrsOf keyBinding;
+        # This could include the default keybinds...
+        # But it doesn't need to and that's a lot for no benefit really.
+        default = {};
+        description = ''
+        An attribute set of keybinding submodules for ${mode} mode.
+        Each binding is of the format:
+        # on_key
+        <name> = {
+          keyDescriptor = "Return"; # Defaults to <name>
+          functionBody = \'\'
+            swayimg.exit()
+          \'\'
+        };
+        '';
+  };
+
+  on_mouse_option = mode: mkOption {
+    type = types.attrsOf mouseBinding;
+    default = {};
+    description = ''
+    An attribute set of mouse binding submodules for ${mode} mode.
+    The name of each submodule is used as the default for the
+    keyDescriptor field.
+    '';
+  };
+
+  # Identical to keybinding, just different
+  # hypothetical regex. Could probably be
+  # merged into a core variable.
+  mouseBinding = types.submodule (
+  {name, ...}:{options = {
+    keyDescriptor = mkOption {
+      type = types.str;
+      default = name;
+      example = "ScrollLeft";
+      description = ''
+      A keybind descriptor in the form of (<mod>+)*<mouse_key>,
+      where <mouse_key> is any of:
+      ``${lib.concatStringsSep "\n" mbutton_t}``
+      '';
     };
-    color1 = mkOption {
-      type = color_t;
-      default = "0xff333333";
+    functionBody = mkOption {
+      type = types.lines;
+      default = null;
+      description = ''
+      A Lua function body triggered on the binding.
+      '';
     };
-    color2 = mkOption {
-      type = color_t;
-      default = "0xff4c4c4c";
-    };
-  };};
+  };}
+  );
 
   keyBinding = types.submodule (
   {name, ...}:{
     options = {
-      key = mkOption {
+      keyDescriptor = mkOption {
         type = types.str;
         /*
         Old strMatching code. It helps make sure the config is valid,
@@ -206,11 +236,14 @@ let
     };
   });
 
+  luaFunctionCallList = with types; either list (listOf list);
+
   luaTypes = with types; oneOf [
     str
     number
     color_t
     luaFunctionDeclaration
+    luaFunctionCall
   ];
 
   luaFunctionCall = types.submodule ({name, ...}: {options = {
@@ -302,7 +335,7 @@ in
       type = types.str;
       default = "swayimg/init.lua";
       description = ''
-      Relative path to write the configuration file to, from {file}`XDG_CONFIG_HOME`. Useful for templating engines.
+      Path to write the configuration file to, relative from {file}`XDG_CONFIG_HOME`. Useful for templating engines.
       Defaults to swayimg/init.lua
       '';
     };
@@ -408,61 +441,46 @@ in
       };
 
       # Set by function call
-      set_abs_position = mkOption {
-        type = luaFunctionCall;
-        default = {
-          function = "viewer.set_abs_position";
-          arguments = [];
-        };
-      };
-      #set_abs_scale;
-      #on_mouse;
-
-      set_text = mkOption {
-        type = types.submodule textSubmodule;
+      /*set_abs_position = mkOption {
+        type = luaFunctionCallList;
+        default = [];
         description = ''
-        A submodule defining the initial text format for viewer mode.
+        Either a list of arguments to provide to a single call
+        of swayimg.viewer.set_abs_position, or a list of such
+        lists.
         '';
       };
+      set_abs_scale = mkOption {
+        type = luaFunctionCallList;
+        default = [];
+        desecription = ''
 
-      set_window_background = setWindowBkgOpt; /*{
-        type = types.either color_t bkgmode_t;
-        default = "0xff000000";
-        description = ''
-        An initial window background color to set by function call,
-        in ARGB format.
-
-        Program internally disables chessboard if set, and thus is
-        not mutually exclusive to set.
         '';
-        example = "0xff808080";
       };*/
 
-      set_image_chessboard = mkOption {
-        type = types.submodule chessboardModule;
-        description = ''
-        A submodule defining the initial chessboard pattern for viewer mode.
-        '';
+      set_window_background = setWindowBkgOpt;
+
+      set_text = set_text_option "viewer";
+
+      set_image_chessboard = {
+        size = mkOption {
+          type = types.ints.unsigned;
+          default = 20;
+        };
+        color1 = mkOption {
+          type = color_t;
+          default = "0xff333333";
+        };
+        color2 = mkOption {
+          type = color_t;
+          default = "0xff4c4c4c";
+        };
       };
 
 
       # Bind List (list of submodules)
-      on_key = mkOption {
-        type = types.attrsOf keyBinding;
-        # This could include the default keybinds...
-        default = {};
-        description = ''
-        A list of keybindings for viewer mode.
-        Each binding is of the format:
-        # on_key
-        <name> = {
-          key = "Return"; # Defaults to <name>
-          functionBody = \'\'
-            swayimg.mode = "gallery"
-          \'\'
-        };
-        '';
-      };
+      on_mouse = on_mouse_option "viewer";
+      on_key = on_key_option "viewer";
     };
 
     slideshow = {
@@ -492,20 +510,9 @@ in
 
 
       set_window_background = setWindowBkgOpt;
-      set_text = mkOption {
-        type = types.submodule textSubmodule;
-        default = {};
-        description = ''
-        Text format to set for slideshow mode.
-        '';
-      };
-      on_key = {
-        type = types.attrsOf keyBinding;
-        default = {};
-        description = ''
-        An attribute set of submodules defining keybinds for slideshow mode.
-        '';
-      };
+      set_text = set_text_option "slideshow";
+      on_mouse = on_mouse_option "slideshow";
+      on_key = on_key_option "slideshow";
     };
 
     gallery = {
@@ -605,30 +612,9 @@ in
       embedded_thumb = mkDisableOption "using embedded thumbnails";
       pstore = lib.mkEnableOption "persistent storage for thumbnails";
 
-      set_text = mkOption {
-        type = types.submodule textSubmodule;
-        default = {};
-        description = ''
-        Text format for gallery mode.
-        '';
-      };
-
-      on_key = mkOption {
-        type = types.attrsOf keyBinding;
-        default = {};
-        description = ''
-        Attribute set of keybindings for gallery mode, of the format:
-        ```
-        # on_key
-        <name> = {
-          key = "Ctrl+a"; # defaults to <name>
-          functionBody = \'\'
-            swayimg.exit()
-          \'\';
-        }
-        ```
-        '';
-      };
+      set_text = set_text_option "gallery";
+      on_mouse = on_mouse_option "gallery";
+      on_key = on_key_option "gallery";
     };
 
     imagelist = {
@@ -770,17 +756,44 @@ in
       else toString value
     ;
 
-    sectionToLua = section: lib.lists.flatten (lib.mapAttrsToList (attr: value:
-    # Checks for function call set values
-    if builtins.isAttrs value
-      then
-        lib.attrsets.mapAttrsToList
-        (name: module: mkSwayimgCall section name module)
-        value
-      else if builtins.isAttrs value then []
-      else mkLuaSectionAttribute section attr
-      ) cfg.subsection
-      );
+    sectionToLua = section: lib.lists.flatten
+    (lib.mapAttrsToList
+      (attr: value:
+      # Checks for function call set values
+        if attr == "set_window_background" && value != defaultValue [ section attr ]
+          then mkSwayimgCall section attr [(toLuaVal value)]
+
+        else if attr == "set_image_chessboard"
+          then mkSwayimgCall section attr (with value; (map toLuaVal [size color1 color1]))
+
+        else if attr == "set_text"
+          then
+            lib.attrsets.mapAttrsToList
+            (position: textFormat:
+              if defaultValue [ section attr position ] == textFormat
+                then ""
+                else mkSwayimgCall section attr
+                  [position ("{${lib.concatStringsSep ", " textFormat}}") ]
+            )
+            value
+
+        else if (attr == "on_key") || (attr == "on_mouse")
+          then
+            lib.attrsets.mapAttrsToList
+            (bindName: bindAttrs: mkSwayimgCall section attr
+              [
+              (toLuaVal bindAttrs.keyDescriptor)
+              ''
+              function ()
+              ${bindAttrs.functionBody}
+              end
+              ''
+              ])
+            value
+        else mkLuaSectionAttribute section attr
+      )
+      cfg.${section}
+    );
 
     mkOnKeyCall = mode: keyDescriptor: body: mkSwayimgCall mode "on_key"
       [
@@ -806,11 +819,6 @@ in
       swayimg.${path}(${builtins.concatStringsSep ", " argumentList})
       ''
     ;
-
-    isCallAttr = attr: builtins.any (e: e == attr)
-      [
-        "on_key"
-      ];
 
     # These could be merged by parsing attribute paths
     # But that would also forbid names with periods
@@ -843,49 +851,9 @@ in
         "exif_orientation"
         "dnd_button"
       ])
-      ++
-      (map (mkLuaSectionAttribute "imagelist") [
-        "order"
-        "reverse"
-        "recursive"
-        "adjacent"
-        "fsmon"
-      ])
-      ++
-      (map (mkLuaSectionAttribute "text") [
-        "visible"
-        "font"
-        "size"
-        "spacing"
-        "padding"
-        "color"
-        "background"
-        "shadow"
-        "timeout"
-        "status_timeout"
-      ])
-      ++
-
-      /*
-      ++
-      (map (mkLuaSectionAttribute "viewer") [
-        "default_scale"
-        "default_position"
-        "drag_button"
-        "autocenter"
-        "loop"
-        "preload"
-        "history"
-        "mark_color"
-        "pinch_factor"
-      ])
-      ++
-      (# viewer on_key calls
-      lib.attrsets.mapAttrsToList
-      (name: module: mkOnKeyCall "viewer" module.key module.functionBody)
-      cfg.viewer.on_key
-      )*/
-      # ++ sets
+      ++ (sectionToLua "imagelist")
+      ++ (sectionToLua "text")
+      ++ (sectionToLua "viewer")
       ++
       (map (mkLuaSectionAttribute "slideshow") [
         "timeout"
