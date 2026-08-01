@@ -18,102 +18,135 @@ let
   inherit (lib)
     types
     mkOption
+    mkEnableOption
   ;
   cfg = config.programs.swayimg;
 
     # Types adapted from the Lua source file upstream,
   # at github:artemsen/swayimg/extra/swayimg.lua
   # last updated from commit c99591f
-  appmode_t = types.enum [
-    "viewer"
-    "slideshow"
-    "gallery"
-  ];
-  color_t = types.str; #types.strMatching "^0x[abcdefABCDEF0123456789]{8}$";
-  order_t = types.enum [
-    "none"
-    "alpha"
-    "numeric"
-    "mtime"
-    "size"
-    "random"
-  ];
-  vdir_t = types.enum [
-    "first"
-    "last"
-    "next"
-    "prev"
-    "next_dir"
-    "prev_dir"
-    "random"
-  ];
-  fixed_scale_t = types.enum [
-    "optimal"
-    "width"
-    "height"
-    "fit"
-    "fill"
-    "real"
-    "keep"
-  ];
-  fixed_position_t = types.enum [
-    "center"
-    "topcenter"
-    "bottomcenter"
-    "leftcenter"
-    "rightcenter"
-    "topleft"
-    "topright"
-    "bottomleft"
-    "bottomright"
-  ];
-  rotation_t = types.enum [
-    90
-    180
-    270
-  ];
-  bkgmode_t = types.enum [
-    "extend"
-    "mirror"
-    "auto"
-  ];
-  gdir_t = types.enum [
-    "first"
-    "last"
-    "up"
-    "down"
-    "left"
-    "right"
-    "pgup"
-    "pgdown"
-  ];
-  aspect_t = types.enum [
-    "fit"
-    "fill"
-    "keep"
-  ];
-  block_positions = [
-    "topleft"
-    "topright"
-    "bottomleft"
-    "bottomright"
-  ];
-  block_position_t = types.enum block_positions;
-  mbutton_t = types.enum [
-    "MouseLeft"
-    "MouseRight"
-    "MouseMiddle"
-    "MouseSide"
-    "MouseExtra"
-    "ScrollUp"
-    "ScrollDown"
-    "ScrollLeft"
-    "ScrollRight"
-  ];
-  # Has a whole regex for text in {}, implement later
-  text_template_t = types.strMatching lib.concatStrings [
-    "*"
-  ];
+  isSwayimgTypeString = test: builtins.any (checker: checker test) (map (type: type.check)
+    (with swayimgTypes; [
+      appmode_t
+      order_t
+      vdir_t
+      fixed_scale_t
+      fixed_position_t
+      bkgmode_t
+      gdir_t
+      aspect_t
+      block_position_t
+      mbutton_t
+      #text_template_t
+    ]));
+
+  swayimgTypes = {
+    appmode_t = types.enum [
+      "viewer"
+      "slideshow"
+      "gallery"
+    ];
+    color_t = types.either types.str literalLuaTextWrapperType; #types.strMatching "^0x[abcdefABCDEF0123456789]{8}$";
+    order_t = types.enum [
+      "none"
+      "alpha"
+      "numeric"
+      "mtime"
+      "size"
+      "random"
+    ];
+    vdir_t = types.enum [
+      "first"
+      "last"
+      "next"
+      "prev"
+      "next_dir"
+      "prev_dir"
+      "random"
+    ];
+    fixed_scale_t = types.enum [
+      "optimal"
+      "width"
+      "height"
+      "fit"
+      "fill"
+      "real"
+      "keep"
+    ];
+    fixed_position_t = types.enum [
+      "center"
+      "topcenter"
+      "bottomcenter"
+      "leftcenter"
+      "rightcenter"
+      "topleft"
+      "topright"
+      "bottomleft"
+      "bottomright"
+    ];
+    rotation_t = types.enum [
+      90
+      180
+      270
+    ];
+    bkgmode_t = types.enum [
+      "extend"
+      "mirror"
+      "auto"
+    ];
+    gdir_t = types.enum [
+      "first"
+      "last"
+      "up"
+      "down"
+      "left"
+      "right"
+      "pgup"
+      "pgdown"
+    ];
+    aspect_t = types.enum [
+      "fit"
+      "fill"
+      "keep"
+    ];
+    block_positions = [
+      "topleft"
+      "topright"
+      "bottomleft"
+      "bottomright"
+    ];
+    block_position_t = types.enum swayimgTypes.block_positions;
+    mbutton_t = types.enum [
+      "MouseLeft"
+      "MouseRight"
+      "MouseMiddle"
+      "MouseSide"
+      "MouseExtra"
+      "ScrollUp"
+      "ScrollDown"
+      "ScrollLeft"
+      "ScrollRight"
+    ];
+    # Has a whole regex for text in {}, implement later
+    text_template_t = types.strMatching lib.concatStrings [
+      "*"
+    ];
+  };
+
+  wrapperBase = literalOptionMaker:
+    types.submodule ({name,...}:{options = {
+      value = mkOption {
+        type = types.str;
+        default = name;
+      };
+      isLiteral = literalOptionMaker "this text being treated as literal lua (no added quotes in final output).";
+    };});
+
+  luaTextWrapperType = wrapperBase mkEnableOption;
+  literalLuaTextWrapperType = wrapperBase mkDisableOption;
+
+  nixString = value: {inherit value; isLiteral = false;};
+  luaString = value: {inherit value; isLiteral = true;};
 
 
   mkDisableOption = name:(mkOption {
@@ -124,14 +157,14 @@ let
 
   # Common submodules
   setWindowBkgOpt = mkOption {
-    type = types.either color_t bkgmode_t;
+    type = types.either swayimgTypes.color_t swayimgTypes.bkgmode_t;
     default = "auto";
     description = ''
     Window background mode, or an explicit color.
     '';
   };
 
-  set_text_option = mode: lib.genAttrs block_positions (position: mkOption{
+  set_text_option = mode: lib.genAttrs swayimgTypes.block_positions (position: mkOption{
         type = with types; listOf str;
         default = [];
         description = ''
@@ -146,7 +179,7 @@ let
   });
 
   on_key_option = mode: mkOption {
-        type = types.attrsOf keyBinding;
+        type = with types; attrsOf (either lines keyBinding);
         # This could include the default keybinds...
         # But it doesn't need to and that's a lot for no benefit really.
         default = {};
@@ -179,13 +212,13 @@ let
   mouseBinding = types.submodule (
   {name, ...}:{options = {
     keyDescriptor = mkOption {
-      type = types.str;
-      default = name;
+      type = literalLuaTextWrapperType;
+      default = nixString name;
       example = "ScrollLeft";
       description = ''
       A keybind descriptor in the form of (<mod>+)*<mouse_key>,
       where <mouse_key> is any of:
-      ``${lib.concatStringsSep "\n" mbutton_t}``
+      ``${lib.concatStringsSep "\n" swayimgTypes.mbutton_t}``
       '';
     };
     functionBody = mkOption {
@@ -198,25 +231,13 @@ let
   };}
   );
 
-  keyBinding = types.submodule (
+  mkKeyBinding = keyDescriptor: functionBody: {inherit keyDescriptor functionBody;};
+  keyBinding = with types; (submodule (
   {name, ...}:{
     options = {
       keyDescriptor = mkOption {
-        type = types.str;
-        /*
-        Old strMatching code. It helps make sure the config is valid,
-        but it also messes with theme templating. (It also doesn't work
-        because it's based on Mozilla regex, not posix...)
-
-        lib.strMatching lib.concatStrings [
-        "^(?=(Ctrl+|Alt+|Shift+){0,3})"
-        "(?!(Ctrl+|Alt+|Shift+)*\1)"
-        "(Ctrl+|Alt+|Shift+)*"
-        # Idk where they're getting "key descriptors" from
-        # Find the list if possible
-        "(\w|Escape|Insert|Return)$"
-        ];*/
-        default = name;
+        type = luaTextWrapperType;
+        default = nixString name;
         description = ''
         A keybind descriptor in the format (<mod>+)*<sym> to trigger the keybind.
         Defaults to the name of the keybind, for efficient definition in the form
@@ -234,14 +255,12 @@ let
         '';
       };
     };
-  });
-
-  luaFunctionCallList = with types; either list (listOf list);
+  }));
 
   luaTypes = with types; oneOf [
     str
     number
-    color_t
+    swayimgTypes.color_t
     luaFunctionDeclaration
     luaFunctionCall
   ];
@@ -315,7 +334,7 @@ in
   ];
 
   options.programs.swayimg = {
-    enable = lib.mkEnableOption "swayimg";
+    enable = mkEnableOption "swayimg";
 
     package = lib.mkPackageOption pkgs "swayimg" { };
 
@@ -328,6 +347,17 @@ in
       '';
       example = lib.literalExpression ''
       # TODO: insert examples
+      '';
+    };
+
+    variables = mkOption {
+      type = with types; attrsOf (either str literalLuaTextWrapperType);
+      default = {};
+      description = ''
+        An attribute set of lua variables to declare.
+        By default, treated as literal lua (no quotes added to output).
+        Uses the format:
+        `<name>.value = <value>`
       '';
     };
 
@@ -365,6 +395,12 @@ in
       '';
     };
 
+    requirePaths = mkOption {
+      type = with types; listOf str;
+      default = [];
+      description = ''A list of strings to pass to require calls at the top of the generated file.'';
+    };
+
     # "General Config" options, as per the example configuration
     /*
     In keeping with attempting to nix-ify the configuration more,
@@ -372,7 +408,7 @@ in
     swayimg.<name>.<options>
     */
     mode = mkOption {
-      type = appmode_t;
+      type = swayimgTypes.appmode_t;
       default = "viewer";
       description = ''
       The mode of swayimg on startup.
@@ -381,7 +417,7 @@ in
 
     viewer = {
       default_scale = mkOption {
-        type = fixed_scale_t;
+        type = swayimgTypes.fixed_scale_t;
         default = "optimal";
         description = ''
         The default scaling mode for images in viewer.
@@ -389,7 +425,7 @@ in
       };
 
       default_position = mkOption {
-        type = fixed_position_t;
+        type = swayimgTypes.fixed_position_t;
         default = "center";
         description = ''
         The default position for images in viewer.
@@ -397,7 +433,7 @@ in
       };
 
       drag_button = mkOption {
-        type = mbutton_t;
+        type = swayimgTypes.mbutton_t;
         default = "MouseLeft";
         description = ''
         Mouse button to drag image.
@@ -425,8 +461,8 @@ in
       };
 
       mark_color = mkOption {
-        type = color_t;
-        default = "0xff808080";
+        type = swayimgTypes.color_t;
+        default = luaString "0xff808080";
         description = ''
         Mark icon color.
         '';
@@ -440,24 +476,6 @@ in
         '';
       };
 
-      # Set by function call
-      /*set_abs_position = mkOption {
-        type = luaFunctionCallList;
-        default = [];
-        description = ''
-        Either a list of arguments to provide to a single call
-        of swayimg.viewer.set_abs_position, or a list of such
-        lists.
-        '';
-      };
-      set_abs_scale = mkOption {
-        type = luaFunctionCallList;
-        default = [];
-        desecription = ''
-
-        '';
-      };*/
-
       set_window_background = setWindowBkgOpt;
 
       set_text = set_text_option "viewer";
@@ -468,12 +486,12 @@ in
           default = 20;
         };
         color1 = mkOption {
-          type = color_t;
-          default = "0xff333333";
+          type = swayimgTypes.color_t;
+          default = luaString "0xff333333";
         };
         color2 = mkOption {
-          type = color_t;
-          default = "0xff4c4c4c";
+          type = swayimgTypes.color_t;
+          default = luaString "0xff4c4c4c";
         };
       };
 
@@ -493,7 +511,7 @@ in
       };
 
       default_scale = mkOption {
-        type = fixed_scale_t;
+        type = swayimgTypes.fixed_scale_t;
         default = "fit";
         description = ''
         The default scaling mode used for slideshow images.
@@ -525,7 +543,7 @@ in
       };
 
       aspect = mkOption {
-        type = aspect_t;
+        type = swayimgTypes.aspect_t;
         default = "fill";
         description = ''
         Thumbnail aspect ratio of gallery images.
@@ -549,8 +567,8 @@ in
       };
 
       border_color = mkOption {
-        type = color_t;
-        default = "0xffaaaaaa";
+        type = swayimgTypes.color_t;
+        default = luaString "0xffaaaaaa";
         description = ''
         Border color for selected thumbnail, in ARGB hex.
         '';
@@ -565,24 +583,24 @@ in
       };
 
       selected_color = mkOption {
-        type = color_t;
-        default = "0xff404040";
+        type = swayimgTypes.color_t;
+        default = luaString "0xff404040";
         description = ''
         Background color of the selected thumbnail, in ARGB hex.
         '';
       };
 
       unselected_color = mkOption {
-        type = color_t;
-        default = "0xff202020";
+        type = swayimgTypes.color_t;
+        default = luaString "0xff202020";
         description = ''
         Background color of unselected thumbnails, in ARGB hex.
         '';
       };
 
       window_color = mkOption {
-        type = color_t;
-        default = "0xff000000";
+        type = swayimgTypes.color_t;
+        default = luaString "0xff000000";
         description = ''
         Background color of the window in gallery mode.
         '';
@@ -608,9 +626,9 @@ in
         '';
       };
 
-      preload = lib.mkEnableOption "preloading invisible thumbnails";
+      preload = mkEnableOption "preloading invisible thumbnails";
       embedded_thumb = mkDisableOption "using embedded thumbnails";
-      pstore = lib.mkEnableOption "persistent storage for thumbnails";
+      pstore = mkEnableOption "persistent storage for thumbnails";
 
       set_text = set_text_option "gallery";
       on_mouse = on_mouse_option "gallery";
@@ -619,16 +637,16 @@ in
 
     imagelist = {
       order = mkOption {
-        type = order_t;
+        type = swayimgTypes.order_t;
         default = "numeric";
         description = ''
         Sorting order to use when constructing the image list.
         '';
       };
 
-      reverse = lib.mkEnableOption "reverse sorting order";
-      recursive = lib.mkEnableOption "recursive directory reading";
-      adjacent = lib.mkEnableOption "adding adjacent files from same dir";
+      reverse = mkEnableOption "reverse sorting order";
+      recursive = mkEnableOption "recursive directory reading";
+      adjacent = mkEnableOption "adding adjacent files from same dir";
       fsmon = mkDisableOption ''
         Enable file system monitoring.
       '';
@@ -640,8 +658,8 @@ in
       '';
 
       font = mkOption {
-        type = types.str;
-        default = "monospace";
+        type = luaTextWrapperType;
+        default = nixString "monospace";
         description = ''
         Font name for the text overlay.
         '';
@@ -666,8 +684,8 @@ in
       };
 
       color = mkOption {
-        type = color_t;
-        default = "0xff000000";
+        type = swayimgTypes.color_t;
+        default = luaString "0xff000000";
         description = ''
         Text color in ARGB hex format;
         '';
@@ -675,8 +693,8 @@ in
       };
 
       background = mkOption {
-        type = color_t;
-        default = "0x00000000";
+        type = swayimgTypes.color_t;
+        default = luaString "0x00000000";
         description = ''
         Background color for text in ARGB hex format.
         '';
@@ -684,8 +702,8 @@ in
       };
 
       shadow = mkOption {
-        type = color_t;
-        default = "0x0d000000";
+        type = swayimgTypes.color_t;
+        default = luaString "0x0d000000";
         description = ''
         Color of text shadow in ARGB hex format.
         '';
@@ -725,10 +743,10 @@ in
       Whether to orient images using EXIF data.
     '';
 
-    overlay = lib.mkEnableOption "overlay mode";
+    overlay = mkEnableOption "overlay mode";
 
     dnd_button = mkOption {
-      type = mbutton_t;
+      type = swayimgTypes.mbutton_t;
       default = "MouseRight";
       description = ''
         Drag-and-drop mouse binding.
@@ -743,20 +761,48 @@ in
       lib.getAttrFromPath
       (attributePath ++ ["default"])
       options.programs.swayimg
-      ;
-
-    toLuaVal = value:
-    if lib.isBool value
-      then lib.boolToString value
-      # Check for hex number, which lua parses as an actual number
-      else if builtins.isList (builtins.match "0x[abcdefABCDEF0123456789]{8}" (toString value))
-        then value
-      else if builtins.isString value
-        then ''"${value}"''
-      else toString value
     ;
 
-    sectionToLua = section: lib.lists.flatten
+    addTab = lines: "\t" + (builtins.replaceStrings [ "\n" ] [ "\n\t" ] lines);
+    checkQuotes = text:
+      if builtins.isList (builtins.match ''^"[^"]*$"'' text)
+        then text
+        else ''"${text}"'';
+
+    mkLuaFunction = name: parameters: body:
+    ''
+    function ${name} (${builtins.concatStringsSep ", " parameters})
+    ${addTab body}
+    end
+    '';
+
+    mkLuaVariable = name: value: ''${name} = ${value}'';
+
+    toLuaVal = input:
+    if isSwayimgTypeString input
+      then ''"${input}"''
+    else if lib.isBool input
+      then lib.boolToString input
+    else if builtins.isAttrs input
+        then
+          if input.isLiteral
+            then input.value
+          else
+            ''"${input.value}"''
+    # Must be a number
+    else toString input
+    ;
+
+    sectionToLua = section:
+    [''
+
+      --------------
+      -- ${section}
+      --------------
+
+    '']
+    ++
+    lib.lists.flatten
     (lib.mapAttrsToList
       (attr: value:
       # Checks for function call set values
@@ -780,35 +826,20 @@ in
         else if (attr == "on_key") || (attr == "on_mouse")
           then
             lib.attrsets.mapAttrsToList
-            (bindName: bindAttrs: mkSwayimgCall section attr
+            (bindName: bindVal: let
+                # Assumes that if keybind shorthand is used, the descriptor
+                # needs to be quoted
+                keybind = if builtins.isAttrs bindVal then bindVal else mkKeyBinding (checkQuotes bindName) bindVal;
+              in (mkSwayimgCall section attr (
               [
-              (toLuaVal bindAttrs.keyDescriptor)
-              ''
-              function ()
-              ${bindAttrs.functionBody}
-              end
-              ''
-              ])
+              (toLuaVal keybind.keyDescriptor)
+              (mkLuaFunction "" [] keybind.functionBody)
+              ])) + "\n")
             value
         else mkLuaSectionAttribute section attr
       )
       cfg.${section}
     );
-
-    mkOnKeyCall = mode: keyDescriptor: body: mkSwayimgCall mode "on_key"
-      [
-        (toLuaVal keyDescriptor)
-        ''
-        function ()
-        ${body}
-        end
-        ''
-      ]
-      /*''
-      swayimg.${mode}.on_key("${keyDescriptor}", function()
-        ${body}
-      end)
-      ''*/;
 
     mkSwayimgCall =
     mode: functionName: argumentList:
@@ -842,46 +873,68 @@ in
     home.packages = [ cfg.package ];
 
     xdg.configFile.${cfg.configPath} = {
-      text = lib.concatStrings
-      ((map mkLuaGlobalAttribute [
+      text = lib.concatStrings (
+      # Begin massive string list concatenation
+      (map (requirePath: ''require "${requirePath}"'') cfg.requirePaths)
+      ++
+      (
+      [''
+
+        ----------------
+        -- Lua Variables
+        ----------------
+
+      ''] ++ lib.mapAttrsToList
+        (name: setting: (if builtins.isAttrs setting then (mkLuaVariable name setting.value) else mkLuaVariable name setting) + "\n")
+        cfg.variables
+      )
+      ++
+      ([''
+
+        ----------------
+        -- Lua Functions
+        ----------------
+
+        ''] ++ lib.mapAttrsToList
+        (name: set: (mkLuaFunction set.name set.parameters set.body) + "\n")
+        cfg.functions
+      )
+      ++
+      ([
+        ''
+
+        ------------------
+        -- Swayimg Globals
+        ------------------
+
+        ''
+      ] ++ (map mkLuaGlobalAttribute [
         "mode"
         "antialiasing"
         "decoration"
         "overlay"
         "exif_orientation"
         "dnd_button"
-      ])
-      ++ (sectionToLua "imagelist")
-      ++ (sectionToLua "text")
-      ++ (sectionToLua "viewer")
+      ]))
       ++
-      (map (mkLuaSectionAttribute "slideshow") [
-        "timeout"
-        "default_scale"
-        "history"
-      ])
-      # ++ on_key
-      ++
-      (map (mkLuaSectionAttribute "gallery") [
-        "thumb_size"
-        "aspect"
-        "padding_size"
-        "border_size"
-        "border_color"
-        "selected_scale"
-        "selected_color"
-        "unselected_color"
-        "window_color"
-        "pinch_factor"
-        "hover"
-        "cache"
-        "preload"
-        "embedded_thumb"
-        "pstore"
-      ])
-      # ++ set_text, on_key, on_mouse
+      (lib.lists.flatten (map sectionToLua
+          [
+            "imagelist"
+            "text"
+            "viewer"
+            "slideshow"
+            "gallery"
+          ]
+      ))
       ++
       [
+        ''
+
+        ------------
+        -- Extra Lua
+        ------------
+
+        ''
         (if isNull extraLuaText then "" else extraLuaText)
       ]);
     };

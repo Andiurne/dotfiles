@@ -84,7 +84,7 @@
 	./desktop
 	./hardwareConf/${hostName}.nix
 	./users/${hostName}_userSet.nix
-	./secrets/sops.nix
+	./sops
 	./secrets/${hostName}.nix
 	{
 	networking.hostName = hostName;
