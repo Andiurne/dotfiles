@@ -1,6 +1,5 @@
 {inputs, pkgs, lib, ...}:
 let
-    omitNames = attrs: builtins.mapAttrs (name: value: {functionBody = value;}) attrs;
     bg = "0x00000000";
 in {
 disabledModules = [ "programs/swayimg.nix" ];

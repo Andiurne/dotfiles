@@ -22,23 +22,9 @@ let
   ;
   cfg = config.programs.swayimg;
 
-    # Types adapted from the Lua source file upstream,
+  # Types adapted from the Lua source file upstream,
   # at github:artemsen/swayimg/extra/swayimg.lua
   # last updated from commit c99591f
-  isSwayimgTypeString = test: builtins.any (checker: checker test) (map (type: type.check)
-    (with swayimgTypes; [
-      appmode_t
-      order_t
-      vdir_t
-      fixed_scale_t
-      fixed_position_t
-      bkgmode_t
-      gdir_t
-      aspect_t
-      block_position_t
-      mbutton_t
-      #text_template_t
-    ]));
 
   swayimgTypes = {
     appmode_t = types.enum [
@@ -46,7 +32,7 @@ let
       "slideshow"
       "gallery"
     ];
-    color_t = types.either types.str literalLuaTextWrapperType; #types.strMatching "^0x[abcdefABCDEF0123456789]{8}$";
+    color_t = with types; either (strMatching "^0x[[:xdigit:]]{8}$") luaText;
     order_t = types.enum [
       "none"
       "alpha"
@@ -133,21 +119,17 @@ let
     ];
   };
 
-  wrapperBase = literalOptionMaker:
-    types.submodule ({name,...}:{options = {
-      value = mkOption {
+  mkLuaText = text: {inherit text; isLiteral = true;};
+
+  luaText = types.either types.str (types.submodule ({name, ...}:{
+    options = {
+      text = mkOption {
         type = types.str;
         default = name;
       };
-      isLiteral = literalOptionMaker "this text being treated as literal lua (no added quotes in final output).";
-    };});
-
-  luaTextWrapperType = wrapperBase mkEnableOption;
-  literalLuaTextWrapperType = wrapperBase mkDisableOption;
-
-  nixString = value: {inherit value; isLiteral = false;};
-  luaString = value: {inherit value; isLiteral = true;};
-
+      isLiteral = mkDisableOption "whether to treat <text> as literal Lua";
+    };
+  }));
 
   mkDisableOption = name:(mkOption {
     type = types.bool;
@@ -187,6 +169,8 @@ let
         An attribute set of keybinding submodules for ${mode} mode.
         Each binding is of the format:
         # on_key
+        <keyDescriptor> = <functionBody>
+        # or
         <name> = {
           keyDescriptor = "Return"; # Defaults to <name>
           functionBody = \'\'
@@ -197,7 +181,7 @@ let
   };
 
   on_mouse_option = mode: mkOption {
-    type = types.attrsOf mouseBinding;
+    type = with types; attrsOf (either lines mouseBinding);
     default = {};
     description = ''
     An attribute set of mouse binding submodules for ${mode} mode.
@@ -212,8 +196,8 @@ let
   mouseBinding = types.submodule (
   {name, ...}:{options = {
     keyDescriptor = mkOption {
-      type = literalLuaTextWrapperType;
-      default = nixString name;
+      type = types.str;
+      default = name;
       example = "ScrollLeft";
       description = ''
       A keybind descriptor in the form of (<mod>+)*<mouse_key>,
@@ -236,8 +220,8 @@ let
   {name, ...}:{
     options = {
       keyDescriptor = mkOption {
-        type = luaTextWrapperType;
-        default = nixString name;
+        type = types.str;
+        default = name;
         description = ''
         A keybind descriptor in the format (<mod>+)*<sym> to trigger the keybind.
         Defaults to the name of the keybind, for efficient definition in the form
@@ -256,34 +240,6 @@ let
       };
     };
   }));
-
-  luaTypes = with types; oneOf [
-    str
-    number
-    swayimgTypes.color_t
-    luaFunctionDeclaration
-    luaFunctionCall
-  ];
-
-  luaFunctionCall = types.submodule ({name, ...}: {options = {
-    function = mkOption {
-      type = types.str;
-      default = name;
-      description = ''
-      Lua path of the function to call.
-      '';
-      example = "viewer.on_key";
-    };
-
-    arguments = mkOption {
-      type = types.listOf luaTypes;
-      default = [];
-      description = ''
-      Arguments to pass the to the function, as a list.
-      '';
-    };
-
-  };});
 
   luaFunctionDeclaration = types.submodule (
     {name, ...}:{options = {
@@ -351,13 +307,13 @@ in
     };
 
     variables = mkOption {
-      type = with types; attrsOf (either str literalLuaTextWrapperType);
+      type = with types; attrsOf str;
       default = {};
       description = ''
         An attribute set of lua variables to declare.
-        By default, treated as literal lua (no quotes added to output).
+        Treated as literal lua (no quotes added to name or value).
         Uses the format:
-        `<name>.value = <value>`
+        `<name> = <value>`
       '';
     };
 
@@ -462,7 +418,7 @@ in
 
       mark_color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xff808080";
+        default = "0xff808080";
         description = ''
         Mark icon color.
         '';
@@ -487,11 +443,11 @@ in
         };
         color1 = mkOption {
           type = swayimgTypes.color_t;
-          default = luaString "0xff333333";
+          default = "0xff333333";
         };
         color2 = mkOption {
           type = swayimgTypes.color_t;
-          default = luaString "0xff4c4c4c";
+          default = "0xff4c4c4c";
         };
       };
 
@@ -568,7 +524,7 @@ in
 
       border_color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xffaaaaaa";
+        default = "0xffaaaaaa";
         description = ''
         Border color for selected thumbnail, in ARGB hex.
         '';
@@ -584,7 +540,7 @@ in
 
       selected_color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xff404040";
+        default = "0xff404040";
         description = ''
         Background color of the selected thumbnail, in ARGB hex.
         '';
@@ -592,7 +548,7 @@ in
 
       unselected_color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xff202020";
+        default = "0xff202020";
         description = ''
         Background color of unselected thumbnails, in ARGB hex.
         '';
@@ -600,7 +556,7 @@ in
 
       window_color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xff000000";
+        default = "0xff000000";
         description = ''
         Background color of the window in gallery mode.
         '';
@@ -658,8 +614,8 @@ in
       '';
 
       font = mkOption {
-        type = luaTextWrapperType;
-        default = nixString "monospace";
+        type = types.str;
+        default = "monospace";
         description = ''
         Font name for the text overlay.
         '';
@@ -685,25 +641,25 @@ in
 
       color = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0xff000000";
+        default = "0xff000000";
         description = ''
         Text color in ARGB hex format;
         '';
-        example = "0xff00aa99";
+        example = mkLuaText "0xff00aa99";
       };
 
       background = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0x00000000";
+        default = "0x00000000";
         description = ''
         Background color for text in ARGB hex format.
         '';
-        example = "0xff00aa99";
+        example = mkLuaText "0xff00aa99";
       };
 
       shadow = mkOption {
         type = swayimgTypes.color_t;
-        default = luaString "0x0d000000";
+        default = "0x0d000000";
         description = ''
         Color of text shadow in ARGB hex format.
         '';
@@ -765,7 +721,7 @@ in
 
     addTab = lines: "\t" + (builtins.replaceStrings [ "\n" ] [ "\n\t" ] lines);
     checkQuotes = text:
-      if builtins.isList (builtins.match ''^"[^"]*$"'' text)
+      if builtins.isList (builtins.match ''"[^"]*"'' text)
         then text
         else ''"${text}"'';
 
@@ -778,17 +734,19 @@ in
 
     mkLuaVariable = name: value: ''${name} = ${value}'';
 
+    checkLuaText = value:  if builtins.isAttrs value then value else mkLuaText value;
+
     toLuaVal = input:
-    if isSwayimgTypeString input
-      then ''"${input}"''
+    if builtins.isAttrs input
+      then (if input.isLiteral then input.text else checkQuotes input.text)
+
+    else if builtins.isString input
+      then if builtins.isList (builtins.match "0x[[:xdigit:]]{8}" input)
+        then input
+        else checkQuotes input
+
     else if lib.isBool input
       then lib.boolToString input
-    else if builtins.isAttrs input
-        then
-          if input.isLiteral
-            then input.value
-          else
-            ''"${input.value}"''
     # Must be a number
     else toString input
     ;
@@ -806,7 +764,7 @@ in
     (lib.mapAttrsToList
       (attr: value:
       # Checks for function call set values
-        if attr == "set_window_background" && value != defaultValue [ section attr ]
+        if attr == "set_window_background"  && value != defaultValue [ section attr ]
           then mkSwayimgCall section attr [(toLuaVal value)]
 
         else if attr == "set_image_chessboard"
@@ -855,13 +813,13 @@ in
     # But that would also forbid names with periods
     mkLuaGlobalAttribute = attribute:
       if (defaultValue [ attribute ] == cfg.${attribute})
-      then ""
-      else "swayimg.${attribute} = ${toLuaVal cfg.${attribute}}\n"
+        then ""
+        else "swayimg.${attribute} = ${toLuaVal cfg.${attribute}}\n"
     ;
     mkLuaSectionAttribute = section: attribute:
       if (defaultValue [ section attribute ] == cfg.${section}.${attribute})
-      then ""
-      else "swayimg.${section}.${attribute} = ${toLuaVal cfg.${section}.${attribute}}\n"
+        then ""
+        else "swayimg.${section}.${attribute} = ${toLuaVal cfg.${section}.${attribute}}\n"
     ;
     extraLuaText = if builtins.isPath cfg.extraLua then builtins.readFile cfg.extraLua else cfg.extraLua;
   in
