@@ -10,3 +10,7 @@ output_path = "~/.config/starship/starship.toml"
 [theme.templates.user.noctalia-starship-yazi]
 input_path = "~/.config/dotfiles/nixos/assets/templates/starship-yazi.toml"
 output_path = "~/.config/yazi/starship-yazi.toml"
+
+[theme.templates.user.noctalia-swayimg]
+input_path = "~/.config/swayimg/template.lua"
+output_path = "~/.config/swayimg/init.lua"

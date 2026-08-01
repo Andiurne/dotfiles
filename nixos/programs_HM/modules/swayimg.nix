@@ -16,6 +16,14 @@ programs.swayimg = {
         version = "v5.5";
     };
 
+    configPath = "swayimg/template.lua";
+
+    text = {
+        color.lua = "0xff{{ colors.primary.default.hex_stripped }}";
+        shadow.lua = "0xff{{ colors.shadow.default.hex_stripped }}";
+        background.lua = "0xc7{{ colors.surface.default.hex_stripped }}";
+    };
+
     functions = {
         delete = {
             parameters = ["img"];
@@ -93,11 +101,11 @@ programs.swayimg = {
     };
 
     gallery = {
-        window_color = "0x00000000";
+        window_color = bg;
+        border_color.lua = "0xff{{ colors.primary.default.hex_stripped }}";
         on_key = {
             "q" = "swayimg.exit()";
             "Delete" = "delete(swayimg.gallery.get_image())";
         };
     };
-    #extraLua = builtins.readFile ./swayimg.lua;
 };}

@@ -11,6 +11,7 @@
     hmHyprLib.url = "github:Andiurne/hmHyprLib";
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
+    swayimg.url = "github:Andiurne/nix-flakes?dir=swayimg";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -29,7 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lintree = {
-      url = "path:./flakes/lintree";
+      url = "github:Andiurne/nix-flakes?dir=lintree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ani-cli-src = {
