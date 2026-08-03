@@ -1,21 +1,12 @@
-{inputs, pkgs, lib, ...}:
+{inputs, pkgs, lib, system, ...}:
 let
     bg = "0x00000000";
 in {
 disabledModules = [ "programs/swayimg.nix" ];
-imports = [ ./swayimg-hm-module.nix ];
+imports = [ inputs.swayimg.homeModules."v5.5" ];
 programs.swayimg = {
     enable = true;
-    package = pkgs.swayimg.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-            tag = "v5.5";
-            owner = "artemsen";
-            repo = "swayimg";
-            hash = "sha256-PaxVcuEafLdUETSG78lGSaDukPv/2m1TUbfvpBZTT40=";
-        };
-        version = "v5.5";
-    };
-
+    package = inputs.swayimg.packages.${system};
     configPath = "swayimg/template.lua";
 
     text = {

@@ -1,1 +1,0 @@
-../../flakes/swayimg/hm-module.nix

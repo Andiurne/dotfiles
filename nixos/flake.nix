@@ -11,7 +11,7 @@
     hmHyprLib.url = "github:Andiurne/hmHyprLib";
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
-    swayimg.url = "github:Andiurne/nix-flakes?dir=swayimg";
+    swayimg.url = "github:Andiurne/flakes?dir=swayimg";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -30,7 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lintree = {
-      url = "github:Andiurne/nix-flakes?dir=lintree";
+      url = "github:Andiurne/flakes?dir=lintree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ani-cli-src = {
@@ -53,8 +53,9 @@
     nix-cachyos-kernel,
     sops-nix,
     ... } @ inputs:
-      let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
   in
   {
@@ -74,7 +75,7 @@
 	"bootstick"
       ]
       (hostName: lib.nixosSystem {
-       specialArgs = { inherit inputs; };
+       specialArgs = { inherit inputs system; };
        modules =
        [
 	home-manager.nixosModules.home-manager
