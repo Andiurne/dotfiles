@@ -1,6 +1,5 @@
 {pkgs, ...}:{
   imports = [
-    ../../gaming/steam.nix
     ./module.nix
   ];
 
