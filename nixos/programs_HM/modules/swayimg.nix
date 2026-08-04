@@ -1,7 +1,5 @@
-{inputs, pkgs, lib, system, ...}:
-let
-    bg = "0x00000000";
-in {
+{inputs, system, ...}:
+{
 disabledModules = [ "programs/swayimg.nix" ];
 imports = [ inputs.personal.homeModules."swayimg_v5.5" ];
 programs.swayimg = {
@@ -62,7 +60,7 @@ programs.swayimg = {
     };
 
     viewer = {
-        set_window_background = bg;
+        set_window_background.lua  = "0x00000000";
         drag_button = "MouseLeft";
         on_key = {
             "q" = "swayimg.exit()";
@@ -92,7 +90,7 @@ programs.swayimg = {
     };
 
     gallery = {
-        window_color = bg;
+        window_color.lua = "0x00000000";
         border_color.lua = "0xff{{ colors.primary.default.hex_stripped }}";
         on_key = {
             "q" = "swayimg.exit()";

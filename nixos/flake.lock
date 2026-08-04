@@ -829,11 +829,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1785779404,
-        "narHash": "sha256-6bSIKDEI2hgCkmsxa+++3uxp6Z/aKUYSR609OEsIuE4=",
+        "lastModified": 1785833235,
+        "narHash": "sha256-LmQvVPYwZIQBRiRA4WQTFg8l6Y4nBO2Yzy+YsMXwKLw=",
         "owner": "andiurne",
         "repo": "flakes",
-        "rev": "efbdd0c93cdea2ba9af20b921b0c7a9bdc5a7f5c",
+        "rev": "01e1c8ab0d1ffacbd262b766ed36ad5b6e09eabe",
         "type": "github"
       },
       "original": {

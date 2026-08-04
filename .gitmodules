@@ -1,3 +1,0 @@
-[submodule "nixos/flakes"]
-	path = nixos/flakes
-	url = https://github.com/Andiurne/nix-flakes
