@@ -1,8 +1,7 @@
 {
   description = "NixOS config";
 
-  inputs =
-  {
+  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     grub2-themes.url = "github:vinceliuice/grub2-themes";
@@ -11,10 +10,16 @@
     hmHyprLib.url = "github:Andiurne/hmHyprLib";
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
-    swayimg.url = "github:Andiurne/flakes?dir=swayimg";
+
+    personal.url = "github:andiurne/flakes";
+
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     steam-presence = {
@@ -25,14 +30,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    lintree = {
-      url = "github:Andiurne/flakes?dir=lintree";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     ani-cli-src = {
       url = "github:pystardust/ani-cli/master";
       flake = false;

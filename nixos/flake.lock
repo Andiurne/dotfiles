@@ -3,11 +3,11 @@
     "ani-cli-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1785054775,
-        "narHash": "sha256-esskhuWvfzRqxMuTKW8afhL41pHReDO0AQBAiQJY9/Q=",
+        "lastModified": 1785611452,
+        "narHash": "sha256-nl4c0ASIvoBylnk/F4AxVxQl68de9kWPwnNtiTOLzZc=",
         "owner": "pystardust",
         "repo": "ani-cli",
-        "rev": "dc2a2f304a5ef3594489e7cfe6bd1aed2e46aded",
+        "rev": "489087b541eb1457393b997fdd3589ffe7a8d6a2",
         "type": "github"
       },
       "original": {
@@ -219,6 +219,27 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "e3dea8e4792b09a6c0eb5836b0284ad05b1acba0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "personal",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785531816,
+        "narHash": "sha256-vkMnV0JIyw+g/NmcfoajlGaAO+9a0ezia+FZohQJrik=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "bf9ce9fec78f95f374e8dd3b503863a3ec128ebe",
         "type": "github"
       },
       "original": {
@@ -546,22 +567,6 @@
         "type": "github"
       }
     },
-    "lintree": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./flakes/lintree",
-        "type": "path"
-      },
-      "original": {
-        "path": "./flakes/lintree",
-        "type": "path"
-      },
-      "parent": []
-    },
     "millennium": {
       "inputs": {
         "millennium-src": "millennium-src",
@@ -763,6 +768,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1785734586,
+        "narHash": "sha256-ODZkEK9Gy50yg6h98u7KkitZ3oc/uuTFK00bh1CRdNA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "531670d871c0e29724a02f3cbcac170adc65b58c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -802,6 +823,25 @@
         "type": "github"
       }
     },
+    "personal": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1785779404,
+        "narHash": "sha256-6bSIKDEI2hgCkmsxa+++3uxp6Z/aKUYSR609OEsIuE4=",
+        "owner": "andiurne",
+        "repo": "flakes",
+        "rev": "efbdd0c93cdea2ba9af20b921b0c7a9bdc5a7f5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andiurne",
+        "repo": "flakes",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -831,12 +871,12 @@
         "hmHyprLib": "hmHyprLib",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "lintree": "lintree",
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_6",
         "nixvim": "nixvim",
         "noctalia": "noctalia",
+        "personal": "personal",
         "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "steam-presence": "steam-presence",

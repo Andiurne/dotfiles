@@ -3,10 +3,10 @@ let
     bg = "0x00000000";
 in {
 disabledModules = [ "programs/swayimg.nix" ];
-imports = [ inputs.swayimg.homeModules."v5.5" ];
+imports = [ inputs.personal.homeModules."swayimg_v5.5" ];
 programs.swayimg = {
     enable = true;
-    package = inputs.swayimg.packages.${system};
+    package = inputs.personal.packages.${system}.swayimg-lock;
     configPath = "swayimg/template.lua";
 
     text = {

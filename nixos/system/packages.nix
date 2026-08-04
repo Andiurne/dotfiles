@@ -9,7 +9,7 @@ environment.systemPackages = with pkgs; [
 
     # Basic graphical environment
     foot
-    inputs.lintree.packages.${system}.default
+    inputs.personal.packages.${system}.lintree
     mpv
     nerd-fonts.jetbrains-mono
     btop
@@ -28,7 +28,7 @@ environment.systemPackages = with pkgs; [
     imagemagick
 
     # File Openers
-    swayimg # Wayland image viewer that overlays a terminal
+    inputs.personal.packages.${system}.swayimg-lock # Wayland image viewer that overlays a terminal
     zathura # Minimal pdf viewer
 
     # Screen Capture
