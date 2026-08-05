@@ -19,12 +19,10 @@
     /rules.nix
     ];
 
-    wayland.windowManager.hyprland = let
-	        sys = pkgs.stdenv.hostPlatform.system;
-        in {
+    wayland.windowManager.hyprland = {
 	        enable = true;
-		package = inputs.hyprland.packages.${sys}.hyprland;
-		portalPackage = inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
+		package = null; #inputs.hyprland.packages.${sys}.hyprland;
+	        portalPackage = null; #inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
 		systemd.enable = false;
 
                 # Just require the hot-reloaded files
