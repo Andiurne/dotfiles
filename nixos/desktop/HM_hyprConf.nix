@@ -1,4 +1,4 @@
-{pkgs, inputs, config, ...}:
+{inputs, system, ...}:
 {
     dconf.settings."org/gnome/desktop/interface" = {
         cursor-theme = "king-halo-xcur";
@@ -19,10 +19,12 @@
     /rules.nix
     ];
 
-    wayland.windowManager.hyprland = {
+    wayland.windowManager.hyprland = let
+        hyprpkgs = inputs.hyprland.packages.${system};
+        in {
 	        enable = true;
-		package = null; #inputs.hyprland.packages.${sys}.hyprland;
-	        portalPackage = null; #inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
+		package = hyprpkgs.hyprland; #inputs.hyprland.packages.${sys}.hyprland;
+	        portalPackage = hyprpkgs.xdg-desktop-portal-hyprland; #inputs.hyprland.packages.${sys}.xdg-desktop-portal-hyprland;
 		systemd.enable = false;
 
                 # Just require the hot-reloaded files

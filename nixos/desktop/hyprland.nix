@@ -1,9 +1,14 @@
-{pkgs, inputs, system, ...}: {
+{pkgs, inputs, system, ...}:
+let
+hyprpkgs = inputs.hyprland.packages.${system};
+in {
+
+    nixpkgs.overlays = [(final: prev: {hyprland = hyprpkgs.hyprland;})];
 
     programs.hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+        #package = hyprpkgs.hyprland;
+        #portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
         withUWSM = true;
       };
 

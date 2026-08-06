@@ -57,15 +57,15 @@
 		(mkCurve "almostLinear" (bezierRule [0.5 0.5] [0.75 1]))
 		(mkCurve "quick" (bezierRule [0.15 0] [0.1 1]))
 
-		(mkCurve "easy" (springRule 1 71.2633 15.8273644))
+		(mkCurve "easy" (springRule 1 91.2633 15.8273644))
 	];
 
 	animation = with inputs.hmHyprLib.lib;
 	[
 		(mkAnimation "global" 10 "default")
 		(mkAnimation "border" 5.39 "easeOutQuint")
-		(mkAnimation "windows" 4.79 "easy")
-		(addStyle (mkAnimation "windowsIn" 4.1 "easy") "popin 87%")
+		(mkAnimation "windows" 4.79 "quick")
+		(addStyle (mkAnimation "windowsIn" 4.1 "easeOutQuint") "popin 87%")
 		(addStyle (mkAnimation "windowsOut" 1.49 "linear") "popin 87%")
 		(mkAnimation "fadeIn" 1.73 "almostLinear")
 		(mkAnimation "fadeOut" 1.46 "almostLinear")

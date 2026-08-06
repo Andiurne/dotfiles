@@ -56,6 +56,7 @@
       lib = nixpkgs.lib;
   in
   {
+    hyprpkgs = inputs.hyprland.packages.${system};
     packages.x86_64-linux = {
       hyprland = self.nixosConfigurations.enchantedSlate.config.programs.hyprland.package;
       bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
