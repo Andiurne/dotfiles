@@ -6,7 +6,7 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     grub2-themes.url = "github:vinceliuice/grub2-themes";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
-    hyprland.url = "github:hyprwm/Hyprland/v0.56.1";
+    hyprland.url = "github:hyprwm/Hyprland/v0.56.1-b";
     hmHyprLib.url = "github:Andiurne/hmHyprLib";
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
