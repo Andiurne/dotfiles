@@ -11,7 +11,7 @@
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
 
-    personal.url = "github:andiurne/flakes";
+    andiurne-modules.url = "github:Andiurne/nix-modules";
 
     home-manager = {
       url = "github:nix-community/home-manager";

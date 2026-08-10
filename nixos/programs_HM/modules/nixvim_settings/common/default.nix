@@ -63,8 +63,9 @@ in
     expandtab = true;
     shiftwidth = 2;
     smartindent = true;
-    tabstop = 2;
-    softtabstop = 2;
+    smarttab = true;
+    tabstop = 4;
+    softtabstop = 4;
 
     ignorecase = true;
     smartcase = true;

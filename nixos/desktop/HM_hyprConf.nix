@@ -6,7 +6,7 @@
 
     services.hyprpolkitagent.enable = false;
 
-    imports = map (dir: ./hyprConf + dir) [
+    /*imports = map (dir: ./hyprConf + dir) [
     /aesthetics.nix
     /config.nix
     /device.nix
@@ -17,7 +17,9 @@
     /luaVars.nix
     /monitor.nix
     /rules.nix
-    ];
+    ];*/
+    disabledModules = ["services/window-managers/hyprland"];
+    imports = [ (import ./altModule/ad_module.nix (builtins.getFlake "github:Andiurne/nixLuaUtils")) ];
 
     wayland.windowManager.hyprland = let
         hyprpkgs = inputs.hyprland.packages.${system};
@@ -30,7 +32,7 @@
                 # Just require the hot-reloaded files
                 # Theoretically I *could* port the lua conf into nix...
                 # but like why?
-                extraConfig = ''
+                extraLua = ''
                 hl.config({
                     misc = {
                         force_default_wallpaper = 0,
