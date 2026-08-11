@@ -19,7 +19,11 @@
     /rules.nix
     ];*/
     disabledModules = ["services/window-managers/hyprland"];
-    imports = [ (import ./altModule/ad_module.nix (builtins.getFlake "github:Andiurne/nixLuaUtils")) ];
+    imports = [ ./hyprland-hm/module.nix ]
+        ++ map (dir: ./hyprConf/${dir})
+        [
+            "config.nix"
+        ];
 
     wayland.windowManager.hyprland = let
         hyprpkgs = inputs.hyprland.packages.${system};

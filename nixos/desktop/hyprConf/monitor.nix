@@ -1,8 +1,5 @@
-{...}:{wayland.windowManager.hyprland.settings.monitor = [
-{
-	output = "";
-	mode = "preferred";
-	position = "auto";
-	scale = "auto";
-}
-];}
+{wayland.windowManager.hyprland.extraLuaFiles."byCall/monitor".hl.monitor = {
+   "" = {
+
+   };
+};}
