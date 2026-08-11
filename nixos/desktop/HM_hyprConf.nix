@@ -23,6 +23,12 @@
         ++ map (dir: ./hyprConf/${dir})
         [
             "config.nix"
+            "rules.nix"
+            "animations.nix"
+            "device.nix"
+            "monitor.nix"
+            "on.nix"
+            "bind.nix"
         ];
 
     wayland.windowManager.hyprland = let

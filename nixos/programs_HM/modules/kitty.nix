@@ -36,5 +36,6 @@
     keybindings = {
         "Page_Up" = "scroll_page_up";
         "Page_Down" = "scroll_page_down";
+        "ctrl+shift+enter" = "new_window_with_cwd";
     };
 };}
