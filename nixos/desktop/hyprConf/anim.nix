@@ -23,9 +23,9 @@
     "layersIn" = [4 "easeOutQuint" "fade"];
     "fadeLayersIn" = [1.79 "almostLinear"];
     "fadeLayersOut" = [1.39 "almostLinear"];
-    "workspaces" = [1.94 "almostLinear"];
-    "workspacesIn" = [1.21 "almostLinear"];
-    "workspacesOut" = [1.94 "almostLinear"];
+    "workspaces" = [1.94 "almostLinear" "fade"];
+    "workspacesIn" = [1.21 "almostLinear" "fade"];
+    "workspacesOut" = [1.94 "almostLinear" "fade"];
     "zoomFactor" = [7 "quick"];
   };
 };}

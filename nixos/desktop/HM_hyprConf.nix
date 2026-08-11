@@ -19,16 +19,16 @@
     /rules.nix
     ];*/
     disabledModules = ["services/window-managers/hyprland"];
-    imports = [ ./hyprland-hm/module.nix ]
+    imports = [ inputs.andiurne.homeModules.hyprland ]
         ++ map (dir: ./hyprConf/${dir})
         [
             "config.nix"
             "rules.nix"
-            "animations.nix"
+            "anim.nix"
             "device.nix"
             "monitor.nix"
             "on.nix"
-            "bind.nix"
+            "binds.nix"
         ];
 
     wayland.windowManager.hyprland = let

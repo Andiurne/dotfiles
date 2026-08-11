@@ -1,10 +1,10 @@
 {inputs, system, ...}:
 {
 disabledModules = [ "programs/swayimg.nix" ];
-imports = [ inputs.personal.homeModules."swayimg_v5.5" ];
+imports = [ inputs.andiurne.homeModules."swayimg" ];
 programs.swayimg = {
     enable = true;
-    package = inputs.personal.packages.${system}.swayimg-lock;
+    package = inputs.andiurne.packages.${system}.swayimg-lock;
     configPath = "swayimg/template.lua";
 
     text = {

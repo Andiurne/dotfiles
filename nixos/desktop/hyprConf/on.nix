@@ -1,5 +1,5 @@
-{inputs, lib, ...}:{wayland.windowManager.hyprland.hl.on = let
-  inherit (inputs.andiurne-modules.utils.hyprland)
+{inputs, lib, ...}:{wayland.windowManager.hyprland.extraLuaFiles."byCall/on".hl.on = let
+  inherit (inputs.andiurne.utils.hyprland)
     genAutostart
     moduleLib
     nixLuaUtils
@@ -10,7 +10,6 @@
     ;
 
   inherit (nixLuaUtils)
-    mkLuaFunctionText
     mkLuaCallWithTable
     ;
 
@@ -22,7 +21,7 @@ in {
       "equibop"
       "steam -silent"
     ];
-  "window.open" = mkLuaFunctionText {
+  "window.open" = {
     parameters = ["w"];
     body = lib.concatStringsSep "\n"
       [
