@@ -22,13 +22,9 @@
     imports = [ inputs.andiurne.homeModules.hyprland ]
         ++ map (dir: ./hyprConf/${dir})
         [
-            "config.nix"
-            "rules.nix"
-            "anim.nix"
-            "device.nix"
-            "monitor.nix"
-            "on.nix"
+            "files/extraFiles.nix"
             "binds.nix"
+            "noctalia.nix"
         ];
 
     wayland.windowManager.hyprland = let

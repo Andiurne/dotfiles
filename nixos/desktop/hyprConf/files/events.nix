@@ -1,4 +1,4 @@
-{inputs, lib, ...}:{wayland.windowManager.hyprland.extraLuaFiles."byCall/on".hl.on = let
+{inputs, lib, ...}:let
   inherit (inputs.andiurne.utils.hyprland)
     genAutostart
     moduleLib
@@ -14,7 +14,7 @@
     ;
 
   inherit lib;
-in {
+in {hl.on = {
   "hyprland.start" = genAutostart
     [
       "noctalia"

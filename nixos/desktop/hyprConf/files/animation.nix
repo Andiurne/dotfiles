@@ -1,6 +1,5 @@
-{wayland.windowManager.hyprland.extraLuaFiles."animation".hl =
 {
-  curve = {
+  hl.curve = {
     "easeOutQuint" = [[0.23 1] [0.32 1]];
     "easeInOutCubic" = [[0.65 0.05] [0.36 1]];
     "linear" = [[0 0] [1 1]];
@@ -10,7 +9,7 @@
     "easy" = [1 91.2633 15.8273644];
   };
 
-  animation = {
+  hl.animation = {
     "global" = [10 "default"];
     "border" = [5.39 "easeOutQuint"];
     "windows" = [4.79 "quick"];
@@ -28,4 +27,4 @@
     "workspacesOut" = [1.94 "almostLinear" "fade"];
     "zoomFactor" = [7 "quick"];
   };
-};}
+}

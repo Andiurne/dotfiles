@@ -1,6 +1,5 @@
-{wayland.windowManager.hyprland.extraLuaFiles."byCall/rules".hl =
 {
-  workspace_rule = [
+  hl.workspace_rule = [
     {
       workspace = "special:discord";
       on_created_empty = "[silent] app2unit -- equibop";
@@ -11,7 +10,7 @@
     }
   ];
 
-  layer_rule = [
+  hl.layer_rule = [
     {
       name = "noctalia";
 		  match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
@@ -21,7 +20,7 @@
     }
   ];
 
-  window_rule = [
+  hl.window_rule = [
     {
       name = "suppress-maximize-events";
       match.class = ".*";
@@ -41,4 +40,4 @@
     }
   ];
 
-};}
+}

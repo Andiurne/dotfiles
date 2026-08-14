@@ -7,24 +7,27 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1786474962,
-        "narHash": "sha256-pwOJ5S1Algs3bj+xpzYxYdyokdn/npDPh++vKoKOXdg=",
-        "path": "/home/devinr/Code/GitHub/nix-modules",
-        "type": "path"
+        "lastModified": 1786553829,
+        "narHash": "sha256-9qxrucjfN4rVrSP7xBZPXmg/AD0gTMobaQVjZnFFw4Q=",
+        "owner": "Andiurne",
+        "repo": "nix-modules",
+        "rev": "eb2a876078c09bfd12350f287c8f83cc1300bfae",
+        "type": "github"
       },
       "original": {
-        "path": "/home/devinr/Code/GitHub/nix-modules",
-        "type": "path"
+        "owner": "Andiurne",
+        "repo": "nix-modules",
+        "type": "github"
       }
     },
     "ani-cli-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1785611452,
-        "narHash": "sha256-nl4c0ASIvoBylnk/F4AxVxQl68de9kWPwnNtiTOLzZc=",
+        "lastModified": 1786437958,
+        "narHash": "sha256-IOC1q3c9vKUS1pzjXrenjoiThKtICmAGTvebP2ohEqk=",
         "owner": "pystardust",
         "repo": "ani-cli",
-        "rev": "489087b541eb1457393b997fdd3589ffe7a8d6a2",
+        "rev": "92e9d796d23aef3ae94b52852f9c992e2bce4fe3",
         "type": "github"
       },
       "original": {

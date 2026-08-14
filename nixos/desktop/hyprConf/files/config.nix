@@ -1,4 +1,4 @@
-{wayland.windowManager.hyprland.extraLuaFiles."byCall/config".hl.config = {
+{hl.config = {
   input = {
     kb_layout = "us";
     kb_variant = "altgr-intl";

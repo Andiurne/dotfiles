@@ -29,7 +29,7 @@ programs.swayimg = {
 
         wlcopy = {
             parameters = ["path"];
-            body = ''os.execute("cat" .. path .. " | wl-copy")'';
+            body = ''os.execute("wl-copy " .. path)'';
         };
 
         move = {
@@ -74,8 +74,6 @@ programs.swayimg = {
                 local pngPath = repExt(imgPath, "png")
                 os.execute("ffmpeg -i " .. imgPath .. " " .. pngPath .. "; rm " .. imgPath)
                 wlcopy(pngPath)'';
-
-            "Shift+c" = ''os.execute("wl-copy " .. swayimg.viewer.get_image().path)'';
 
             "Shift+Up" = ''move("Up")'';
             "Shift+Down" = ''move("Down")'';
