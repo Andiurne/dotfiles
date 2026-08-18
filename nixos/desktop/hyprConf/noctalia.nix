@@ -4,6 +4,7 @@ let
     prefixBindCmd
     ;
   noctalia = (prefixBindCmd "noctalia msg");
+  panel = (prefixBindCmd "noctalia msg panel-toggle");
 in {
   hl.bind = [
     ["SUPER + C" {submap = "noctalia_panels";}]
@@ -12,6 +13,7 @@ in {
     ["SUPER + SUPER_L" "panel-toggle launcher" ["release"]]
     ["ALT + TAB" "window-switcher"]
     ["SUPER+SHIFT + V" "clipboard"]
+    ["SUPER + comma" "settings-toggle"]
 
     # Session Control
     ["SUPER + L" "session lock"]
@@ -36,17 +38,18 @@ in {
 
     noctalia_panels = {
       onDispatch = "reset";
-      body = map noctalia [
-        ["S" "settings-toggle"]
-        ["V" "panel-toggle clipboard"]
-        ["W" "panel-toggle wallpaper"]
+      body = map panel [
+        ["V" "clipboard"]
+        ["W" "wallpaper"]
 
-        ["C" "panel-toggle control-center"]
-        ["SUPER+C" "panel-toggle control-center"]
-        ["SHIFT+C" "panel-toggle control-center calendar"]
-        ["N" "panel-toggle control-center notifications"]
-        ["SHIFT+W" "panel-toggle control-center weather"]
-        ["SHIFT+V" "panel-toggle control-center audio"]
+        ["C" "control-center"]
+        ["SUPER+C" "control-center"]
+        ["SHIFT+C" "control-center calendar"]
+        ["B" "control-center bluetooth"]
+        ["N" "control-center notifications"]
+        ["SHIFT+N" "control-center network"]
+        ["SHIFT+W" "control-center weather"]
+        ["SHIFT+V" "control-center audio"]
       ] ++[["escape" {submap = "reset";}]];
     };
   };

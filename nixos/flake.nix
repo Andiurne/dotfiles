@@ -70,7 +70,7 @@
     nixosConfigurations = lib.genAttrs
       [
 	"enchantedSlate"
-	"VC-station"
+	"enchantedObelisk"
 	"bootstick"
       ]
       (hostName: lib.nixosSystem {
@@ -89,7 +89,7 @@
 	./secrets/${hostName}.nix
 	{
 	networking.hostName = hostName;
-	time.timeZone = "America/Los_Angeles";
+	#time.timeZone = "America/New_York";
 	}
        ];
       });

@@ -81,6 +81,7 @@ in {
         ["E" (detach "obsidian")]
         ["S" "steam"]
         ["C" "hyprpicker -a"]
+        ["V" "pwvucontrol"]
         esc
       ];
     };

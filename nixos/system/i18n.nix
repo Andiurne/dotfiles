@@ -1,17 +1,17 @@
-{config, pkgs, ...}:{
-i18n = {
-  # LA Timezone 
-  defaultLocale = "en_US.UTF-8";
+{
+/*i18n = {
+  # LA Timezone
+  defaultLocale = timezone;
   extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = timezone;
+    LC_IDENTIFICATION = timezone;
+    LC_MEASUREMENT = timezone;
+    LC_MONETARY = timezone;
+    LC_NAME = timezone;
+    LC_NUMERIC = timezone;
+    LC_PAPER = timezone;
+    LC_TELEPHONE = timezone;
+    LC_TIME = timezone;
     };
-};
+  };*/
 }

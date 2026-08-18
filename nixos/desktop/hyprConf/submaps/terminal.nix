@@ -4,6 +4,8 @@
   body = [
     ["T" terminal]
     ["SUPER+T" terminal]
+    ["A" "${terminal} -- ${shell} -C ani-cli"]
+    ["SHIFT+A" "${terminal} -- ${shell} -C ani-cli -- -c"]
     ["Q" "kitten quick-access-terminal"]
     ["E" fileManager]
     ["SHIFT + E" editor]
