@@ -7,7 +7,6 @@ fileSystems = {
   "/".options = [ "compress=zstd" ];
   "/home".options = [ "compress=lzo" ];
   "/nix".options = [ "compress=zstd" "noatime"];
-  "/swap".options = [ "noatime" ];
 };
 
 swapDevices = [{
