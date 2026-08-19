@@ -1,13 +1,11 @@
 keys:
   - &andiurne age1fnnq89dsu0vj2s26pa7yt58jj4ylj69lzwku0zjvk62900m9mu3swwq6a0
   - &enchantedSlate age1n3kf3hsglrr5lqrwr3s67s07z8r4dfd20ctecxgcfsva7jpvjarq7jk4j8
-  - &devinr age1qqmq39d0sxy5gex7dmta8t65qnu08t6n63w2mkr52uwvpns0hvks5srvqv
-  - &vc-station age1d94e2gpvyeuscxyz8wnxg29awd57u9w9vsdy2sd3jav0x9t9mpxqhedp97
+  - &enchantedObelisk age1sg2jtu3fya238p7agxrl7w5ezy9sux6m7r6n7gw6yetdxzyltagsn8u078
 creation_rules:
   - path_regex: .+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *andiurne
-          - *devinr
           - *enchantedSlate
-          - *vc-station
+          - *enchantedObelisk

@@ -2,7 +2,6 @@
   imports = [
     ../../gaming/andiurne_gamingConf.nix
     ./module.nix
-    ./warpinator.nix
   ];
 
 users.extraUsers.andiurne.shell = pkgs.fish;

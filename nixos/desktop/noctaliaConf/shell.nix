@@ -6,7 +6,6 @@
     settings_show_advanced = true;
     launcher = {
         app_grid = true;
-        session_search = true;
         compact = true;
     };
     panel = {

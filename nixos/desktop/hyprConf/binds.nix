@@ -17,6 +17,8 @@ in {
   imports = [
     (import ./submaps/browser.nix browser)
     (import ./submaps/terminal.nix {inherit terminal shell fileManager editor;})
+    (import ./submaps/programs.nix detach esc)
+    (import ./submaps/movefocus.nix esc)
   ];
 
   wayland.windowManager.hyprland.extraLuaFiles."binds".hl =
@@ -26,9 +28,10 @@ in {
   ];
   bind = [
     ["SUPER + A" {submap = "programs";}]
-    ["SUPER+ W" {submap = "browser";}]
+    ["SUPER + W" {submap = "browser";}]
     ["SUPER + T" {submap = "terminal";}]
     ["SUPER+SHIFT + W" {submap = "wallpaper";}]
+    ["SUPER + TAB" {submap = "movefocus";}]
 
     ["SUPER + E" fileManager]
 
@@ -72,16 +75,4 @@ in {
         (map builtins.toString (lib.lists.range 0 9))
       );
 
-  define_submap = {
-    programs = {
-      onDispatch = "reset";
-      body = [
-        ["E" (detach "obsidian")]
-        ["S" "steam"]
-        ["C" "hyprpicker -a"]
-        ["V" "pwvucontrol"]
-        esc
-      ];
-    };
-  };
 };}

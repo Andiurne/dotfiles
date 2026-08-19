@@ -20,6 +20,7 @@ in {hl.on = {
       "noctalia"
       "equibop"
       "steam -silent"
+      "openrgb --startminimized"
     ];
   "window.open" = {
     parameters = ["w"];

@@ -31,10 +31,12 @@ programs.noctalia =  {
 		location.auto_locate = true;
 		brightness = {
 			enable_ddcutil = true;
-			"DP-3".backend = "ddcutil";
-			"eDP-1" = {
-				backend = "backlight";
-				#backlight_device = "intel_backlight";
+			monitor = {
+				"DP-3".backend = "ddcutil";
+				"eDP-1" = {
+					backend = "backlight";
+					#backlight_defice = "intel_backlight";
+				};
 			};
 		};
 }

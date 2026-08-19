@@ -6,7 +6,7 @@
 
     logo =
     {
-        command = "noctalia msg panel-toggle control-center";
+        actions.left = "exec noctalia msg panel-toggle control-center";
         glyph = "line-dashed";
         type = "custom_button";
     };
@@ -27,8 +27,8 @@
     brightness =
     {
         actions = {
-            scroll_up = "volume-up 2%";
-            scroll_down = "volume-down 2%";
+            scroll_up = "brightness-up 2%";
+            scroll_down = "brightness-down 2%";
         };
         show_label = false;
     };
