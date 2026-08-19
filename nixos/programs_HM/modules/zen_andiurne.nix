@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:
+{config, pkgs, inputs, ...}:
 # Copied from the NixOS wiki
 let
     extensions = map (idList: {
@@ -28,6 +28,14 @@ programs.zen-browser = {
 		  force = true;
 		  default = "ddg";
 	  };
+
+	  userChrome = ''
+	  @import "${config.home.homeDirectory}/.cache/noctalia/zen-browser/zen-userChrome.css";
+	  '';
+
+	  userContent = ''
+	  @import "${config.home.homeDirectory}/.cache/noctalia/zen-browser/zen-userContent.css"
+	  '';
   };
 
   # Where extensions and preferences are modified
@@ -66,6 +74,7 @@ programs.zen-browser = {
 
       Preferences = {
 	      # USE DOUBLE QUOTES
+	      "devtools.chrome.enabled" = true;
 	      "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
 	      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };

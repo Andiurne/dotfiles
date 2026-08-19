@@ -25,14 +25,12 @@ in {
     {fingers = 3; direction = "horizontal"; action = "workspace";}
   ];
   bind = [
-    ["SUPER + C" {submap = "noctalia_panels";}]
     ["SUPER + A" {submap = "programs";}]
     ["SUPER+ W" {submap = "browser";}]
     ["SUPER + T" {submap = "terminal";}]
     ["SUPER+SHIFT + W" {submap = "wallpaper";}]
 
     ["SUPER + E" fileManager]
-    ["SUPER + V" editor]
 
     ["XF86AudioMicMute" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"]
     ["SUPER+backspace" {dpms = "display off";}]

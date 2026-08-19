@@ -29,6 +29,14 @@ programs.noctalia =  {
 		nightlight.enabled = true;
 		notification.scale = 0.75;
 		location.auto_locate = true;
+		brightness = {
+			enable_ddcutil = true;
+			"DP-3".backend = "ddcutil";
+			"eDP-1" = {
+				backend = "backlight";
+				#backlight_device = "intel_backlight";
+			};
+		};
 }
 	# Imports from noctaliaConf
 	[

@@ -7,6 +7,7 @@ let
   panel = (prefixBindCmd "noctalia msg panel-toggle");
 in {
   hl.bind = [
+    ["SUPER + V" "noctalia msg panel-toggle clipboard"]
     ["SUPER + C" {submap = "noctalia_panels";}]
   ] ++ map noctalia [
     ["CTRL+ALT+Delete" "panel-toggle session"]

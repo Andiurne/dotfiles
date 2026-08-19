@@ -1,5 +1,5 @@
 # home.nix for andiurne
-{pkgs, ...}: {
+{pkgs, config, ...}: {
 imports = [
   ../../programs_HM/andiurne_imports.nix
 
@@ -26,6 +26,10 @@ home = {
     "face.png" = {
       source = ../../assets/faces/andiurne.png;
       executable = true;
+    };
+    "Pictures/Wallpapers" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/dotfiles/nixos/assets/Wallpapers";
+      recursive = true;
     };
   };
 

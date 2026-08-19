@@ -18,12 +18,18 @@
         width = 188.0;
     };
     volume = {
-        scroll_step = 2;
+        actions = {
+            scroll_up = "volume-up 2%";
+            scroll_down = "volume-down 2%";
+        };
         show_label = false;
     };
     brightness =
     {
-        scroll_step = 2;
+        actions = {
+            scroll_up = "volume-up 2%";
+            scroll_down = "volume-down 2%";
+        };
         show_label = false;
     };
 

@@ -1,6 +1,9 @@
 {pkgs, ...}:{
 imports = [./enchantedObelisk_autogen.nix];
-environment.systemPackages = with pkgs; [ openrgb ];
+services.hardware.openrgb = {
+  enable = true;
+  motherboard = "amd";
+};
 boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
 fileSystems = {
@@ -10,7 +13,7 @@ fileSystems = {
 };
 
 swapDevices = [{
-  device = "/swap/swapfile";
+  device = "/var/lib/swapfile";
   size = 32*1024;
 }];
 }
