@@ -33,7 +33,7 @@ in {
           hash = "sha256-oI3cW/gvsZ+TukGkrydiSVS3fw61xFO60bLXHjVcT+Y=";
         };
 
-        appImageContents = prev.appimageTools.extractType1 {inherit pname version src; };
+        appImageContents = prev.appimageTools.extract {inherit pname version src; };
 
         extraInstallCommands = ''
           mkdir -p $out/share/applications

@@ -4,7 +4,7 @@ imports = [
   ../../programs_HM/andiurne_imports.nix
 
   # Desktop
-  ../../desktop/HM_hyprConf.nix
+  #../../desktop/HM_hyprConf.nix
   ../../desktop/HM_noctalia_conf.nix
 
   # Gaming

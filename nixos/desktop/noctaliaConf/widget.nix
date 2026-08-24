@@ -36,6 +36,6 @@
     battery.hide_when_plugged = true;
     bluetooth.hide_when_no_connected_device = true;
     tray.drawer = true;
-    clock.format = "%I:%M %p";
+    clock.format = "%H:%M:%S";
 };
 }

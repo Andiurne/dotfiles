@@ -1,4 +1,5 @@
 nixos/hardware-configuration.nix
+nixos/ssh/*
 nixos/secrets
 nixPkgs/localSources
 nixos/assets/Wallpapers/wallhaven

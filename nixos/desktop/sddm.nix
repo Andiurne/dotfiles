@@ -1,6 +1,9 @@
 {pkgs, inputs, config, ...}: {
 imports = [ inputs.silentSDDM.nixosModules.default ];
 
+	services.displayManager.sddm.extraPackages = with pkgs; [
+		king-halo-xcur
+		];
 	programs.silentSDDM = {
 		enable = true;
 		theme = "default-left";

@@ -1,12 +1,11 @@
-{config, pkgs, ...}:{
+{config, pkgs, lib, ...}:{
 # Dependencies
 home.packages = with pkgs; [
     grim
-    hyprshot
     slurp
     gpu-screen-recorder
     kitty
-];
+] ++ (if config.wayland.windowManager.hyprland.enable then [pkgs.hyprshot] else []);
 
 programs.fish.functions =
 {
@@ -20,18 +19,6 @@ programs.fish.functions =
     rm -f -- "$tmp"
     '';
 
-    screencap-screen = ''
-    hyprshot -m active -m output -o ~/Pictures/Screenshots
-    '';
-
-    screencap-region = ''
-    hyprshot -m region -z --raw | swappy -f -
-    '';
-
-    screencap-window = ''
-    hyprshot -m window --freeze --raw | swappy -f -
-    '';
-
     screenrec-toggle = ''
     if pkill -2 -f 'gpu-screen-recorder'
       true
@@ -41,13 +28,13 @@ programs.fish.functions =
     '';
 
     run = ''
-    hyprctl eval "hl.dispatch(hl.dsp.exec_cmd('$argv'))"
+    $argv &; disown
     '';
 
     launch = ''
-    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('$argv'))")
-    exit
+    $argv &; disown; exit
     '';
+
 
     # Yazi's shell function
     # THIS IS DONE BY SETTING SHELLWRAPPER IN YAZI'S HM
@@ -59,5 +46,27 @@ programs.fish.functions =
 			end
 			command rm -f -- "$tmp"
 			'';*/
-    };
+    } // (if !config.wayland.windowManager.hyprland.enable then {} else {
+
+    run = ''
+    hyprctl eval "hl.dispatch(hl.dsp.exec_cmd('$argv'))"
+    '';
+
+    launch = ''
+    hyprctl eval (string collect "hl.dispatch(hl.dsp.exec_cmd('$argv'))")
+    exit
+    '';
+
+    screencap-screen = lib.mkIf config.programs.hyprland.enable ''
+    hyprshot -m active -m output -o ~/Pictures/Screenshots
+    '';
+
+    screencap-region = lib.mkIf config.programs.hyprland.enable ''
+    hyprshot -m region -z --raw | swappy -f -
+    '';
+
+    screencap-window = lib.mkIf config.programs.hyprland.enable ''
+    hyprshot -m window --freeze --raw | swappy -f -
+    '';
+});
 }

@@ -23,8 +23,6 @@ programs.steam = {
 
   presence = {
     enable = true;
-    # Hardcoded for now because this has taken too long to solve
-    # Should be solved in future by figuring out system-wide sops
     steamApiKeyFile = builtins.toPath config.sops.secrets.STEAM_API_KEY.path;
     userIds = [ (lib.strings.trim (builtins.readFile ../secrets/STEAM_USER_ID)) ];
     coverArt = {

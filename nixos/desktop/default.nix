@@ -1,7 +1,7 @@
 {...}: {
         imports = [
                 ./sddm.nix
-                ./hyprland.nix
+                #./hyprland.nix
                 ./xdg.nix
                 ./noctaliaReqs.nix
         ];
