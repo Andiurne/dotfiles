@@ -2,6 +2,7 @@
 # Dependencies
 home.packages = with pkgs; [
     grim
+    rsync
     slurp
     gpu-screen-recorder
     kitty
@@ -9,6 +10,10 @@ home.packages = with pkgs; [
 
 programs.fish.functions =
 {
+    syncToObelisk = ''
+    rsync -Pav -e "ssh" $argv[1] andiurne@enchantedObelisk:/home/andiurne/$argv[2]
+    '';
+
     nvimFindBase = ''
     set -l tmp (mktemp -t "yazi-chooser.XXXXX")
     command yazi ~/Code --cwd-file="$tmp"

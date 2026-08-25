@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{lib, config, ...}: {
   imports = [
     ./steam.nix
     (import ./ryubing "andiurne")
