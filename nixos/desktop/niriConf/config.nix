@@ -1,4 +1,12 @@
-kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/config.kdl".text = kdl.formats.v1 [
+kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/config.kdl".text = kdl.formats.v1 (
+(map (cmd: (n "spawn-sh-at-startup" cmd)) [
+    "noctalia"
+    "steam -silent"
+    "openrgb --starminimized"
+    "wljoywake"
+    "wayland-pipewire-idle-inhibit -w"
+])
+++ [
 (n "include" "noctalia.kdl")
 (n "include" "devices.kdl")
 (n "include" "style.kdl")
@@ -18,10 +26,4 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/config.kdl".text = kdl.fo
     (n "xcursor-size" 32)
 ])
 
-] ++ (map (cmd: (n "spawn-sh-at-startup" cmd)) [
-    "noctalia"
-    "steam -silent"
-    "openrgb --starminimized"
-    "wljoywake"
-    "wayland-pipewire-idle-inhibit -w"
 ]);}

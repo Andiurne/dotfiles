@@ -1,4 +1,4 @@
-{config, ...}: {
+{
 users.groups."keys" = {};
 
 sops = {

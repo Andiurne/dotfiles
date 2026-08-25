@@ -88,8 +88,9 @@
 	./desktop
 	./hardwareConf/${hostName}.nix
 	./users/${hostName}_userSet.nix
-	./sops
 	./secrets/${hostName}.nix
+	./ssh/${hostName}.nix
+	./sops
 	{
 	networking.hostName = hostName;
 	#time.timeZone = "America/New_York";

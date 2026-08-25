@@ -9,7 +9,6 @@
       ./programs.nix
       ./yazi.nix
       ./text.nix
-      ./ssh.nix
     ];
 
 
