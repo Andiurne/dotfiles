@@ -37,11 +37,14 @@ programs.fish.functions =
     '';
 
     run = ''
-    $argv &; disown
+    $argv </dev/null &>/dev/null &
+    disown
     '';
 
     launch = ''
-    $argv &; disown; exit
+    $argv </dev/null &>/dev/null &
+    disown
+    exit
     '';
 
 
