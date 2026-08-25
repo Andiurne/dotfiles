@@ -1,6 +1,6 @@
 kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/workspaces.kdl".text = kdl.formats.v1 [
-    (n "workspace" "Media")
     (n "workspace" "Primary")
+    (n "workspace" "Media")
     (n "spawn-at-startup" "equibop")
     (n "window-rule" [
         (n "match" {app-id = "equibop";})

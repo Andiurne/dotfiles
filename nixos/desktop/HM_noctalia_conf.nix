@@ -23,7 +23,7 @@ programs.noctalia =  {
 		bar.order = [ "leftMain" ];
 		weather.unit = "imperial";
 		wallpaper = {
-			directory = "~/Pictures/Wallpapers";
+			directory = "~/Pictures/Wallpapers/curated";
 			per_monitor_directories = true;
 		};
 		nightlight.enabled = true;
@@ -35,7 +35,6 @@ programs.noctalia =  {
 				"DP-3".backend = "ddcutil";
 				"eDP-1" = {
 					backend = "backlight";
-					#backlight_defice = "intel_backlight";
 				};
 			};
 		};
@@ -44,7 +43,7 @@ programs.noctalia =  {
 	[
 		"controlCenter"
 		"idle"
-		"leftBar"
+		"topBar"
 		"lockscreen"
 		"plugins"
 		"shell"

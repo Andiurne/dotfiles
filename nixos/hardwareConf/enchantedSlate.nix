@@ -9,14 +9,4 @@
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
   };
 
-  # SSH Client Config
-  programs.ssh = {
-    extraConfig = ''
-    Host enchantedObelisk
-      Hostname 10.108.1.23
-      Port 22
-      User andiurne
-    '';
-  };
-
   }

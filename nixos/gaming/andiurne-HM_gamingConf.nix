@@ -4,7 +4,7 @@ home.packages = with pkgs; [
 ];
   home.file."Games/UnbeatableAppData" = {
     source = config.lib.file.mkOutOfStoreSymlink
-      (builtins.toPath "${config.home.homeDirectory}/Steam/steamapps/compatdata/2240620/pfx/drive_c/users/steamuser/AppData/LocalLow/D-CELL Games/UNBEATABLE");
+     "${config.home.homeDirectory}/.local/share/Steam/steamapps/compatdata/2240620/pfx/drive_c/users/steamuser/AppData/LocalLow/D-CELL GAMES/UNBEATABLE";
     recursive = true;
   };
 

@@ -30,18 +30,14 @@ in {
             (n "Mod+Q" [(n "close-window")])
 
             # Niri Navigation
-            (n "Mod+L" [(n "focus-column-right")])
-            (n "Mod+Shift+D" [(n "focus-column-right")])
-            (n "Mod+Shift+L" [(n "move-column-right")])
-            (n "Mod+H" [(n "focus-column-left")])
-            (n "Mod+Shift+A" [(n "focus-column-left")])
-            (n "Mod+Shift+H" [(n "move-column-left")])
-            (n "Mod+K" [(n "focus-window-or-workspace-up")])
-            (n "Mod+Shift+W" [(n "focus-window-or-workspace-up")])
-            (n "Mod+Shift+K" [(n "move-column-to-workspace-up")])
-            (n "Mod+J" [(n "focus-window-or-workspace-down")])
-            (n "Mod+Shift+S" [(n "focus-window-or-workspace-down")])
-            (n "Mod+Shift+J" [(n "move-column-to-workspace-down")])
+            (n "Mod+D" [(n "focus-column-right")])
+            (n "Mod+Shift+D" [(n "move-column-right")])
+            (n "Mod+A" [(n "focus-column-left")])
+            (n "Mod+Shift+A" [(n "move-column-left")])
+            (n "Mod+W" [(n "focus-window-or-workspace-up")])
+            (n "Mod+Shift+W" [(n "move-column-to-workspace-up")])
+            (n "Mod+S" [(n "focus-window-or-workspace-down")])
+            (n "Mod+Shift+S" [(n "move-column-to-workspace-down")])
 
             (n "Mod+bracketright" [(n "switch-preset-column-width")])
             (n "Mod+Shift+bracketright" [(n "consume-or-expel-window-right")])
@@ -59,12 +55,11 @@ in {
             # Program Binds
             (n "Mod+T" [(n "spawn" terminal)])
             (n "Mod+Shift+T" [(n "spawn-sh" "kitten quick-access-terminal")])
-            (n "Mod+W" [(n "spawn" browser)])
+            (n "Mod+B" [(n "spawn" browser)])
             (n "Mod+E" [(n "spawn-sh" fileManager)])
             (n "Mod+Shift+E" [(n "spawn-sh" editor)])
 
             (n "Mod+O" [(n "spawn" "obsidian")])
-            (n "Mod+Ctrl+S" [(n "spawn" "steam")])
             (n "Mod+Ctrl+V" [(n "spawn" "pwvucontrol")])
 
             (n "Mod+Ctrl+A" [(n "spawn-sh" (terminalPass"ani-cli"))])
@@ -72,7 +67,8 @@ in {
 
             # Screencap
             (n "Mod+R" [(n "spawn-sh" (shellPass "screenrec-toggle"))])
-            (n "Mod+S" [(n "screenshot" {show-pointer = false;})])
+            (n "Print" [(n "screenshot" {show-pointer = false;})])
+            (n "Menu" [(n "screenshot" {show-pointer = false;})])
 
             # Media Control
             (n "XF86AudioMicMute" [(n "spawn-sh" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")])
@@ -88,6 +84,7 @@ in {
             (n "Mod+0" {allow-when-locked = true;} [(nocMsg "volume-mute") ])
 
             # Noctalia
+            (n "Mod+space" [(panelSpawn "launcher")])
             (n "Mod+Ctrl+W" [(panelSpawn "wallpaper")])
             (n "Mod+Shift+comma" [(nocMsg "wallpaper-previous")])
             (n "Mod+Shift+period" [(nocMsg "wallpaper-next")])
