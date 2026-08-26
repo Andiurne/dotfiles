@@ -1,0 +1,40 @@
+/**
+ * @name Noctalia Translucence
+ * @description Transluence, colored!
+ * @author CapnKitten
+ *
+ * @website http://github.com/CapnKitten
+ * @source https://github.com/CapnKitten/BetterDiscord/blob/master/Themes/Material-Discord/css/source.css
+ * @donate https://paypal.me/capnkitten
+ * @invite jzJkA6Z
+ */
+
+@import url("https://capnkitten.github.io/BetterDiscord/Themes/Translucence/css/source.css");
+
+:root, .theme-dark, .theme-light {
+  /* App */
+  --app-bg: {{colors.background.default.rgba | set_alpha 0}};
+  --app-margin: 0px;
+  --main-content-color: {{colors.background.default.rgba | set_alpha 0.58}};
+  --sidebar-color: {{colors.background.default.rgba | set_alpha 0.58}};
+
+  /* Accent */
+  --accent-hue: {{colors.primary.default.hue}};
+  --accent-saturation: {{colors.primary.default.saturation}}%;
+  --accent-lightness: {{colors.primary.default.lightness}}%;
+  --accent-text-color: {{colors.on_primary.default.hex}};
+
+  /* Messages */
+  --message-color: {{colors.background.default.rgba | set_alpha 0.19}};
+  --message-color-hover: {{colors.background.default.rgba | set_alpha 0.4}};
+
+  --mention-hue: {{colors.secondary.default.hue}};
+  --mention-saturation: {{colors.secondary.default.saturation}}%;
+  --mention-lightness: {{colors.secondary.default.lightness}}%;
+
+  --reply-hue: {{colors.tertiary.default.hue}};
+  --reply-saturation: {{colors.tertiary.default.saturation}}%;
+  --reply-lightness: {{colors.tertiary.default.lightness}}%;
+
+  /* Textareas and Inputs */
+}

@@ -5,7 +5,7 @@ programs.equibop = {
   # AttrSet of (strings concat with "\n" or abs path)
   # Can be enabled by setting programs.equibop.equicord.settings.enabledThemes to ["THEME_NAME.css"]
   equicord.themes = {
-  	"XCX" = ../../assets/pyrite.theme.css;
+  	"XCX" = ../../assets/pyrite_xcx.theme.css;
     };
 
 
@@ -15,6 +15,7 @@ programs.equibop = {
     disableMinSize = true;
     notifyAboutUpdates = false;
     enabledThemes = [ "XCX.css" ];
+    transparent = true;
     plugins = {
         MessageLoggerEnhanced = {
             enabled = true;

@@ -8,6 +8,7 @@
       ./programs.nix
       ./yazi.nix
       ./text.nix
+      ./virtualisation.nix
     ];
 
 

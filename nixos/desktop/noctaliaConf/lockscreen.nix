@@ -17,4 +17,3 @@
     };
 }
 // import ./lockscreen_enchantedSlate.nix
-// import ./lockscreen_vc-station.nix

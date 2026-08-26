@@ -15,8 +15,10 @@
     {
         color_2 = "secondary";
         show_when_idle = true;
-        width = 188.0;
+        width = 300;
+        bands = 28;
     };
+
     volume = {
         actions = {
             scroll_up = "volume-up 2%";

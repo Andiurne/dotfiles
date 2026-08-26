@@ -26,7 +26,7 @@
         cursor_trail = 250;
 
         confirm_os_window_close = 0;
-        background_opacity = 0.78;
+        background_opacity = 0.58;
         scrollback_lines = 10000;
 
         # Window Layout

@@ -1,12 +1,9 @@
-/** 
- * @name Pyrite - BetterDiscord
- * @author LeafyLuigi
- * @version 0.2.7
- * @description Pyrite for BetterDiscord.
- * @source https://github.com/LeafyLuigi/discord-themes/tree/master/pyrite
- * @website https://github.com/LeafyLuigi/discord-themes/tree/master/pyrite
- * @invite EeQQTWbTf5
+/**
+ * @name XCX Pyrite
+ * @author Andiurne
+ * @description Custom Pyrite
  */
+
 /* Main Imports */
 /* Import Base */
 @import url(https://leafyluigi.github.io/discord-themes/pyrite/build/base.css);
@@ -44,7 +41,7 @@ https://leafyluigi.github.io/discord-themes/pyrite/var-examples.html */
   --user-popout-image: var(--background-image);
   /* Home icon is for the little button in the top left. */
   --home-icon: url("https://clearvision.github.io/icons/discord.svg");
-  /* 
+  /*
   Image attachment can be "fixed", "scroll" or "local".
   scroll/local attaches the background to the modal completely while fixed keeps it in line with the background.
   Default is "fixed" */
@@ -179,7 +176,7 @@ Decorations:
 		- Colour (text-decoration-color) controls the colour of all lines.
 		- Style (text-decoration-style) specifies the style of lines used. Accepted values include "solid", "double", "dotted",
 			"dashed" and "wavy".
-		- Thickness (text-decoration-thickness) is for how thick the lines are. 
+		- Thickness (text-decoration-thickness) is for how thick the lines are.
 	MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration
 */
 :root {

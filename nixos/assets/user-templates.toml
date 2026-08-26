@@ -14,3 +14,11 @@ output_path = "~/.config/yazi/starship-yazi.toml"
 [theme.templates.user.noctalia-swayimg]
 input_path = "~/.config/swayimg/template.lua"
 output_path = "~/.config/swayimg/init.lua"
+
+[theme.templates.user.noctalia-discord-transparent]
+input_path = "~/.config/dotfiles/assets/templates/discord-material.css"
+output_path = "~/.config/equibop/themes/noctalia-material-transparent.theme.css"
+
+[theme.templates.user.noctalia-discord-translucent]
+input_path = "~/.config/dotfiles/assets/templates/discord-translucent.css"
+output_path = "~/.config/equibop/themes/noctalia-translucent.theme.css"

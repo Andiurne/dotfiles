@@ -25,6 +25,7 @@ in {
             (n "Mod+Tab" [(n "toggle-column-tabbed-display")])
             (n "Mod+P" [(n "toggle-window-floating")])
             (n "Mod+Shift+P" [(n "switch-focus-between-floating-and-tiling")])
+            (n "Mod+Shift+c" [(n "spawn-sh" "niri msg pick-color | wl-copy")])
 
             (n "Mod+F" [(n "fullscreen-window")])
             (n "Mod+Q" [(n "close-window")])
