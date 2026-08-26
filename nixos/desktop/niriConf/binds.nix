@@ -81,8 +81,13 @@ in {
             (n "XF86AudioLowerVolume" {allow-when-locked = true;} [(nocMsg "volume-down 2") ])
             (n "Mod+minus" {allow-when-locked = true;} [(nocMsg "volume-down 2") ])
 
-            (n "XF86AudioMute" [(nocMsg "volume-mute") ])
+            (n "XF86AudioMute" {allow-when-locked = true;} [(nocMsg "volume-mute") ])
             (n "Mod+0" {allow-when-locked = true;} [(nocMsg "volume-mute") ])
+
+            (n "XF86MonBrightnessUp" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
+            (n "Mod+Shift+bracketright" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
+            (n "XF86MonBrightnessDown" {allow-when-locked = true;} [(nocMsg "brightness-down 2")])
+            (n "Mod+Shift+bracketleft" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
 
             # Noctalia
             (n "Mod+space" [(panelSpawn "launcher")])

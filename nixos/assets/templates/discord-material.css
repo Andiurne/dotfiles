@@ -20,14 +20,14 @@
 /* MATERIAL YOU DARK THEME SETTINGS */
 .theme-dark {
     --saturation-modifier: 0.31;
-    --lightness-modifier: 0.225;
+    --lightness-modifier: 1; /*0.225;*/
     --text-lightness-modifier: 1.0;
 }
 
 /* MATERIAL YOU LIGHT THEME SETTINGS */
 .theme-light {
     --saturation-modifier: 0.74;
-    --lightness-modifier: 2.125;
+    --lightness-modifier: 1 /*2.125;*/
     --text-lightness-modifier: 1.0;
 }
 
@@ -38,9 +38,12 @@
   --accent-saturation: {{colors.primary.default.saturation}}%;
   --accent-lightness: {{colors.primary.default.lightness}}%;
   --accent-text-color: {{colors.on_primary.default.hex}};
+  --channels-default: #ff0000;
+  --channels-muted: #00ff00;
 
   /* App */
-  --app-bg: {{colors.background.default.rgba | set_alpha 0.3}};
+  --app-font: "FantasqueSansM Nerd Font";
+  --app-bg: {{colors.background.default.rgba | set_alpha 0.58}};
   --main-color: transparent;
   --main-alt: transparent;
   --server-color: transparent;

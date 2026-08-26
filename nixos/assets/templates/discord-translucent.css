@@ -13,10 +13,10 @@
 
 :root, .theme-dark, .theme-light {
   /* App */
-  --app-bg: {{colors.background.default.rgba | set_alpha 0}};
+  --app-bg: {{colors.background.default.rgba | set_alpha 0.58}};
   --app-margin: 0px;
-  --main-content-color: {{colors.background.default.rgba | set_alpha 0.58}};
-  --sidebar-color: {{colors.background.default.rgba | set_alpha 0.58}};
+  --main-content-color: {{colors.background.default.rgba | set_alpha 0}};
+  --sidebar-color: {{colors.background.default.rgba | set_alpha 0}};
 
   /* Accent */
   --accent-hue: {{colors.primary.default.hue}};
@@ -37,4 +37,20 @@
   --reply-lightness: {{colors.tertiary.default.lightness}}%;
 
   /* Textareas and Inputs */
+  --textarea-color: {{colors.background.default.hex}};
+  --textarea-alpha: 0.19;
+  --textarea-text-color: {{colors.on_background.default.hex}};
+
+  /* Cards */
+  --card-color: {{colors.background.default.hsl | set_alpha 0.14}};
+  --card-color-hover: {{colors.background.default.hsl | set_alpha 0.18}};
+  --card-color-select: {{colors.primary.default.hsl | set_alpha 0.21}};
+
+  /* Buttons */
+  --button-color: {{colors.primary.default.hex}};
+  --button-action-color: {{colors.secondary.default.hex}};
+  --button-text-color: {{colors.on_primary.default.hex}};
+
+  /* Modals */
+  --popout-color: {{colors.background.default.hsl | set_alpha 0.46}};
 }

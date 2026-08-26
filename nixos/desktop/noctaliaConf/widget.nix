@@ -15,7 +15,7 @@
     {
         color_2 = "secondary";
         show_when_idle = true;
-        width = 300;
+        width = 256;
         bands = 28;
     };
 
