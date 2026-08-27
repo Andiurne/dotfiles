@@ -2,7 +2,6 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/workspaces.kdl".text = kd
     # Workspaces, when created, "push down"
     # i.e. here "primary" is made, then "media" is made on top of it
     (n "workspace" "Media")
-    (n "spawn-sh-at-startup" "niri msg action focus-workspace 2")
 
     (n "spawn-at-startup" "equibop")
     (n "window-rule" [

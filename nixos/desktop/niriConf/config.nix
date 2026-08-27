@@ -14,6 +14,7 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/config.kdl".text = kdl.fo
     "style"
     "workspaces"
 ]) ++ [
+(n "spawn-sh-at-startup" "niri msg action focus-workspace 2")
 (n "screenshot-path" "~/Pictures/Screenshots/%Y-%m-%d_%R.png")
 (n "prefer-no-csd")
 
