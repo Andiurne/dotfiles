@@ -1,4 +1,4 @@
-{config, pkgs, ...}:{
+{
 
 # NOTE: PCI bus IDs are hardware dependant :(
 # This is for PRIME and such

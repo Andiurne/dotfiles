@@ -1,7 +1,7 @@
 {pkgs, ...}:{
   imports = [
     ./enchantedSlate_autogen.nix
-    ./disableNvidia.nix
+    ./nvidia.nix
   ];
 
   boot = {

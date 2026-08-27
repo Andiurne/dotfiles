@@ -2,6 +2,12 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/style.kdl".text = kdl.for
     (n "debug" [
         (n "honor-xdg-activation-with-invalid-serial")
     ])
+    (n "blur" [
+        (n "passes" 2)
+        (n "offset" 3.0)
+        (n "noise" 0.03)
+        (n "saturation" 1.0)
+    ])
     (n "window-rule" [
         (n "geometry-corner-radius" 20 20 20 20)
         (n "clip-to-geometry" true)

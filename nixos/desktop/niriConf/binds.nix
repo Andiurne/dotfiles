@@ -85,9 +85,9 @@ in {
             (n "Mod+0" {allow-when-locked = true;} [(nocMsg "volume-mute") ])
 
             (n "XF86MonBrightnessUp" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
-            (n "Mod+Shift+bracketright" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
+            (n "Mod+Shift+equal" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
             (n "XF86MonBrightnessDown" {allow-when-locked = true;} [(nocMsg "brightness-down 2")])
-            (n "Mod+Shift+bracketleft" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
+            (n "Mod+Shift+minus" {allow-when-locked = true;} [(nocMsg "brightness-up 2")])
 
             # Noctalia
             (n "Mod+space" [(panelSpawn "launcher")])
