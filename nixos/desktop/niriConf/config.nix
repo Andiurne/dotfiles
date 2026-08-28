@@ -2,7 +2,7 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/config.kdl".text = kdl.fo
 (map (cmd: (n "spawn-sh-at-startup" cmd)) [
     "noctalia"
     "steam -silent"
-    "openrgb --starminimized"
+    "openrgb --startminimized"
     "wljoywake"
     "wayland-pipewire-idle-inhibit -w"
 ])
