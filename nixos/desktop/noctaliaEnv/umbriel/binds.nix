@@ -37,8 +37,8 @@ in {
     "Mod+Shift+S" = "column-move-to-workspace-next";
     "Mod+Shift+D" = "window-move-or-output-right";
 
-    "Mod+Shift+bracketright" = "window-consume-right";
-    "Mod+Shift+bracketleft" = "window-consume-left";
+    "Mod+Shift+bracketright" = "window-consume-left";
+    "Mod+Shift+bracketleft" = "window-expel-right";
 
     "Mod+bracketright" = "window-cycle-width";
     "Mod+bracketleft" = "window-cycle-width-back";
@@ -49,7 +49,7 @@ in {
     "Mod+WheelUp" = "window-focus-left";
     "Mod+WheelDown" = "window-focus-right";
     "Mod+Ctrl+WheelUp" = "window-focus-or-workspace-up";
-    "Mod+Ctrl+WheelDown" = "window-focusor-workspace-down";
+    "Mod+Ctrl+WheelDown" = "window-focus-or-workspace-down";
     "Mod+Shift+WheelUp" = "column-move-left";
     "Mod+Shift+WheelDown" = "column-move-right";
     "Mod+MouseMiddle" = "overview-toggle";

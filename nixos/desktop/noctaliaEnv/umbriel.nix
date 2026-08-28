@@ -1,12 +1,12 @@
 {
-imports = [
-    ./umbriel_binds.nix
-    #./umbriel_workspaces.nix
-    #./umbriel_colors.nix
-    #./umbriel_appearance.nix
-    #./umbriel_animation.nix
-    #./umbriel_overview.nix
-    #./umbriel_layout.nix
+imports = map (path: ./umbriel${path}) [
+    /binds.nix
+    /appearance.nix
+    /workspaces.nix
+    /rules.nix
+    /devices.nix
+    #/layout.nix
+    #/animation.nix
 ];
 programs.umbriel = {
     enable = true;
@@ -16,8 +16,10 @@ programs.umbriel = {
                 "noctalia"
                 "steam -silent"
                 "openrgb -startminimized"
+                "equibop"
                 "wljoywake"
                 "wayland-pipewire-idle-inhibit"
+                "umbriel msg workspace-switch:2"
             ];
 
             xwayland = true;

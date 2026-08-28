@@ -9,11 +9,6 @@ kdl: let inherit (kdl.dsl) n; in {xdg.configFile."niri/workspaces.kdl".text = kd
         (n "open-on-workspace" "Media")
         (n "open-focused" false)
     ])
-    #(n "spawn-at-startup" "zen-twilight")
-    (n "window-rule" [
-        (n "match" {app-id = "zen-twilight"; at-startup = true;})
-        (n "open-on-workspace" "Media")
-    ])
     (n "window-rule" [
         (n "match" {app-id = "com.github.th-ch.youtube-music";})
         (n "default-column-width" [(n "proportion" (1. / 3.))])
