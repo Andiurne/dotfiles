@@ -14,7 +14,7 @@ appearance = {
 
     blur = {
         enabled = true;
-        optimized = true;
+        optimized = false;
         passes = 3;
         radius = 5;
         noise = 0.02;
