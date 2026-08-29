@@ -2,8 +2,8 @@
         imports = [
                 #./sddm.nix
                 #./hyprland.nix
-                ./noctaliaEnv
+                ./noctalia/umbriel
+                ./noctalia/shell
                 ./xdg.nix
-                ./noctaliaReqs.nix
         ];
 }

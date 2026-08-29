@@ -5,7 +5,7 @@ imports = map (path: ./umbriel${path}) [
     /workspaces.nix
     /rules.nix
     /devices.nix
-    #/layout.nix
+    /layout.nix
     #/animation.nix
 ];
 programs.umbriel = {
