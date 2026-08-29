@@ -24,7 +24,7 @@
             size = 24;
             hardware_cursor = true;
             hide_when_typing = false;
-            #doesn't exist? follows_focus;
+            follows_focus = true;
         };
 
         focus = {

@@ -9,7 +9,7 @@
         compact = true;
     };
     panel = {
-        session_placement = "floating";
+        session_position = "center";
         transparency_mode = "glass";
     };
     screen_corners.enabled = true;

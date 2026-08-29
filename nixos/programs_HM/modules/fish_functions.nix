@@ -10,6 +10,17 @@ home.packages = with pkgs; [
 
 programs.fish.functions =
 {
+    mirror = ''
+        wl-mirror (user-input)
+    '';
+
+    user-input = ''
+        set -l tmp (mktemp -t "qatInput.XXXXX")
+        kitty --app-id="input-terminal" -- fish -c "read > $tmp"
+        cat $tmp
+        rm $tmp
+    '';
+
     syncToObelisk = ''
     rsync -Pav -e "ssh" $argv[1] andiurne@enchantedObelisk:/home/andiurne/$argv[2]
     '';

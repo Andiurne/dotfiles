@@ -15,8 +15,8 @@
     quickAccessTerminalConfig = {
         grab_keyboard = "no";
         edge = "bottom";
-        lines = "1";
-        background_opacity = 0.78;
+        lines = "5";
+        background_opacity = 0.58;
     };
 
     settings = {

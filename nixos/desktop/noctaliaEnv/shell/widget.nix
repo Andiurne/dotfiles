@@ -35,6 +35,12 @@
         show_label = false;
     };
 
+    monitor_off = {
+        glyph = "screen-share-off";
+        type = "custom_button";
+        actions.left = "exec umbriel msg dmps-off";
+    };
+
     battery.hide_when_plugged = true;
     bluetooth.hide_when_no_connected_device = true;
     tray.drawer = true;

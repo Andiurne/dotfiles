@@ -3,6 +3,7 @@
 home.packages = with pkgs; [
     slurp
     grim
+    wdisplays
     ];
 
 programs.umbriel.settings.keybinds = let
@@ -19,13 +20,12 @@ in {
     # Compositor Functions
     "Mod+slash" = "cheatsheet-toggle";
     "Mod+Escape" = "overview-toggle";
-    #"Mod+Tab" = [(n "toggle-column-tabbed-display")];
     "Mod+P" = "scratchpad-toggle";
     "Mod+shift+P" = "window-toggle-scratchpad";
-    #"Mod+Shift+c" [(n "spawn-sh" = "niri msg pick-color | wl-copy")];
 
     "Mod+F" = "window-toggle-fullscreen";
     "Mod+Q" = "window-close";
+    "Mod+M" = "spawn:wdisplays";
 
     # Compositor Navigation
     "Mod+W" = "window-focus-or-workspace-up";
@@ -46,10 +46,10 @@ in {
     "Mod+backslash" = "window-toggle-maximize";
     "Mod+shift+backslash" = "window-toggle-maximize-to-edges";
 
-    "Mod+WheelUp" = "window-focus-left";
-    "Mod+WheelDown" = "window-focus-right";
-    "Mod+Ctrl+WheelUp" = "window-focus-or-workspace-up";
-    "Mod+Ctrl+WheelDown" = "window-focus-or-workspace-down";
+    "Mod+WheelUp" = "window-focus-or-workspace-up";
+    "Mod+WheelDown" =  "window-focus-or-workspace-down";
+    "Mod+Ctrl+WheelUp" = "window-focus-left";
+    "Mod+Ctrl+WheelDown" ="window-focus-right";
     "Mod+Shift+WheelUp" = "column-move-left";
     "Mod+Shift+WheelDown" = "column-move-right";
     "Mod+MouseMiddle" = "overview-toggle";
@@ -57,10 +57,11 @@ in {
 
     # Program Binds
     "Mod+T" = "spawn:${terminal}";
-    "Mod+Shift+T" = "spawn:kitten quick-access-terminal";
+    "Mod+Shift+Q" = "spawn:kitten quick-access-terminal";
     "Mod+B" = "spawn:${browser}";
     "Mod+E" = spawnTermCmd fileManager;
     "Mod+Shift+E" = spawnTermCmd editor;
+    "Mod+Shift+M" = spawnShellPass "mirror";
 
     "Mod+O" = "spawn:obsidian";
     "Mod+Ctrl+V" = "spawn:pwvucontrol";
@@ -98,12 +99,13 @@ in {
     "Mod+Shift+period" = "spawn:noctalia msg wallpaper-next";
 
     "Mod+C" = {action = "submap:control-center"; repeat = false;};
-    "submap[control-center],c" = "spawn:noctalia msg panel-toggle control-center";
-    "submap[control-center],Shift+c" = "spawn:noctalia msg panel-toggle control-center calendar";
-    "submap[control-center],w" = "spawn:noctalia msg panel-toggle control-center weather";
-    "submap[control-center],m" = "spawn:noctalia msg panel-toggle control-center media";
-    "submap[control-center],b" = "spawn:noctalia msg panel-toggle control-center bluetooth";
-    "submap[control-center],n" = "spawn:noctalia msg panel-toggle control-center notifications";
+    "submap[control-center],c" = {action = "spawn:noctalia msg panel-toggle control-center"; submap = "reset";};
+    "submap[control-center],v" = {action = "spawn:noctalia msg panel-toggle control-center audio"; submap = "reset";};
+    "submap[control-center],Shift+c" = {action = "spawn:noctalia msg panel-toggle control-center calendar"; submap = "reset";};
+    "submap[control-center],w" = {action = "spawn:noctalia msg panel-toggle control-center weather"; submap = "reset";};
+    "submap[control-center],m" = {action = "spawn:noctalia msg panel-toggle control-center media"; submap = "reset";};
+    "submap[control-center],b" = {action = "spawn:noctalia msg panel-toggle control-center bluetooth"; submap = "reset";};
+    "submap[control-center],n" = {action = "spawn:noctalia msg panel-toggle control-center notifications"; submap = "reset";};
     "submap[control-center],escape" = "submap:reset";
 
     "Mod+V" = "spawn:noctalia msg panel-toggle clipboard";

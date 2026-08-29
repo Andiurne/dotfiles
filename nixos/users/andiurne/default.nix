@@ -1,8 +1,8 @@
 {pkgs, ...}:{
   imports = [
     ../../gaming/andiurne_gamingConf.nix
-    ./module.nix
-    ../../desktop/niri.nix
+    ./home-manager.nix
+    ../../desktop
   ];
 
 users.extraUsers.andiurne.shell = pkgs.fish;

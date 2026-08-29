@@ -4,6 +4,5 @@
                 #./hyprland.nix
                 ./noctaliaEnv
                 ./xdg.nix
-                ./noctaliaReqs.nix
         ];
 }

@@ -59,10 +59,8 @@
       lib = nixpkgs.lib;
   in
   {
-    hyprpkgs = inputs.hyprland.packages.${system};
     packages.x86_64-linux = {
-      hyprland = self.nixosConfigurations.enchantedSlate.config.programs.hyprland.package;
-      bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
+      #bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
       ani-cli = pkgs.ani-cli.overrideAttrs (old: {
 	src = inputs.ani-cli-src;
 	version = "v4.15";
