@@ -23,8 +23,8 @@
             theme = "king-halo-xcur";
             size = 24;
             hardware_cursor = true;
-            follows_focus = true;
             hide_when_typing = false;
+            #doesn't exist? follows_focus;
         };
 
         focus = {

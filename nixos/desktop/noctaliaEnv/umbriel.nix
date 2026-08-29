@@ -11,6 +11,9 @@ imports = map (path: ./umbriel${path}) [
 programs.umbriel = {
     enable = true;
     settings = {
+        include.files = [
+            "noctalia.toml"
+        ];
         general = {
             autostart = [
                 "noctalia"
@@ -24,11 +27,6 @@ programs.umbriel = {
 
             xwayland = true;
             show_cheatsheet = false;
-        };
-
-        environment = {
-            NIXOS_OZONE_WL = 1;
-            ELECTRON_OZONE_PLATFORM_HINT = "auto";
         };
     };
 };}

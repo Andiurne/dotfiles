@@ -11,6 +11,7 @@ window_rule = [
    {
       match.app_id = "kitty";
       default_width = 1. / 3.;
+      blur = true;
    }
 ];
 };}

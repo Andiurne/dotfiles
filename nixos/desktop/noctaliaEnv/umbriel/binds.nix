@@ -77,7 +77,7 @@ in {
     "XF86AudioMicMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
     "Mod+Ctrl+Space" = "spawn:noctalia msg media toggle";
 
-    "XF86AudioRaiseVolume" = {allow-when-locked = true; action = "spawn:noctalia msg volume-up 2";};
+    "XF86AudioRaiseVolume" = {allow_when_locked = true; action = "spawn:noctalia msg volume-up 2";};
     "Mod+equal" = {allow_when_locked = true; action = "spawn:noctalia msg volume-up 2";};
 
     "XF86AudioLowerVolume" = {allow_when_locked = true; action = "spawn:noctalia msg volume-down 2";};
@@ -104,6 +104,7 @@ in {
     "submap[control-center],m" = "spawn:noctalia msg panel-toggle control-center media";
     "submap[control-center],b" = "spawn:noctalia msg panel-toggle control-center bluetooth";
     "submap[control-center],n" = "spawn:noctalia msg panel-toggle control-center notifications";
+    "submap[control-center],escape" = "submap:reset";
 
     "Mod+V" = "spawn:noctalia msg panel-toggle clipboard";
     "Ctrl+Alt+Delete" = "spawn:noctalia msg panel-toggle session";

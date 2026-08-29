@@ -4,12 +4,12 @@ overview = {
     zoom = 0.5;
     background_blur = false;
     background_tint = "#10101000";
-    shortcuts = true;
+    # apparently doesn't exist shortcuts = true;
 };
 
 appearance = {
     prefer_no_csd = true;
-    border_width = 16;
+    border_width = 4;
     corner_radius = 20;
 
     blur = {

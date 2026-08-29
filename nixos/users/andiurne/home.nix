@@ -20,6 +20,7 @@ gtk.enable = true; # For swappy, noctalia provides theming with adw-gtk3
 home = {
   username = "andiurne";
   homeDirectory = "/home/andiurne";
+  sessionVariables.XDG_CONFIG_HOME = "/home/andiurne/.config";
 
   # File symlinks
   file = {
