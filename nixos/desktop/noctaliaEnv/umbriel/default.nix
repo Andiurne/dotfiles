@@ -1,5 +1,5 @@
 let
-    umbriel = builtins.getFlake "git+https://github.com/noctalia-dev/umbriel?rev=be4e479ea82c3689b31c93a11bd6b26bafce373d";
+    umbriel = builtins.getFlake "git+https://github.com/noctalia-dev/umbriel?rev=c71bd2ad14e553f007b8813dc3eefeaabb75999c";
 in {pkgs, ...}:{
     imports = [
         umbriel.nixosModules.default
