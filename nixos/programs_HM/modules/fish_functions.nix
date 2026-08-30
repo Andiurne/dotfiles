@@ -10,13 +10,23 @@ home.packages = with pkgs; [
 
 programs.fish.functions =
 {
+    unlink = ''
+    mv $argv[1] tmp
+    cat tmp > $argv[1]
+    rm tmp
+    '';
+
     mirror = ''
+    if count $argv > /dev/null
+        wl-mirror $argv
+    else
         wl-mirror (user-input)
+    end
     '';
 
     user-input = ''
         set -l tmp (mktemp -t "qatInput.XXXXX")
-        kitty --app-id="input-terminal" -- fish -c "read > $tmp"
+        kitty -o initial_window_width=40c -o initial_window_height=5c --app-id="input-terminal" -- fish -c "read > $tmp"
         cat $tmp
         rm $tmp
     '';

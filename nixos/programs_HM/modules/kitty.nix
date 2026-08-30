@@ -26,6 +26,7 @@
         cursor_trail = 250;
 
         confirm_os_window_close = 0;
+        remember_window_size = "no";
         background_opacity = 0.58;
         scrollback_lines = 10000;
 

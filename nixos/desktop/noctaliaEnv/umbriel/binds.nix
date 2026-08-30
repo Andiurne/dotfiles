@@ -24,6 +24,9 @@ in {
     "Mod+shift+P" = "window-toggle-scratchpad";
 
     "Mod+F" = "window-toggle-fullscreen";
+    "Mod+Shift+F" = "window-toggle-floating";
+    "Mod+Ctrl+F" = "window-focus-switch-floating";
+    "Mod+L" = "workspace-set-layout:toggle";
     "Mod+Q" = "window-close";
     "Mod+M" = "spawn:wdisplays";
 
@@ -37,8 +40,8 @@ in {
     "Mod+Shift+S" = "column-move-to-workspace-next";
     "Mod+Shift+D" = "window-move-or-output-right";
 
-    "Mod+Shift+bracketright" = "window-consume-left";
-    "Mod+Shift+bracketleft" = "window-expel-right";
+    "Mod+Shift+bracketleft" = "window-consume-left";
+    "Mod+Shift+bracketright" = "window-expel-right";
 
     "Mod+bracketright" = "window-cycle-width";
     "Mod+bracketleft" = "window-cycle-width-back";

@@ -5,11 +5,11 @@ window_rule = [
       blur = true;
       default_floating = true;
       default_position = {x = 0; y = 0; anchor = "center";};
-      default_width = 0.333;
-      default_height = 0.333;
    }
    {
-      match.app_id = "^dev.noctalia";
+      match.app_id = "^dev.noctalia.Noctalia";
+      default_floating = true;
+      default_size = [1080 920];
       blur = true;
    }
    {
@@ -25,6 +25,12 @@ window_rule = [
       match.app_id = "kitty";
       default_width = 1. / 3.;
       blur = true;
+   }
+];
+layer_rule = [
+   {
+      match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
+      blur_optimized = false;
    }
 ];
 };}

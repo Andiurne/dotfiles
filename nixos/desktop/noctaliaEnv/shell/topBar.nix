@@ -24,7 +24,7 @@
             }
             {
                 id = "g3";
-                members = [ "clock" "monitor_off" "caffeine"];
+                members = [ "clock" "monitor_control" "caffeine"];
                 opacity = 1.0;
             }
         ];

@@ -14,5 +14,48 @@
     };
     screen_corners.enabled = true;
     screenshot.directory = "~/Pictures/Screenshots";
+
+    session = {
+        grid = true;
+        show_shortcuts = true;
+        grid_columns = 3;
+        actions = [
+            {
+                shortcut = "L";
+                action = "lock";
+            }
+            {
+                shortcut = "Shift+L";
+                action = "lock_and_suspend";
+            }
+            {
+                label = "Hibernate";
+                shortcut = "H";
+                glyph = "moon-stars";
+                action = "command";
+                command = "systemctl hibernate";
+            }
+            {
+                shortcut = "E";
+                label = "Exit";
+                action = "logout";
+            }
+            {
+                shortcut = "R";
+                action = "reboot";
+            }
+            {
+                label = "Shutdown";
+                shortcut = "Delete";
+                glyph = "power";
+                action = "command";
+                command =
+                ''
+                sudo pkill openrgb;
+                shutdown now;
+                '';
+            }
+        ];
+    };
 };
 }

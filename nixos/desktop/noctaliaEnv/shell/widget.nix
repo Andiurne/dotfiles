@@ -1,6 +1,6 @@
 {widget =
 {
-    date.format = "%a - %d %m";
+    date.format = "%a : %D |";
     wallhaven.type = "noctalia/wallhaven:wallhaven";
     mpvpaper.type = "noctalia/mpvpaper:mpvpaper";
 
@@ -35,10 +35,14 @@
         show_label = false;
     };
 
-    monitor_off = {
-        glyph = "screen-share-off";
+    monitor_control = {
+        glyph = "user-screen";
         type = "custom_button";
-        actions.left = "exec umbriel msg dmps-off";
+        actions = {
+            left = "exec fish -c mirror";
+            middle = "exec umbriel msg dpms-off";
+            right = "exec wdisplays";
+        };
     };
 
     battery.hide_when_plugged = true;
