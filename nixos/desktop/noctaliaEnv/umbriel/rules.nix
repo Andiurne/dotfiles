@@ -25,11 +25,13 @@ window_rule = [
       match.app_id = "kitty";
       default_width = 1. / 3.;
       blur = true;
+      blur_optimized = true;
    }
 ];
 layer_rule = [
    {
       match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
+      blur = true;
       blur_optimized = false;
    }
 ];

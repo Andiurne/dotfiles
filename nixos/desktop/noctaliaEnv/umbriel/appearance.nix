@@ -4,7 +4,7 @@ overview = {
     zoom = 0.5;
     background_blur = false;
     background_tint = "#10101000";
-    # apparently doesn't exist shortcuts = true;
+    shortcuts = true;
 };
 
 appearance = {
@@ -14,7 +14,6 @@ appearance = {
 
     blur = {
         enabled = true;
-        optimized = false;
         passes = 3;
         radius = 5;
         noise = 0.02;
