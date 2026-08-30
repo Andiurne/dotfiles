@@ -1,5 +1,8 @@
 {pkgs, ...}:{
-imports = [./enchantedObelisk_autogen.nix];
+imports = [
+  ./enchantedObelisk_autogen.nix
+  ../users/andiurne
+  ];
 boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
 
@@ -14,10 +17,13 @@ swapDevices = [{
   size = 32*1024;
 }];
 
+environment.systemPackages = [pkgs.openrgb-with-all-plugins];
 services.hardware.openrgb = {
   enable = true;
   motherboard = "amd";
   startupProfile = "Lilac";
+  package = pkgs.openrgb-with-all-plugins;
+  server.port = 6742;
 };
 
 # Remote Desktop

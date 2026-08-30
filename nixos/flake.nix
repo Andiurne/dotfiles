@@ -85,7 +85,6 @@
 	./system
 	./desktop
 	./hardwareConf/${hostName}.nix
-	./users/${hostName}_userSet.nix
 	./secrets/${hostName}.nix
 	./ssh/${hostName}.nix
 	./sops

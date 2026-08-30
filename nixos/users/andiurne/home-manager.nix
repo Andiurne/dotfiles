@@ -4,7 +4,7 @@
 	home-manager.useUserPackages = true;
 	home-manager.extraSpecialArgs = { inherit inputs system; };
 	home-manager.users.andiurne.imports = [
-	./home.nix
+	./hm-conf.nix
 	];
 	home-manager.sharedModules = [
 		inputs.sops-nix.homeManagerModules.sops

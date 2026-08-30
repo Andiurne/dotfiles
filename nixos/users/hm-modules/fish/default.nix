@@ -1,7 +1,7 @@
 {pkgs, lib, ...}:{
   imports = [
   ./fish_functions.nix
-  ./starship.nix
+  ../starship.nix
   ];
 
   home.packages = with pkgs; [ libnotify ];
@@ -32,6 +32,7 @@ programs.fish = {
       "\"Rebuild Failed :(\""
       "; end"
     ];
+    nt = "kitty -d pwd";
     gs = "git status";
     ga = "git add";
     gc = "git commit";

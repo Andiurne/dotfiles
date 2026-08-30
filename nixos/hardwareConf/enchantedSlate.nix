@@ -1,6 +1,7 @@
 {pkgs, ...}:{
   imports = [
     ./enchantedSlate_autogen.nix
+    ../users/andiurne
     ./nvidia.nix
   ];
 

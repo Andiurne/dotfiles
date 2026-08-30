@@ -1,6 +1,6 @@
 {pkgs, ...}:{
   imports = [
-    ../../gaming/andiurne_gamingConf.nix
+    ./nixos_gamingConf.nix
     ./home-manager.nix
     ../../desktop
   ];
