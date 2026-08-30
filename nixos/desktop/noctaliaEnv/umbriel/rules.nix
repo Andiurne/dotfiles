@@ -31,7 +31,6 @@ window_rule = [
 layer_rule = [
    {
       match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
-      blur = true;
       blur_optimized = false;
    }
 ];
