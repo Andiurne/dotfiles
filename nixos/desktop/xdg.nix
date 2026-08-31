@@ -1,4 +1,3 @@
-{pkgs, ...}:
 {
     xdg.mime.defaultApplications = {
 "image/avif" = [ "swayimg.desktop"];

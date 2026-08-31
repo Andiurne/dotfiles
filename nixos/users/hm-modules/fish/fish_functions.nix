@@ -2,7 +2,7 @@
 # Dependencies
 home.packages = with pkgs; [
     grim
-    rsync
+    rsyncy
     slurp
     gpu-screen-recorder
     kitty
