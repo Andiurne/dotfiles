@@ -40,8 +40,8 @@ in {
     "Mod+Shift+S" = "column-move-to-workspace-next";
     "Mod+Shift+D" = "window-move-or-output-right";
 
-    "Mod+Shift+bracketleft" = "window-consume-left";
-    "Mod+Shift+bracketright" = "window-expel-right";
+    "Mod+Shift+bracketleft" = "window-consume-or-expel-left";
+    "Mod+Shift+bracketright" = "window-consume-or-expel-right";
 
     "Mod+bracketright" = "window-cycle-width";
     "Mod+bracketleft" = "window-cycle-width-back";
