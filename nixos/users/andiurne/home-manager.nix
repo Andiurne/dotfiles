@@ -29,6 +29,7 @@
 			] ++
 			[
 			  inputs.nixvim.homeModules.nixvim
+			  ./secrets.nix
 			];
 
 			programs = {
@@ -50,7 +51,9 @@
 			home = {
 			  username = "andiurne";
 			  homeDirectory = "/home/andiurne";
-			  sessionVariables.XDG_CONFIG_HOME = "/home/andiurne/.config";
+			  sessionVariables = {
+				  XDG_CONFIG_HOME = "/home/andiurne/.config";
+			  };
 
 			  packages = with pkgs; [
 				prismlauncher

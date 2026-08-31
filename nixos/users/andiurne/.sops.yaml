@@ -1,0 +1,7 @@
+keys:
+  - &andiurne age1fnnq89dsu0vj2s26pa7yt58jj4ylj69lzwku0zjvk62900m9mu3swwq6a0
+creation_rules:
+  - path_regex: .+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *andiurne

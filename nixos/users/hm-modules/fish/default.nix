@@ -13,7 +13,9 @@ programs.fish = {
   shellInit = ''
   set fish_greeting
   set -gx EDITOR nvim
+  set -gx GH_TOKEN (cat ~/.config/sops-nix/secrets/GH_TOKEN)
   '';
+
   shellAliases = {
 
   };

@@ -14,5 +14,10 @@ sops = {
       group = "keys";
       mode = "440";
     };
+
+    GH_TOKEN = {
+      group = "keys";
+      mode = "440";
+    };
   };
 };}

@@ -20,12 +20,12 @@
             {
                 id = "g2";
                 members = ["date" "weather"];
-                opacity = 1.0;
+                opacity = 0.65;
             }
             {
                 id = "g3";
                 members = [ "clock" "monitor_control" "caffeine"];
-                opacity = 1.0;
+                opacity = 0.65;
             }
         ];
     };
