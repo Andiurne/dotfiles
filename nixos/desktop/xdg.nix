@@ -23,5 +23,7 @@
 "image/x-portable-pixmap" = [ "swayimg.desktop"];
 "image/x-targa" = [ "swayimg.desktop"];
 "image/x-tga" = [ "swayimg.desktop"];
+
+"application/pdf" = [ "org.pwmt.zathura.desktop "];
     };
 }
