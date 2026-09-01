@@ -21,12 +21,13 @@
         grid_columns = 3;
         actions = [
             {
-                shortcut = "L";
-                action = "lock";
+                shortcut = "S";
+                action = "lock_and_suspend";
             }
             {
-                shortcut = "Shift+L";
-                action = "lock_and_suspend";
+                shortcut = "L";
+                variant = "primary";
+                action = "lock";
             }
             {
                 label = "Hibernate";
@@ -34,11 +35,6 @@
                 glyph = "moon-stars";
                 action = "command";
                 command = "systemctl hibernate";
-            }
-            {
-                shortcut = "E";
-                label = "Exit";
-                action = "logout";
             }
             {
                 shortcut = "R";
@@ -49,11 +45,17 @@
                 shortcut = "Delete";
                 glyph = "power";
                 action = "command";
+                variant = "destructive";
                 command =
                 ''
                 sudo pkill openrgb;
                 shutdown now;
                 '';
+            }
+            {
+                shortcut = "E";
+                label = "Exit";
+                action = "logout";
             }
         ];
     };
