@@ -2,7 +2,7 @@
     layout = {
         mode = "scrolling";
         gap = 16;
-        width_presets = [(1. / 3.) 0.5 (2. / 3.) 0.75];
+        width_presets = [(1. / 3.) 0.5 (2. / 3.)];
         scrolling = {
             direction = "horizontal";
             default_width_fraction = 0.5;
