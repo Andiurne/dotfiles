@@ -1,6 +1,6 @@
 {widget =
 {
-    date.format = "%a : %D |";
+    date.format = "%A, %B |";
     wallhaven.type = "noctalia/wallhaven:wallhaven";
     mpvpaper.type = "noctalia/mpvpaper:mpvpaper";
 
