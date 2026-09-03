@@ -1,8 +1,9 @@
-{...}:{programs.git =
+{pkgs, ...}:{programs.git =
 {
     enable = true;
+    package = pkgs.git.override { withLibsecret = true;};
     settings = {
-        #credential.helper = "keepassxc --git-groups";
+        credential.helper = "libsecret";
         user = {
             email = "andiurne@gmail.com";
             name = "Andiurne";

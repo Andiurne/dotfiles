@@ -14,7 +14,6 @@
             "hyprland"
             "kitty"
             "qt"
-            #"umbriel"
         ];
         community_ids =
         [

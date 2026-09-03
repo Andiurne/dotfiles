@@ -17,7 +17,7 @@
                         )
                     ;
             in {
-            home.file.".config/noctalia/user-templates.toml".source = (import ./user-templates.nix "/home/andiurne/.config/dotfiles/nixos/desktop/noctaliaEnv/shell/templates");
+            home.file.".config/noctalia/user-templates.toml".text = (import ./user-templates.nix "/home/andiurne/.config/dotfiles/nixos/desktop/noctaliaEnv/shell/templates");
 
             home.packages = with pkgs; [
                 # Needed for plugins

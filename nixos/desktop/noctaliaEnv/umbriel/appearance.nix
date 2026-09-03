@@ -4,14 +4,15 @@ overview = {
     zoom = 0.5;
     background_blur = false;
     shortcuts = true;
+    workspace_wallpaper = false;
 };
 
-# Mostly overridden by Noctalia
-colors = {
+# Mostly defined by Noctalia
+/*colors = {
     overview = {
         background_tint = "#00000000";
     };
-};
+};*/
 
 appearance = {
     prefer_no_csd = true;
