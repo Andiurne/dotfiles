@@ -1,4 +1,7 @@
-{pkgs, ...}: {programs.kitty = {
+{pkgs, ...}: {
+
+home.sessionVariables.TERMINAL = "kitty";
+programs.kitty = {
     enable = true;
     enableGitIntegration = true;
     shellIntegration.enableFishIntegration = true;

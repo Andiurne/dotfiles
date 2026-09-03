@@ -24,5 +24,7 @@
 "image/x-tga" = [ "swayimg.desktop"];
 
 "application/pdf" = [ "org.pwmt.zathura.desktop "];
+
+"text/*" = [ "nvim.desktop" ];
     };
 }

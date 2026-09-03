@@ -1,6 +1,4 @@
-let
-    umbriel = builtins.getFlake "git+https://github.com/noctalia-dev/umbriel?rev=c71bd2ad14e553f007b8813dc3eefeaabb75999c";
-in {pkgs, ...}:{
+{pkgs, inputs, ...}: let umbriel = inputs.umbriel; in {
     imports = [
         umbriel.nixosModules.default
     ];

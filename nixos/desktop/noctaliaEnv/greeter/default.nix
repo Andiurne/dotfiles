@@ -1,6 +1,4 @@
-let
-    noctalia-greeter = builtins.getFlake "github:noctalia-dev/noctalia-greeter/eefd43230b34ffbaa9267fede4d8aef1a784294a";
-in {pkgs, ...}:{
+{pkgs, inputs, ...}:let noctalia-greeter = inputs.noctalia-greeter; in {
     imports = [ noctalia-greeter.nixosModules.default ];
     programs = {
         noctalia-greeter = {

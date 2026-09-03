@@ -8,7 +8,11 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     grub2-themes.url = "github:vinceliuice/grub2-themes";
 
+    # Noctalia Env
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+    umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
+
     niri.url = "github:sodiboo/niri-flake";
     hyprland.url = "github:hyprwm/Hyprland/v0.56.1-b";
     hmHyprLib.url = "github:Andiurne/hmHyprLib";

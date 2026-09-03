@@ -1,8 +1,7 @@
-{inputs, ...}:{
+{inputs, pkgs, ...}:{
     imports = [
         ./requirements.nix
     ];
-
     home-manager.users.andiurne.imports = [
         inputs.noctalia.homeModules.default
         (
@@ -22,6 +21,11 @@
             {
                 source = ../../../assets/user-templates.toml;
             };
+
+            home.packages = with pkgs; [
+                # Needed for plugins
+                python3
+            ];
 
             programs.noctalia =  {
                 enable = true;

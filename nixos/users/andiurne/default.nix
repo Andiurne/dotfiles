@@ -22,6 +22,9 @@ users.users.andiurne = {
     gimp
     ani-cli
     ntfs3g
+
+    pandoc
+    texliveFull
   ];
 
   };

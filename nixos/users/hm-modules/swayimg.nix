@@ -49,7 +49,7 @@ programs.swayimg = {
         };
     };
 
-    overlay = true;
+    overlay = false;
     antialiasing = true;
 
     imagelist = {
@@ -60,7 +60,7 @@ programs.swayimg = {
     };
 
     viewer = {
-        set_window_background.lua  = "0x00000000";
+        set_window_background.lua  = "0x95{{colors.background.default.hex_stripped }}";
         drag_button = "MouseLeft";
         on_key = {
             "q" = "swayimg.exit()";
@@ -88,7 +88,7 @@ programs.swayimg = {
     };
 
     gallery = {
-        window_color.lua = "0x00000000";
+        window_color.lua = "0x95{{colors.background.default.hex_stripped }}";
         border_color.lua = "0xff{{ colors.primary.default.hex_stripped }}";
         on_key = {
             "q" = "swayimg.exit()";

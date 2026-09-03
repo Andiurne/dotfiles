@@ -8,7 +8,7 @@
             "audio_visualizer" "group:g1" "audio_visualizer"
         ];
         end = [
-            "tray" "bluetooth" "notifications" "battery" "group:g2"
+            "tray" "bluetooth" "notifications" "battery" "nix-monitor" "group:g2"
         ];
 
         capsule_group = [
