@@ -3,10 +3,6 @@ let
     system = pkgs.stdenv.hostPlatform.system;
 in {
 environment.systemPackages = with pkgs; [
-    # Secrets Management
-    keepassxc # Remember to enable FdoSecrets!!!
-    git-credential-keepassxc
-
     # Basic graphical environment
     foot
     inputs.andiurne.packages.${system}.lintree
