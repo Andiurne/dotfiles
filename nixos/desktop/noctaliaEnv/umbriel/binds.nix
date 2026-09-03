@@ -109,6 +109,7 @@ in {
     "submap[noctalia-panels],u" = {action = "spawn:noctalia msg panel-toggle noctalia/umbriel-companion:panel"; submap = "reset";};
     "submap[noctalia-panels],w" = {action = "spawn:noctalia msg panel-toggle noctalia/wallhaven:panel"; submap = "reset";};
     "submap[noctalia-panels],n" = {action = "spawn:noctalia msg panel-toggle avivbintangaringga/nix-monitor:panel"; submap = "reset";};
+    "submap[noctalia-panels],escape" = "submap:reset";
 
     "Mod+C" = {action = "submap:control-center"; repeat = false;};
     "submap[control-center],c" = {action = "spawn:noctalia msg panel-toggle control-center"; submap = "reset";};

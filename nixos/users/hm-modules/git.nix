@@ -10,6 +10,7 @@ programs.git = {
         user = {
             email = "andiurne@gmail.com";
             name = "Andiurne";
+            signingkey = "Andiurne";
         };
     };
 };
