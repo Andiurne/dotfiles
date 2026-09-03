@@ -1,5 +1,6 @@
 {pkgs, ...}:{
   imports = [
+    ./pass.nix
     ./home-manager.nix
     ../../desktop
 

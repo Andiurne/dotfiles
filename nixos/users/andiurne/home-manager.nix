@@ -19,7 +19,6 @@
 
 			/git.nix
 			/gh.nix
-			/pass.nix
 
 			/gtk.nix
 			/qt.nix
