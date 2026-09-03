@@ -4,5 +4,8 @@ services.pass-secret-service = {
     storePath = "${config.home.homeDirectory}/.config/dotfiles/passStore";
 };
 
-home.packages = [ pkgs.pass-wayland ];
+home.packages = with pkgs; [
+    pass-wayland
+    gnupg
+    ];
 }
