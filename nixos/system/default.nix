@@ -16,7 +16,8 @@
     # CUPS Printing
     printing.enable = true;
 
-        # gvfs for yazi usb handling
+
+    # gvfs for yazi usb handling
     gvfs.enable = true;
   };
 }

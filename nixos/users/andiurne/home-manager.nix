@@ -19,12 +19,12 @@
 
 			/git.nix
 			/gh.nix
+			/pass.nix
 
 			/gtk.nix
 			/qt.nix
 			/swappy.nix
 
-			#/keepassxc.nix
 			/swayimg.nix
 		 ] ++
 		 [
@@ -44,8 +44,6 @@
 		 };
 
 
-		# I care not for KeepassXC
-		services.pass-secret-service.enable = true;
 
 		 gtk.enable = true; # For swappy, noctalia provides theming with adw-gtk3
 
