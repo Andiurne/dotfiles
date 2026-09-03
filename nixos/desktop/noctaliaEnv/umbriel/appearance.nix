@@ -3,8 +3,14 @@
 overview = {
     zoom = 0.5;
     background_blur = false;
-    background_tint = "#10101000";
     shortcuts = true;
+};
+
+# Mostly overridden by Noctalia
+colors = {
+    overview = {
+        background_tint = "#00000000";
+    };
 };
 
 appearance = {

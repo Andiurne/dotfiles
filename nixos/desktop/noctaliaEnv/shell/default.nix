@@ -17,10 +17,7 @@
                         )
                     ;
             in {
-            home.file.".config/noctalia/user-templates.toml" =
-            {
-                source = ../../../assets/user-templates.toml;
-            };
+            home.file.".config/noctalia/user-templates.toml".source = (import ./user-templates.nix "/home/andiurne/.config/dotfiles/nixos/desktop/noctaliaEnv/shell/templates");
 
             home.packages = with pkgs; [
                 # Needed for plugins
@@ -40,7 +37,7 @@
                     #bar.order = [ "leftMain" ];
                     weather.unit = "imperial";
                     wallpaper = {
-                        directory = "~/Pictures/Wallpapers/curated";
+                        directory = "~/Pictures/Wallpapers";
                         per_monitor_directories = true;
                     };
                     nightlight.enabled = true;
