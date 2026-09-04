@@ -10,7 +10,6 @@ environment.systemPackages = with pkgs; [
     nerd-fonts.jetbrains-mono
     btop
     git
-    comma
     pwvucontrol
     yazi
 
@@ -24,7 +23,7 @@ environment.systemPackages = with pkgs; [
     imagemagick
 
     # File Openers
-    inputs.andiurne.packages.${system}.swayimg-lock # Wayland image viewer that overlays a terminal
+    swayimg # Wayland image viewer that overlays a terminal (in hyprland)
     zathura # Minimal pdf viewer
 
     # Screen Capture
