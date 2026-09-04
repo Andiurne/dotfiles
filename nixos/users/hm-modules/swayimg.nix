@@ -69,6 +69,11 @@ programs.swayimg = {
             "Right" = ''swayimg.viewer.open("next")'';
             "c" = ''wlcopy(swayimg.viewer.get_image().path)'';
 
+            "Ctrl+w" = ''
+                local imgPath = swayimg.viewer.get_image().path
+                os.execute("noctalia msg wallpaper-set " .. imgPath)
+                '';
+
             "Ctrl+c" = ''
                 local imgPath = swayimg.viewer.get_image().path
                 local pngPath = repExt(imgPath, "png")

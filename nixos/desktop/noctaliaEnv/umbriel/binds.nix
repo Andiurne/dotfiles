@@ -100,6 +100,7 @@ in {
     "Mod+Ctrl+W" = "spawn:noctalia msg panel-toggle wallpaper";
     "Mod+Shift+comma" = "spawn:noctalia msg wallpaper-previous";
     "Mod+Shift+period" = "spawn:noctalia msg wallpaper-next";
+    "Mod+Shift+slash" = "spawn:noctalia msg wallpaper-random";
 
     # Panels
     "Mod+N" = {action = "submap:noctalia-panels"; repeat = false;};
@@ -107,7 +108,7 @@ in {
     "submap[noctalia-panels],f" = {action = "spawn:noctalia msg panel-toggle nightwatch75/file-search:panel"; submap = "reset";};
     "submap[noctalia-panels],t" = {action = "spawn:noctalia msg panel-toggle nightwatch75/todo:panel"; submap = "reset";};
     "submap[noctalia-panels],u" = {action = "spawn:noctalia msg panel-toggle noctalia/umbriel-companion:panel"; submap = "reset";};
-    "submap[noctalia-panels],w" = {action = "spawn:noctalia msg panel-toggle noctalia/wallhaven:panel"; submap = "reset";};
+    "submap[noctalia-panels],w" = {action = "spawn:noctalia msg panel-toggle noctalia/wallhaven:browser"; submap = "reset";};
     "submap[noctalia-panels],n" = {action = "spawn:noctalia msg panel-toggle avivbintangaringga/nix-monitor:panel"; submap = "reset";};
     "submap[noctalia-panels],escape" = "submap:reset";
 

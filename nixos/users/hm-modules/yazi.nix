@@ -123,6 +123,14 @@ programs.yazi = {
                     desc = "Set as wallpaper";
                 }
             ];
+
+            GIMP = [
+                {
+                    run = "gimp %s";
+                    orphan = true;
+                    desc = "Open in GIMP";
+                }
+            ];
         };
 
         open =
@@ -130,7 +138,7 @@ programs.yazi = {
             prepend_rules = [
                 {
                     mime = "image/*";
-                    use = ["open" "set-wallpaper"];
+                    use = ["open" "set-wallpaper" "GIMP"];
                 }
             ];
         };
