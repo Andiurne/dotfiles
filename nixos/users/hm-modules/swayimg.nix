@@ -53,7 +53,7 @@ programs.swayimg = {
     antialiasing = true;
 
     imagelist = {
-        order = "mtime";
+        order = "numeric";
         reverse = true;
         recursive = false;
         adjacent = true;

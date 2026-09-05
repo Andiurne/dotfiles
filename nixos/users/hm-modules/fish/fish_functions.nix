@@ -32,11 +32,13 @@ programs.fish.functions =
     '';
 
     syncToObelisk = ''
-    rsync -Pav -e "ssh" $argv[1] andiurne@enchantedObelisk:/home/andiurne/$argv[2]
+    rsyncy -Pav -e "ssh" $argv[1] andiurne@enchantedObelisk:/home/andiurne/$argv[2]
+    rsyncy -Pav -e "ssh" ~/Pictures/Wallpapers andiurne@enchantedObelisk:/home/andiurne/Pictures/Wallpapers
     '';
 
     syncToSlate = ''
     rsync -Pav -e "ssh" $argv[1] andiurne@enchantedSlate:/home/andiurne/$argv[2]
+    rsyncy -Pav -e "ssh" ~/Pictures/Wallpapers andiurne@enchantedSlate:/home/andiurne/Pictures/Wallpapers
     '';
 
     nvimFindBase = ''

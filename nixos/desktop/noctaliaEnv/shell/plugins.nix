@@ -34,7 +34,7 @@ plugin_settings = {
     "noctalia/mpvpaper".video_directory = "~/Pictures/Wallpapers/animated";
     "noctalia/wallhaven".download_dir = "~/Pictures/Wallpapers/wallhaven";
     "weinguyen/shell-command".default_workspace = "/home/andiurne";
-    "avivbintangaringga/nix-monitor".update_command = "nix flake update --flake path:$XDG_CONFIG_HOME/dotfiles/nixos";
+    "avivbintangaringga/nix-monitor".update_command = "sudo nix rebuild switch --path:$XDG_CONFIG_HOME/dotfiles/nixos";
     };
 
 widget = {
