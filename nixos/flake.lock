@@ -32,8 +32,8 @@
       },
       "original": {
         "owner": "pystardust",
-        "ref": "master",
         "repo": "ani-cli",
+        "rev": "ebb1bdd5cd35e75b3d8286f36c8accda05ead3dc",
         "type": "github"
       }
     },

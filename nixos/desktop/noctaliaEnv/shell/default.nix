@@ -37,7 +37,7 @@
                     #bar.order = [ "leftMain" ];
                     weather.unit = "imperial";
                     wallpaper = {
-                        directory = "~/Pictures/Wallpapers";
+                        directory = "~/Pictures/Wallpapers/curated";
                         per_monitor_directories = true;
                     };
                     nightlight.enabled = true;

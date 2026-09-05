@@ -40,7 +40,7 @@
     };
 
     ani-cli-src = {
-      url = "github:pystardust/ani-cli/master";
+      url = "github:pystardust/ani-cli/ebb1bdd5cd35e75b3d8286f36c8accda05ead3dc";
       flake = false;
     };
 
@@ -69,7 +69,7 @@
       #bootstick = self.nixosConfigurations.bootstick.config.system.build.isoImage;
       ani-cli = pkgs.ani-cli.overrideAttrs (old: {
 	src = inputs.ani-cli-src;
-	version = "v4.15";
+	version = "v5.0";
 	runtimeInputs = old.runtimeInputs ++ [ pkgs.botan3 ];
       });
     };
