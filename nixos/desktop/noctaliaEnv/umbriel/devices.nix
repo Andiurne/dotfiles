@@ -44,7 +44,8 @@
             mode = "2560x1440@144";
             scale = 1.0;
         };
-        "DP-3".position = [0 0];
+
+        "DP-1".position = [0 0];
         "HDMI-A-1".position = [2560 0];
     };
 };}

@@ -31,14 +31,14 @@ programs.fish.functions =
         rm $tmp
     '';
 
-    syncToObelisk = ''
-    rsyncy -Pav -e "ssh" $argv[1] andiurne@enchantedObelisk:/home/andiurne/$argv[2]
-    rsyncy -Pav -e "ssh" ~/Pictures/Wallpapers andiurne@enchantedObelisk:/home/andiurne/Pictures/Wallpapers
-    '';
-
-    syncToSlate = ''
-    rsync -Pav -e "ssh" $argv[1] andiurne@enchantedSlate:/home/andiurne/$argv[2]
-    rsyncy -Pav -e "ssh" ~/Pictures/Wallpapers andiurne@enchantedSlate:/home/andiurne/Pictures/Wallpapers
+    syncTo = ''
+    if [ (count $argv) -eq 1]
+        rsyncy -Pav -e "ssh" ./ andiurne@enchanted$argv[1]:(pwd)/
+    else if [ (count $argv) -eq 2]
+        rsyncy -Pav -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[2]
+    else
+        rsyncy -Pav -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[3]
+    end
     '';
 
     nvimFindBase = ''

@@ -45,9 +45,13 @@
                     wallpaper = {
                         directory = "~/Pictures/Wallpapers/curated";
                         per_monitor_directories = true;
+                        transition_duration = 500.0;
                     };
                     nightlight.enabled = true;
-                    notification.scale = 0.75;
+                    notification = {
+                        scale = 0.75;
+                        layer = "overlay";
+                    };
                     location.auto_locate = true;
                     brightness = {
                         enable_ddcutil = true;

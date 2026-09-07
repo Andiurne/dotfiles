@@ -2,21 +2,16 @@
     bar.top = {
         background_opacity = 0.60;
         start = [
-            "group:g3" "workspaces"
+            "group:g3" "todo" "brightness" "volume" "media"
         ];
         center = [
-            "audio_visualizer" "group:g1" "audio_visualizer"
+            "audio_visualizer" "workspaces" "audio_visualizer"
         ];
         end = [
             "tray" "bluetooth" "notifications" "battery" "group:g2"
         ];
 
         capsule_group = [
-            {
-                id = "g1";
-                members = ["volume" "logo" "brightness"];
-                opacity = 0.65;
-            }
             {
                 id = "g2";
                 members = ["date" "weather"];
