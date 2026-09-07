@@ -17,7 +17,13 @@
                         )
                     ;
             in {
-            home.file.".config/noctalia/user-templates.toml".text = (import ./user-templates.nix "/home/andiurne/.config/dotfiles/nixos/desktop/noctaliaEnv/shell/templates");
+            home.file = {
+                ".config/noctalia/user-templates.toml".text = (import ./user-templates.nix "/home/andiurne/.config/dotfiles/nixos/desktop/noctaliaEnv/shell/templates");
+                ".config/noctalia/palettes" = {
+                    recursive = true;
+                    source = ./palettes;
+                };
+            };
 
             home.packages = with pkgs; [
                 # Needed for plugins

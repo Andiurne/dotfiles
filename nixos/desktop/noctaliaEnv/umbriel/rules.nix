@@ -17,7 +17,10 @@ window_rule = [
        default_workspace = 1;
    }
    {
-      match.app_id = "steam";
+      match = {
+         app_id = "steam";
+         title = "notification";
+      };
       default_position = {x = 0; y = 0; anchor = "bottom_right";};
       default_focused = false;
    }
