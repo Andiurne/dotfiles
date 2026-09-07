@@ -51,11 +51,14 @@ in {
 
     "Mod+WheelUp" = "window-focus-or-workspace-up";
     "Mod+WheelDown" =  "window-focus-or-workspace-down";
+    "Mod+MouseMiddle" = "overview-toggle";
+
     "Mod+Ctrl+WheelUp" = "window-focus-left";
     "Mod+Ctrl+WheelDown" ="window-focus-right";
-    "Mod+Shift+WheelUp" = "column-move-left";
-    "Mod+Shift+WheelDown" = "column-move-right";
-    "Mod+MouseMiddle" = "overview-toggle";
+    "Mod+Shift+WheelUp" = "column-move-to-workspace-previous";
+    "Mod+Shift+WheelDown" = "column-move-to-workspace-next";
+    "Mod+Ctrl+Shift+WheelUp" = "column-move-left";
+    "Mod+Ctrl+Shift+WheelDown" = "column-move-right";
 
 
     # Program Binds
