@@ -24,8 +24,10 @@ users.users.andiurne = {
     ani-cli
     ntfs3g
 
-    pandoc
-    texliveFull
+    # Office Utilities
+    pandoc # Document conversion (md -> pdf)
+    texliveSmall # LaTeX
+    doxx # .docx opener
   ];
 
   };

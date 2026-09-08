@@ -1,4 +1,10 @@
-{...}:{programs.nixvim =
+{pkgs, ...}:{
+
+home.packages = with pkgs; [
+    python314Packages.pylatexenc
+];
+
+programs.nixvim =
 {
     imports =
     [

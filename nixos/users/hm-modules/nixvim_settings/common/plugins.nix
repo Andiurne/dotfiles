@@ -3,7 +3,11 @@ let
   inherit (config.nvix.mkKey) mkKeymap;
 in
 {
-  extraPlugins = with pkgs.vimPlugins; [ stay-centered-nvim nvim-colorizer-lua ];
+  extraPlugins = with pkgs.vimPlugins; [
+    stay-centered-nvim
+    nvim-colorizer-lua
+  ];
+
   plugins = {
     # Must have plugins to have a decent flow of work
     #cord.enable = true; # The bullshit discord RPC one
@@ -13,6 +17,14 @@ in
         dontPatchShebangs = true;
       });
     };
+
+    image = {
+      enable = true;
+      settings = {
+        backend = "kitty";
+      };
+    };
+
     codesnap = {
       enable = true;
       settings = {

@@ -19,11 +19,13 @@ in
       animate.enabled = true;
       quickfile.enabled = true;
       indent.enabled = true;
+      input.enabled = true;
       words.enabled = true;
       statuscolumn.enabled = true;
       image = {
         enabled = true;
         border = "none";
+        math.enabled = false;
         doc = {
           conceal = true;
           inline = true;
