@@ -32,12 +32,12 @@ programs.fish.functions =
     '';
 
     syncTo = ''
-    if [ (count $argv) -eq 1]
-        rsyncy -Pav -e "ssh" ./ andiurne@enchanted$argv[1]:(pwd)/
-    else if [ (count $argv) -eq 2]
-        rsyncy -Pav -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[2]
+    if [ (count $argv) -eq 1 ]
+        rsyncy -Pauv -e "ssh" ./ andiurne@enchanted$argv[1]:(pwd)/
+    else if [ (count $argv) -eq 2 ]
+        rsyncy -Pauv -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[2]
     else
-        rsyncy -Pav -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[3]
+        rsyncy -Pauv -e "ssh" $argv[2] andiurne@enchanted$argv[1]:/home/andiurne/$argv[3]
     end
     '';
 
