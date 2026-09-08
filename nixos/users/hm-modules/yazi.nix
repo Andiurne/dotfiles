@@ -124,6 +124,14 @@ programs.yazi = {
                 }
             ];
 
+            doxx = [
+                {
+                    run = "doxx %s";
+                    block = true;
+                    desc = "Open in doxx";
+                }
+            ];
+
             GIMP = [
                 {
                     run = "gimp %s";
@@ -136,6 +144,10 @@ programs.yazi = {
         open =
         {
             prepend_rules = [
+                {
+                    url = "*.docx";
+                    use = ["doxx"];
+                }
                 {
                     mime = "image/*";
                     use = ["open" "set-wallpaper" "GIMP"];

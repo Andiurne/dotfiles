@@ -10,7 +10,7 @@
 
 
 /* MATERIAL YOU DARK THEME SETTINGS */
-/*.theme-dark {
+.theme-dark {
     --saturation-modifier: 0.31;
     --lightness-modifier: 0.225;
     --text-lightness-modifier: 1.0;
@@ -19,8 +19,8 @@
 .theme-light {
     --saturation-modifier: 0.74;
     --lightness-modifier: 2.125;
-    --text-lightness-modifier: 1.0;
-}*/
+    --text-lightness-modifier: 0;
+}
 
 :root, .theme-dark, .theme-light {
   /* See options at https://github.com/CapnKitten/Material-Discord */
