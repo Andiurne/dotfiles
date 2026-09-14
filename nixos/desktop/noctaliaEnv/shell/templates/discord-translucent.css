@@ -11,6 +11,18 @@
 
 @import url("https://capnkitten.github.io/BetterDiscord/Themes/Translucence/css/source.css");
 
+.theme-dark {
+    --saturation-modifier: 0.31;
+    --lightness-modifier: 0.225;
+    --text-lightness-modifier: 1.0;
+}
+
+.theme-light {
+    --saturation-modifier: 0.74;
+    --lightness-modifier: 2.125;
+    --text-lightness-modifier: 0;
+}
+
 :root, .theme-dark, .theme-light {
   /* App */
   --app-bg: {{colors.background.default.rgba | set_alpha 0.58}};

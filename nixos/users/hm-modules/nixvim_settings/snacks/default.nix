@@ -25,7 +25,7 @@ in
       image = {
         enabled = true;
         border = "none";
-        math.enabled = false;
+        math.enabled = true;
         doc = {
           conceal = true;
           inline = true;

@@ -56,11 +56,17 @@ home.file."${config.xdg.configHome}/starship/starship-template.toml" = {
       "[](fg:${tertiary} bg:${primary})"
       "[ $git_branch$git_status$git_state]${primary_fill}"
       "[](${primary})"
-      "[>- $time$memory_usage$cmd_duration$line_break](bright-black)"
+      "[>- $time$memory_usage$cmd_duration$line_break$nix_shell](bright-black)"
       " $character"
     ];
 
     line_break.disabled = false;
+
+    nix_shell = {
+      format = " [|](${primary}) via [$symbol$state(\($name\))]($style)\n";
+      disabled = false;
+      style = "bright-black";
+    };
 
     memory_usage = {
       disabled = false;
