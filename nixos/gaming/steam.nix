@@ -1,5 +1,8 @@
 {pkgs, config, inputs, lib, ...}:{
-imports = [ inputs.steam-presence.nixosModules.steam-presence ];
+imports = [
+  inputs.steam-presence.nixosModules.steam-presence
+  ./lutris.nix
+  ];
 
 nixpkgs.overlays = [
   inputs.millennium.overlays.default
@@ -20,6 +23,19 @@ programs.steam = {
   remotePlay.openFirewall = false;
   dedicatedServer.openFirewall = false;
   localNetworkGameTransfers.openFirewall = false;
+
+  protontricks = {
+    enable = true;
+    /*package = pkgs.protontricks.overrideAttrs (old: {
+      version = "1.14.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "Matoking";
+        repo = "protontricks";
+        tag = "1.14.0";
+        hash = "sha256-pTBpzSBGFUmol3Osb78yhyZup2DogLpNaBg/kF0dVGI=";
+      };
+      });*/
+  };
 
   presence = {
     enable = true;

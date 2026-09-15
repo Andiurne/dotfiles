@@ -139,6 +139,14 @@ programs.yazi = {
                     desc = "Open in GIMP";
                 }
             ];
+
+            doxx = [
+                {
+                    run = "doxx %s";
+                    block = true;
+                    desc = "Open in doxx";
+                }
+            ];
         };
 
         open =

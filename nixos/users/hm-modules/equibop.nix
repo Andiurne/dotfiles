@@ -156,6 +156,7 @@ programs.equibop = {
         "BetterFolders"
         "AutoZipper"
         "AlwaysTrust"
+        "AddAttachments"
     ]
     (name: {enabled = true;});
   };
