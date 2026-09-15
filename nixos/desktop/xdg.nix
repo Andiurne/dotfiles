@@ -24,7 +24,7 @@ xdg.mime.defaultApplications = {
     "image/x-targa" = [ "swayimg.desktop"];
     "image/x-tga" = [ "swayimg.desktop"];
 
-    "application/pdf" = [ "org.pwmt.zathura.desktop "];
+    "application/pdf" = [ "org.pwmt.zathura.desktop" ];
 
     "text/*" = [ "nvim.desktop" ];
 
