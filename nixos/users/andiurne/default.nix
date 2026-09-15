@@ -1,4 +1,4 @@
-{pkgs, ...}:{
+{inputs, pkgs, ...}:{
   imports = [
     ./pass.nix
     ./home-manager.nix
@@ -21,7 +21,7 @@ users.users.andiurne = {
     pear-desktop # YT Music
     fractal
     gimp
-    ani-cli
+    (ani-cli.overrideAttrs (old: {src = inputs.ani-cli-src;}))
     ntfs3g
 
     # Office Utilities

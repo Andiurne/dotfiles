@@ -4,7 +4,7 @@ disabledModules = [ "programs/swayimg.nix" ];
 imports = [ inputs.andiurne.homeModules."swayimg" ];
 programs.swayimg = {
     enable = true;
-    package = inputs.andiurne.packages.${system}.swayimg-lock;
+    #package = inputs.andiurne.packages.${system}.swayimg-lock;
     configPath = "swayimg/template.lua";
 
     text = {
