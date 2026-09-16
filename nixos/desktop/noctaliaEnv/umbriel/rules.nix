@@ -14,6 +14,8 @@ window_rule = [
    }
    {
        match.app_id = "equibop|youtube-music";
+       blur = true;
+       blur_optimized = true;
        default_workspace = 1;
    }
    {
