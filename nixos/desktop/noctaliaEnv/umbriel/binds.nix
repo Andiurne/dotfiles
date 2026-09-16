@@ -24,9 +24,10 @@ in {
     "Mod+shift+P" = "window-toggle-scratchpad";
 
     "Mod+F" = "window-toggle-fullscreen";
+    "Mod+L" = "spawn:noctalia msg session lock";
     "Mod+Shift+F" = "window-toggle-floating";
     "Mod+Ctrl+F" = "window-focus-switch-floating";
-    "Mod+L" = "workspace-set-layout:toggle";
+    "Mod+Shift+L" = "workspace-set-layout:toggle";
     "Mod+Q" = "window-close";
     "Mod+M" = "spawn:wdisplays";
 

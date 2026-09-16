@@ -7,6 +7,10 @@ window_rule = [
       default_position = {x = 0; y = 0; anchor = "center";};
    }
    {
+      match.app_id = "swayimg";
+      blur = true;
+   }
+   {
       match.app_id = "^dev.noctalia.Noctalia";
       default_floating = true;
       default_size = [1080 920];
