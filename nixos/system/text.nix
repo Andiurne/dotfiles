@@ -9,6 +9,7 @@
       nerd-fonts.fira-code
       nerd-fonts.fantasque-sans-mono
       font-awesome
+      vista-fonts
     ];
   };
   services = {
