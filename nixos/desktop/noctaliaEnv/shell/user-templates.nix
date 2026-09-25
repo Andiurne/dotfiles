@@ -28,3 +28,7 @@ output_path = "~/.config/equibop/themes/noctalia-translucent.theme.css"
 input_path = "${templatePath}/umbriel.toml"
 output_path = "~/.config/umbriel/noctalia.toml"
 ''
+/*[theme.templates.user.obsidian_extra]
+input_path = "${templatePath}/obsidian.css"
+output_path = "/home/$USER/Repositories/Aliffrume-Archive/.obsidian/snippets/noctalia.css"
+*/

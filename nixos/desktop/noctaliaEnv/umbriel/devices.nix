@@ -41,7 +41,7 @@
 
         # Desk Monitor, by various names
         "Acer Technologies XV272U V3 A513088793LEJ" = {
-            mode = "2560x1440@144";
+            mode = "2560x1440@180.001";
             scale = 1.0;
         };
 

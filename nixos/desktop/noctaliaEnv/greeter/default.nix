@@ -1,5 +1,7 @@
 {pkgs, inputs, ...}:let noctalia-greeter = inputs.noctalia-greeter; in {
-    imports = [ noctalia-greeter.nixosModules.default ];
+    imports = [
+        noctalia-greeter.nixosModules.default
+    ];
     programs = {
         noctalia-greeter = {
             enable = true;
