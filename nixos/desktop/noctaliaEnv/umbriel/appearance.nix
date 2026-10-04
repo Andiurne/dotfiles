@@ -7,13 +7,6 @@ overview = {
     workspace_wallpaper = false;
 };
 
-# Mostly defined by Noctalia
-/*colors = {
-    overview = {
-        background_tint = "#00000000";
-    };
-};*/
-
 appearance = {
     prefer_no_csd = true;
     border_width = 4;

@@ -13,10 +13,6 @@
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
 
-    niri.url = "github:sodiboo/niri-flake";
-    hyprland.url = "github:hyprwm/Hyprland/v0.56.1-b";
-    hmHyprLib.url = "github:Andiurne/hmHyprLib";
-
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     nixvim.url = "github:nix-community/nixvim";
 
@@ -24,10 +20,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     steam-presence = {
