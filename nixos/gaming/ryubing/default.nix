@@ -21,19 +21,20 @@ romAttrsetList = map (rawname:
   }
   ) romFilenames;
 in {
-  nixpkgs.overlays =
-  [
-    (final: prev: {
-      ryubing = prev.appimageTools.wrapType2
+  # For each member of "users.users," include each rom icon in their packages
+  # Yes this would be a lot simpler with just systemPackages, but ryubing
+  # is a userspace package and this makes it more modular
+  users.users.${uname}.packages = with pkgs; [
+      (appimageTools.wrapType2
       rec {
         pname = "ryubing";
         version = "1.3.338";
-        src = prev.fetchurl {
+        src = pkgs.fetchurl {
           url = "https://git.ryujinx.app/Ryubing/Canary/releases/download/${version}/ryujinx-canary-${version}-x64.AppImage";
           hash = "sha256-oI3cW/gvsZ+TukGkrydiSVS3fw61xFO60bLXHjVcT+Y=";
         };
 
-        appImageContents = prev.appimageTools.extract {inherit pname version src; };
+        appImageContents = pkgs.appimageTools.extract {inherit pname version src; };
 
         extraInstallCommands = ''
           mkdir -p $out/share/applications
@@ -45,10 +46,9 @@ in {
         '';
 
         extraPkgs = pkgs: [ pkgs.icu ];
-      };})
-
-    (final: prev: {
-    ryubing-desktops = prev.stdenv.mkDerivation {
+      }
+    )
+    (pkgs.stdenv.mkDerivation {
       pname = "ryubing-desktops";
       version = "v1.0";
       src = ./romIcons;
@@ -69,11 +69,6 @@ in {
         " > $out/share/applications/${rom.pkgName}.desktop
 
       '') romAttrsetList));
-    };})
-    ];
-
-  # For each member of "users.users," include each rom icon in their packages
-  # Yes this would be a lot simpler with just systemPackages, but ryubing
-  # is a userspace package and this makes it more modular
-  users.users.${uname}.packages = with pkgs; [ryubing ryubing-desktops];
+    })
+  ];
 }
