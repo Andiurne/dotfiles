@@ -3,7 +3,8 @@
         ./requirements.nix
     ];
     home-manager.users.andiurne.imports = [
-        inputs.noctalia.homeModules.default
+        # home-manager provides a noctalia module now
+        #inputs.noctalia.homeModules.default
         (
             {config, ...}:
             let

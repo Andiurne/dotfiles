@@ -44,8 +44,8 @@ in {
     "Mod+Shift+bracketleft" = "window-consume-or-expel-left";
     "Mod+Shift+bracketright" = "window-consume-or-expel-right";
 
-    "Mod+bracketright" = "window-cycle-width";
-    "Mod+bracketleft" = "window-cycle-width-back";
+    "Mod+bracketright" = "window-cycle-primary-extent";
+    "Mod+bracketleft" = "window-cycle-primary-extent-back";
 
     "Mod+backslash" = "window-toggle-maximize";
     "Mod+shift+backslash" = "window-toggle-maximize-to-edges";

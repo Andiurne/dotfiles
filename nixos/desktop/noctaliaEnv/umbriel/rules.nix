@@ -13,7 +13,7 @@ window_rule = [
    {
       match.app_id = "^dev.noctalia.Noctalia";
       default_floating = true;
-      default_size = [1080 920];
+      default_floating_size_px = {width = 1080; height = 920;};
       blur = true;
    }
    {
@@ -32,7 +32,7 @@ window_rule = [
    }
    {
       match.app_id = "kitty";
-      default_width = 1. / 3.;
+      default_scrolling_extent = 1. / 3.;
       blur = true;
       blur_optimized = true;
    }

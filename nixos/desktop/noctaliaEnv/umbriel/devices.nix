@@ -37,12 +37,14 @@
         "BOE 0x0B04 Unknown" = {
             mode = "2560x1600@60.002";
             scale = 1.0;
+            workspace_axis = "vertical";
         };
 
         # Desk Monitor, by various names
         "Acer Technologies XV272U V3 A513088793LEJ" = {
             mode = "2560x1440@180.001";
             scale = 1.0;
+            workspace_axis = "vertical";
         };
 
         "DP-1".position = [0 0];

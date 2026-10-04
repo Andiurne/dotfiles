@@ -2,11 +2,11 @@
     layout = {
         mode = "scrolling";
         gap = 16;
-        width_presets = [(1. / 4.) (1. / 3.) 0.5 (2. / 3.) (3. / 4.)];
+        extent_presets = [ (1. / 3.) 0.5 (2. / 3.) 1 ];
         scrolling = {
-            direction = "horizontal";
-            default_width_fraction = 0.5;
+            default_extent_fraction = 0.5;
             center_underfull_strip = true;
+            center_focused = "on_overflow";
         };
     };
 };}

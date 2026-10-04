@@ -22,7 +22,7 @@
                 ./rules.nix
                 ./devices.nix
                 ./layout.nix
-                #./animation.nix
+                ./animation.nix
             ];
             programs.umbriel = {
                 enable = true;
