@@ -30,6 +30,12 @@
                 python3
             ];
 
+            #/*
+            programs.fish.shellInit = ''
+            source ${config.home.homeDirectory}/.config/fzf/themes/noctalia.fish
+            '';
+            #*/
+
             programs.noctalia =  {
                 enable = true;
 
