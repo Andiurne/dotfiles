@@ -28,6 +28,7 @@ services.hardware.openrgb = {
 
 # Remote Desktop
 services.sunshine = {
+  package = pkgs.callPackage ./sunshine-unstable-10_4_2026.nix {};
   enable = true;
   autoStart = true;
   capSysAdmin = true;
