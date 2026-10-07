@@ -54,4 +54,5 @@
 "zen.view.window.scheme" = 0;
 "zen.welcome-screen.seen" = true;
 "zen.window-sync.enabled" = false;
+"widget.gtk.native-emoji-dialog" = false;
 }
