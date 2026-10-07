@@ -47,7 +47,6 @@
                 # (this might be worth defining in script
                 settings = foldImports {
                     shell.avatarImage = config.home.homeDirectory + "/face.png";
-                    #bar.order = [ "leftMain" ];
                     weather.unit = "imperial";
                     wallpaper = {
                         directory = "~/Pictures/Wallpapers/curated";
