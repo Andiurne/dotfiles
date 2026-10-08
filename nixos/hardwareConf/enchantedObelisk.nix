@@ -2,6 +2,7 @@
 imports = [
   ./enchantedObelisk_autogen.nix
   ../users/andiurne
+  (import ../../gaming/ryubing "andiurne")
   ];
 boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 

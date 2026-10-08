@@ -6,7 +6,7 @@
 
     # Gaming
     ../../gaming/steam.nix
-    (import ../../gaming/ryubing "andiurne")
+
   ];
 
 users.extraUsers.andiurne.shell = pkgs.fish;

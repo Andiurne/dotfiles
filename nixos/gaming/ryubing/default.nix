@@ -1,4 +1,4 @@
-uname: {pkgs, ...}:
+uname: {pkgs, inputs, ...}:
 let romFilenames =
 [
   "Tomodachi-Life-LTD.nsp"
@@ -25,7 +25,7 @@ in {
   # Yes this would be a lot simpler with just systemPackages, but ryubing
   # is a userspace package and this makes it more modular
   users.users.${uname}.packages = with pkgs; [
-      (appimageTools.wrapType2
+     (appimageTools.wrapType2
       rec {
         pname = "ryubing";
         version = "1.3.338";
