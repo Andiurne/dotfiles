@@ -2,7 +2,7 @@
 imports = [
   ./enchantedObelisk_autogen.nix
   ../users/andiurne
-  (import ../../gaming/ryubing "andiurne")
+  (import ../gaming/ryubing "andiurne")
   ];
 boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
@@ -18,7 +18,7 @@ swapDevices = [{
   size = 32*1024;
 }];
 
-environment.systemPackages = [pkgs.openrgb-with-all-plugins];
+environment.systemPackages = [pkgs.openrgb-with-all-plugins pkgs.vita3k];
 services.hardware.openrgb = {
   enable = true;
   motherboard = "amd";

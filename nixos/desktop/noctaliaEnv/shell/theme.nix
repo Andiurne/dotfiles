@@ -8,21 +8,19 @@
         [
             "btop"
             "cava"
-            "foot"
             "gtk3"
             "gtk4"
-            "hyprland"
             "kitty"
             "qt"
         ];
         community_ids =
         [
             "zen-browser"
+            "fzf"
             "neovim"
             "discord"
             "steam"
             "yazi"
-            "hyprtoolkit"
         ];
     };
 };}

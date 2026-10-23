@@ -4,7 +4,7 @@ let
 in {
 environment.systemPackages = with pkgs; [
     # Basic graphical environment
-    foot
+    kitty
     inputs.andiurne.packages.${system}.lintree
     mpv
     nerd-fonts.jetbrains-mono

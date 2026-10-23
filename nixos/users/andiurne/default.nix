@@ -26,7 +26,7 @@ users.users.andiurne = {
 
     # Office Utilities
     pandoc # Document conversion (md -> pdf)
-    texliveSmall # LaTeX
+    texliveFull # LaTeX
     doxx # .docx opener
   ];
 

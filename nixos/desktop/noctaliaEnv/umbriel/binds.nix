@@ -3,6 +3,7 @@
 home.packages = with pkgs; [
     slurp
     grim
+    still
     wdisplays
     ];
 
@@ -15,7 +16,7 @@ programs.umbriel.settings.keybinds = let
         "spawn:${terminal} -- ${shell} -C '${cmd}'";
     fileManager = "y";
     editor = "nvim";
-    screenshot = "spawn:fish -c 'grim -g (slurp) - | swappy -f -'";
+    screenshot = "spawn:still -c 'slurp | grim -g- -' | swappy -f -";
 in {
     # Compositor Functions
     "Mod+slash" = "cheatsheet-toggle";

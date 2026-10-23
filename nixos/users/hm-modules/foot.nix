@@ -1,6 +1,6 @@
 {config, ...}: {
 programs.foot = {
-	enable = true;
+	enable = false;
 	settings = {
 		main = {
 			include = "~/.config/foot/themes/noctalia";
