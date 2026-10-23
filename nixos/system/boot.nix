@@ -1,4 +1,3 @@
-{ config, pkgs, ...}:
 {
   boot = {
     # Bootloader
@@ -8,6 +7,7 @@
         enable = true;
         efiSupport = true;
         configurationLimit = 12;
+        useOSProber = true;
       };
       grub2-theme = {
         enable = true;

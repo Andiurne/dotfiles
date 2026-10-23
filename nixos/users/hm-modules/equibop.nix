@@ -33,6 +33,10 @@ programs.equibop = {
     } // lib.genAttrs
     # Plugins that are simple enables
     [
+        "DirectFileDownload"
+        "EquiTweaks"
+        "FavoriteEverything"
+
         "SidebarChat"
         "TenorGifSearch"
         "CollapsibleUI"

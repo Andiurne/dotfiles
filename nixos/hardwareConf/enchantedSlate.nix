@@ -14,6 +14,7 @@
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
   };
 
+  #/*
   # Disable NVIDIA GPU
   services.udev.extraRules = ''
     # Remove NVIDIA USB xHCI Host Controller devices, if present
@@ -42,5 +43,7 @@
       "nvidia-modeset"
     ];
   };
+  /*
+  */
 
   }
