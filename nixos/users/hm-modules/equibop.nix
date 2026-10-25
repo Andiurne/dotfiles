@@ -34,6 +34,10 @@ programs.equibop = {
     # Plugins that are simple enables
     [
         "BetterBackreading"
+        "DirectFileDownload"
+        "EquiTweaks"
+        "FavoriteEverything"
+
         "SidebarChat"
         "TenorGifSearch"
         "CollapsibleUI"
