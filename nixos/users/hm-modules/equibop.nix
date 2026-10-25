@@ -33,6 +33,7 @@ programs.equibop = {
     } // lib.genAttrs
     # Plugins that are simple enables
     [
+        "BetterBackreading"
         "SidebarChat"
         "TenorGifSearch"
         "CollapsibleUI"
