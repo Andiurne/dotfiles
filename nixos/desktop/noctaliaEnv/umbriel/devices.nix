@@ -30,6 +30,13 @@
         focus = {
             follows_mouse = true;
         };
+
+        device = [
+            {
+                name = "Sony Interactive Entertainment DualSense Wireless Controller Touchpad";
+                enabled = false;
+            }
+        ];
     };
 
     output = {
