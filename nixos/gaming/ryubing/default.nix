@@ -28,10 +28,10 @@ in {
      (appimageTools.wrapType2
       rec {
         pname = "ryubing";
-        version = "1.3.338";
+        version = "1.3.351";
         src = pkgs.fetchurl {
           url = "https://git.ryujinx.app/Ryubing/Canary/releases/download/${version}/ryujinx-canary-${version}-x64.AppImage";
-          hash = "sha256-oI3cW/gvsZ+TukGkrydiSVS3fw61xFO60bLXHjVcT+Y=";
+          hash = "sha256-5xv1QB6XUYQe707FHFR05wAUt4MGs99/yIZiOqb5Pxs=";
         };
 
         appImageContents = pkgs.appimageTools.extract {inherit pname version src; };
